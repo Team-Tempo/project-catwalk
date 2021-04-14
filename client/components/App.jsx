@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ProductOverview from './ProductOverview/ProductOverview.jsx';
+import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
+import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
+import Header from './Header.jsx';
 
 const App = () => {
   return (
     <>
-      <h1>Hello World!</h1>
-      <button className="btn btn-primary">Sign Up!</button>
+      <Header />
+      <ProductOverview />
+      <RelatedProducts />
+      <QuestionsAndAnswers />
+      <RatingsAndReviews />
     </>
   );
 };

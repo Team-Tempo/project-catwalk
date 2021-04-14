@@ -18,6 +18,7 @@
   },
   "homepage": "http://www.github.com",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "babel-polyfill": "^6.26.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
