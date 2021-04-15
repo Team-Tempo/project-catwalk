@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
 
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
@@ -11,11 +14,13 @@ const App = () => {
   console.log(ProductDummyData.relatedProducts);
   return (
     <>
-      <Header />
-      <ProductOverview />
-      <RelatedProducts />
-      <QuestionsAndAnswers />
-      <RatingsAndReviews />
+      <Container maxWidth="lg">
+        <Header />
+        <ProductOverview />
+        <RelatedProducts />
+        <QuestionsAndAnswers />
+        <RatingsAndReviews />
+      </Container>
     </>
   );
 };
