@@ -1,13 +1,12 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
     height: 450,
-    background: purple[200],
+    alignItems: 'center',
   },
 });
 
@@ -20,7 +19,13 @@ const ImageGallery = ({ currentStyle }) => {
   return (
     <>
       <Card className={classes.root}>
-        <img className={classes.root} src={imageUrl}></img>
+        <Grid container>
+          <Grid item xs={1}></Grid>
+          <Grid item xs>
+            <img className={classes.root} src={imageUrl}></img>
+          </Grid>
+          <Grid item xs={1}></Grid>
+        </Grid>
       </Card>
     </>
   );
