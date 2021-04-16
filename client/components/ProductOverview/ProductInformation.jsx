@@ -7,7 +7,12 @@ const ProductInformation = ({ product }) => {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Rating defaultValue={3.5} precision={0.25} size="small"></Rating>
+        <Rating
+          name="rating"
+          defaultValue={3.5}
+          precision={0.25}
+          size="small"
+        ></Rating>
       </Grid>
       <Grid item xs={6}>
         <Typography variant="button">Read all reviews</Typography>

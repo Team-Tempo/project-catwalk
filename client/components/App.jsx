@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Header from './Header.jsx';
-import ProductDummyData from './DummyData/ProductDummyData.js';
 
 const App = () => {
+  const [productId] = useState(24156);
   return (
     <>
       <Container maxWidth="lg">
@@ -18,7 +17,7 @@ const App = () => {
             <Header />
           </Grid>
           <Grid item xs={12}>
-            <ProductOverview />
+            <ProductOverview productId={productId} />
           </Grid>
           <Grid item xs={12}>
             <RelatedProducts />
