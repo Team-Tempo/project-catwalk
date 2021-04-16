@@ -3,7 +3,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 const Header = () => {
-  return <Typography variant="h3">J-CAD</Typography>;
+  return <Typography variant="h3">J. Cad</Typography>;
 };
 
 export default Header;
