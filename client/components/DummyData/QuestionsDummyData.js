@@ -150,5 +150,4 @@ var questions = {
 
 module.exports = {
   questions,
-  questionsAnswers,
 };
