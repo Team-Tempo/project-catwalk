@@ -14,7 +14,7 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
   bar: {
     borderRadius: 5,
-    backgroundColor: '#1a90ff',
+    backgroundColor: '#009973',
   },
 }))(LinearProgress);
 
@@ -37,7 +37,7 @@ const RatingBreakdown = () => {
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
         <Grid item xs={3}>
-          5 stars
+          <>5 stars</>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={60} />
@@ -45,7 +45,7 @@ const RatingBreakdown = () => {
         </Grid>
         <Grid container item xs={12} spacing={3}>
         <Grid item xs={3}>
-          4 stars
+         <>4 stars</>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={40} />
@@ -53,7 +53,7 @@ const RatingBreakdown = () => {
         </Grid>
         <Grid container item xs={12} spacing={3}>
         <Grid item xs={3}>
-          3 stars
+          <>3 stars</>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={100} />
@@ -61,7 +61,7 @@ const RatingBreakdown = () => {
         </Grid>
         <Grid container item xs={12} spacing={3}>
         <Grid item xs={3}>
-          2 stars
+          <>2 stars</>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={45} />
@@ -69,7 +69,7 @@ const RatingBreakdown = () => {
         </Grid>
         <Grid container item xs={12} spacing={3}>
         <Grid item xs={3}>
-          1 stars
+          <>1 stars</>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={20} />
