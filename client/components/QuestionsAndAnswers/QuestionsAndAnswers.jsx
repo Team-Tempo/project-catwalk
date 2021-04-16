@@ -19,6 +19,7 @@ const QuestionsAndAnswers = () => {
   return (
     <div>
       <h3>QUESTIONS & ANSWERS</h3>
+
       <QuestionSearch questions={QuestionsDummyData.questions}/>
       <QAndA questions={QuestionsDummyData.questions}/>
       <Photos questions={QuestionsDummyData.questions}/>
