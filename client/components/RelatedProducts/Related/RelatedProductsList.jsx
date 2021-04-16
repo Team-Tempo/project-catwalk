@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import RelatedProductCard from './RelatedProductCard.jsx';
+import products from '../../DummyData/ProductDummyData';
+import GridList from '@material-ui/core/GridList';
+// import Carousel from 'react-material-ui-carousel'
 
-const RelatedProductsList = () => {
-  //get request for related product ids based on id of current product
-  //then get request for each product to product_id (for name, category, default_price) AND get request to id/styles (for sale_price and image) as well??
-  return <RelatedProductCard />;
+
+const RelatedProductsList = (props) => {
+
+  return  (
+    <GridList cols={4}>
+      {props.relatedWithNameCatPrice.map(item => <RelatedProductCard key={item.id} relatedWithNameCatPrice={item}/>)}
+    </GridList>
+  )
 };
 
 export default RelatedProductsList;
