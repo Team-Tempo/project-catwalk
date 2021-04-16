@@ -19,7 +19,9 @@ const ProductInformation = ({ product }) => {
         <Typography variant="h4">{product.name}</Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="body2">{product.default_price}</Typography>
+        <Typography variant="caption">
+          ${Math.round(product.default_price)}
+        </Typography>
       </Grid>
     </Grid>
   );
