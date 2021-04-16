@@ -6,6 +6,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import StyleSelector from './StyleSelector';
 import AddToCart from './AddToCart';
+import config from '../../../config';
 
 import dummyData from '../DummyData/ProductDummyData';
 
@@ -13,7 +14,7 @@ const getProduct = () => {
   return axios
     .get('https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products', {
       headers: {
-        Authorization: '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',
+        Authorization: config.GITHUB_TOKEN,
       },
     })
     .then((response) => {
