@@ -1,6 +1,5 @@
 .DS_Store
 node_modules/
 .env
-dist/bundle.js
-dist/bundle.js.map
 config.js
+dist/bundle*
