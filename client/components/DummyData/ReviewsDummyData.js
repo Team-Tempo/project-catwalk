@@ -24,9 +24,8 @@ var reviews = {
         {
           id: 2,
           url: 'urlplaceholder/review_5_photo_number_2.jpg',
-        },
-        // ...
-      ],
+        }
+      ]
     },
     {
       review_id: 3,
@@ -40,9 +39,8 @@ var reviews = {
       reviewer_name: 'bigbrotherbenjamin',
       helpfulness: 5,
       photos: [],
-    },
-    // ...
-  ],
+    }
+  ]
 };
 
 // GET /reviews/meta
