@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
 
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
@@ -11,7 +10,6 @@ import Header from './Header.jsx';
 import ProductDummyData from './DummyData/ProductDummyData.js';
 
 const App = () => {
-  console.log(ProductDummyData.relatedProducts);
   return (
     <>
       <Container maxWidth="lg">

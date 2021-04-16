@@ -29,7 +29,11 @@ const AddToCart = () => {
       <Grid item xs={8}>
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-simple-select-label">Size</InputLabel>
-          <Select labelId="demo-simple-select-label" id="demo-simple-select">
+          <Select
+            value=""
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+          >
             <MenuItem value={10}>XS</MenuItem>
             <MenuItem value={20}>S</MenuItem>
             <MenuItem value={30}>M</MenuItem>
@@ -41,7 +45,11 @@ const AddToCart = () => {
       <Grid item xs={4}>
         <FormControl className={classes.formControl}>
           <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
-          <Select labelId="demo-simple-select-label" id="demo-simple-select">
+          <Select
+            value=""
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+          >
             <MenuItem value={10}>1</MenuItem>
             <MenuItem value={20}>2</MenuItem>
             <MenuItem value={30}>3</MenuItem>
