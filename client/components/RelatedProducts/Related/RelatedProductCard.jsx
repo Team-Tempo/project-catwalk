@@ -68,7 +68,12 @@ const RelatedProductCard = (props) => {
             {props.relatedWithNameCatPrice.default_price}
           </Typography>
           <Typography>
-            <Rating defaultValue={3.5} precision={0.25} size="small"></Rating>
+            <Rating
+              name="rating"
+              defaultValue={3.5}
+              precision={0.25}
+              size="small"
+          ></Rating>
           </Typography>
         </CardContent>
       </CardActionArea>
