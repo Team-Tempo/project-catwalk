@@ -10,6 +10,7 @@ import Header from './Header.jsx';
 import ProductDummyData from './DummyData/ProductDummyData.js';
 
 const App = () => {
+  const [productId, setProductId] = useState(24156);
   return (
     <>
       <Container maxWidth="lg">
@@ -18,7 +19,7 @@ const App = () => {
             <Header />
           </Grid>
           <Grid item xs={12}>
-            <ProductOverview />
+            <ProductOverview productId={productId} />
           </Grid>
           <Grid item xs={12}>
             <RelatedProducts />
