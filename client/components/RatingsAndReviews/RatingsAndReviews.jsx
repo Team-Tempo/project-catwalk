@@ -15,11 +15,11 @@ const RatingsAndReviews = () => {
   return (
     <>
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={4}>
+      <Grid container spacing={4}>
+        <Grid item xs={3}>
         <p>Ratings and Reviews</p><Rating />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
         <ReviewsList />
         </Grid>
       </Grid>

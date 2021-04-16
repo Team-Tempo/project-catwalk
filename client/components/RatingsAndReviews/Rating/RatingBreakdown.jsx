@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
-    height: 10,
+    height: 8,
     borderRadius: 5,
   },
   colorPrimary: {
@@ -35,7 +35,12 @@ const RatingBreakdown = () => {
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
-        <Grid container item xs={12} spacing={3}>
+      <Grid container item xs={12} spacing={1}>
+        <Grid item xs>
+          <p>100% of reviews recommend this product</p>
+        </Grid>
+        </Grid>
+        <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
           <>5 stars</>
         </Grid>
@@ -43,7 +48,7 @@ const RatingBreakdown = () => {
         <BorderLinearProgress variant="determinate" value={60} />
         </Grid>
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
          <>4 stars</>
         </Grid>
@@ -51,7 +56,7 @@ const RatingBreakdown = () => {
         <BorderLinearProgress variant="determinate" value={40} />
         </Grid>
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
           <>3 stars</>
         </Grid>
@@ -59,7 +64,7 @@ const RatingBreakdown = () => {
         <BorderLinearProgress variant="determinate" value={100} />
         </Grid>
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
           <>2 stars</>
         </Grid>
@@ -67,7 +72,7 @@ const RatingBreakdown = () => {
         <BorderLinearProgress variant="determinate" value={45} />
         </Grid>
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
           <>1 stars</>
         </Grid>
