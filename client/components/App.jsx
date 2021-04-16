@@ -8,7 +8,7 @@ import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Header from './Header.jsx';
 
 const App = () => {
-  const [productId] = useState(24156);
+  const [productId] = useState(24158);
   return (
     <>
       <Container maxWidth="lg">
