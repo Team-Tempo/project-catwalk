@@ -1,9 +1,11 @@
 import React from 'react';
+import Slider from '@material-ui/core/Slider';
 
 const RatingBreakdown = () => {
+
   return (
     <>
-    <h2>RatingBreakdown Component</h2>
+    <p>100% of reviews recommend this product</p>
     </>
   )
 }

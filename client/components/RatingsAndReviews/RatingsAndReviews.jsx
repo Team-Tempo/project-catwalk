@@ -23,17 +23,15 @@ const RatingsAndReviews = () => {
   return (
     <>
 <div className={classes.root}>
-      <h1>Ratings and Reviews Component</h1>
       <Grid container spacing={3}>
         <Grid item xs={4}>
-          <Paper className={classes.paper}><Rating /></Paper>
+          <Paper className={classes.paper}><p>Ratings and Reviews</p><Rating /></Paper>
         </Grid>
         <Grid item xs={8}>
           <Paper className={classes.paper}><ReviewsList /></Paper>
         </Grid>
       </Grid>
     </div>
-    {/* <Skeleton variant="rect" width={210} height={118}/> */}
     </>
   )
 };
