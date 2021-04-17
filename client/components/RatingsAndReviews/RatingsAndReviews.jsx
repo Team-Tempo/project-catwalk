@@ -14,10 +14,11 @@ const RatingsAndReviews = () => {
   const classes = useStyles();
   return (
     <>
+    <p>RATINGS & REVIEWS</p>
     <div className={classes.root}>
       <Grid container spacing={4}>
         <Grid item xs={3}>
-        <p>Ratings and Reviews</p><Rating />
+        <Rating />
         </Grid>
         <Grid item xs={9}>
         <ReviewsList />

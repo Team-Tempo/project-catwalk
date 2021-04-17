@@ -5,7 +5,7 @@ import { Skeleton } from '@material-ui/lab';
 const ReviewsList = () => {
   return (
     <>
-    <p>248 reciews, sorted by relevance</p>
+    <p>248 reviews, sorted by relevance</p>
 
     <Review />
     <Review />
