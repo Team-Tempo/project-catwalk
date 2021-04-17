@@ -20,7 +20,11 @@ const ImageGallery = ({ currentStyle }) => {
     <>
       <Card className={classes.root}>
         <Grid container>
-          <Grid item xs={1}></Grid>
+          <Grid item xs={2}>
+            <Card>
+              <img width={75} src={imageUrl}></img>
+            </Card>
+          </Grid>
           <Grid item xs>
             <img className={classes.root} src={imageUrl}></img>
           </Grid>

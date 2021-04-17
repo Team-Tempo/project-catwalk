@@ -10,12 +10,12 @@ const StyleSelector = ({ styles, currentStyle, setCurrentStyle }) => {
   return (
     <>
       <Typography variant="body2">STYLE &gt; {currentStyle.name}</Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {styles.map((style, idx) => (
           <Grid key={idx} item xs={3}>
             <Avatar
               onClick={() => handleClick(idx)}
-              variant="rounded"
+              variant="square"
               src={style.photos[0].thumbnail_url}
             />
           </Grid>

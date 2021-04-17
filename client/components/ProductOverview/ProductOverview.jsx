@@ -65,15 +65,17 @@ const ProductOverview = ({ productId }) => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={2}></Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <Box display="flex" flexDirection="column">
           <ImageGallery currentStyle={currentStyle}></ImageGallery>
         </Box>
       </Grid>
-      <Grid container direction="column" justify="space-between" item xs={3}>
+      <Grid container direction="column" justify="space-between" item xs={4}>
         <Grid item>
-          <ProductInformation product={product}></ProductInformation>
+          <ProductInformation
+            product={product}
+            currentStyle={currentStyle}
+          ></ProductInformation>
         </Grid>
         <Grid item>
           <StyleSelector
