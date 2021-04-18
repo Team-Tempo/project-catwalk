@@ -34,7 +34,7 @@ const getProduct = () => {
 //   );
 // };
 
-const ProductOverview = () => {
+const ProductOverview = ({ productId }) => {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
