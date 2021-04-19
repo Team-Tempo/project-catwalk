@@ -20,7 +20,7 @@ const App = () => {
             <ProductOverview productId={productId} />
           </Grid>
           <Grid item xs={12}>
-            <RelatedProducts />
+            <RelatedProducts productId={productId} />
           </Grid>
           <Grid item xs={12}>
             <QuestionsAndAnswers />
