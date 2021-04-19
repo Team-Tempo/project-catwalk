@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
+import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    height: 450,
+    height: '200px',
     alignItems: 'center',
+  },
+  media: {
+    height: 0,
+    paddingTop: '100%', // 16:9
+  },
+  gridTest: {
+    overflow: 'auto',
+    maxHeight: '500px',
   },
 });
 
@@ -14,23 +23,42 @@ const ImageGallery = ({ currentStyle }) => {
   if (!currentStyle.photos) {
     return null;
   }
+
+  const handleClick = (idx) => {
+    setCurrentPhotoUrl(currentStyle.photos[idx].url);
+  };
+
+  const [currentPhotoUrl, setCurrentPhotoUrl] = useState('');
   const classes = useStyles();
-  const imageUrl = currentStyle.photos[0].url;
+  const imageUrl = currentPhotoUrl
+    ? currentPhotoUrl
+    : currentStyle.photos[0].url;
+
   return (
     <>
-      <Card className={classes.root}>
-        <Grid container>
-          <Grid item xs={2}>
-            <Card>
-              <img width={75} src={imageUrl}></img>
-            </Card>
-          </Grid>
-          <Grid item xs>
-            <img className={classes.root} src={imageUrl}></img>
-          </Grid>
-          <Grid item xs={1}></Grid>
+      <Grid container>
+        <Grid item xs={2} className={classes.gridTest}>
+          {currentStyle.photos.map((photo, idx) => {
+            return (
+              <Card key={idx}>
+                <CardMedia
+                  className={classes.media}
+                  image={photo.url}
+                  title="style"
+                  onClick={() => {
+                    handleClick(idx);
+                  }}
+                ></CardMedia>
+              </Card>
+            );
+          })}
         </Grid>
-      </Card>
+        <Grid item xs>
+          <Card>
+            <CardMedia className={classes.media} image={imageUrl} />
+          </Card>
+        </Grid>
+      </Grid>
     </>
   );
 };

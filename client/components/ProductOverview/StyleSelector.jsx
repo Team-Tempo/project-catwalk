@@ -15,7 +15,7 @@ const StyleSelector = ({ styles, currentStyle, setCurrentStyle }) => {
           <Grid key={idx} item xs={3}>
             <Avatar
               onClick={() => handleClick(idx)}
-              // variant="rounded"
+              variant="rounded"
               src={style.photos[0].thumbnail_url}
             />
           </Grid>
