@@ -1,23 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
-    background: purple[500],
+    height: '200px',
+    alignItems: 'center',
+  },
+  media: {
+    height: 0,
+    paddingTop: '100%', // 16:9
+  },
+  gridTest: {
+    overflow: 'auto',
+    maxHeight: '500px',
   },
 });
 
-const ImageGallery = ({ dummyData }) => {
+const ImageGallery = ({ currentStyle }) => {
+  if (!currentStyle.photos) {
+    return null;
+  }
+
+  const handleClick = (idx) => {
+    setCurrentPhotoUrl(currentStyle.photos[idx].url);
+  };
+
+  const [currentPhotoUrl, setCurrentPhotoUrl] = useState('');
   const classes = useStyles();
-  const imageUrl = dummyData.productStyles.results[0].photos[0].url;
+  const imageUrl = currentPhotoUrl
+    ? currentPhotoUrl
+    : currentStyle.photos[0].url;
+
   return (
     <>
-      <Card className={classes.root}>
-        <img className={classes.root} src={imageUrl}></img>
-      </Card>
+      <Grid container>
+        <Grid item xs={2} className={classes.gridTest}>
+          {currentStyle.photos.map((photo, idx) => {
+            return (
+              <Card key={idx}>
+                <CardMedia
+                  className={classes.media}
+                  image={photo.thumbnail_url}
+                  title="style"
+                  onClick={() => {
+                    handleClick(idx);
+                  }}
+                />
+              </Card>
+            );
+          })}
+        </Grid>
+        <Grid item xs>
+          <Card>
+            <CardMedia className={classes.media} image={imageUrl} />
+          </Card>
+        </Grid>
+      </Grid>
     </>
   );
 };
