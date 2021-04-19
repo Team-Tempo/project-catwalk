@@ -53,7 +53,6 @@ const ProductOverview = ({ productId }) => {
       return result;
     }
 
-    fetchProduct();
     async function setupStyles() {
       const result = await fetchProductStyles();
       setCurrentStyle(result[0]);
@@ -67,25 +66,22 @@ const ProductOverview = ({ productId }) => {
     <Grid container spacing={2}>
       <Grid item xs={6}>
         <Box display="flex" flexDirection="column">
-          <ImageGallery currentStyle={currentStyle}></ImageGallery>
+          <ImageGallery currentStyle={currentStyle} />
         </Box>
       </Grid>
       <Grid container direction="column" justify="space-between" item xs={4}>
         <Grid item>
-          <ProductInformation
-            product={product}
-            currentStyle={currentStyle}
-          ></ProductInformation>
+          <ProductInformation product={product} currentStyle={currentStyle} />
         </Grid>
         <Grid item>
           <StyleSelector
             styles={styles}
             currentStyle={currentStyle}
             setCurrentStyle={setCurrentStyle}
-          ></StyleSelector>
+          />
         </Grid>
         <Grid item>
-          <AddToCart></AddToCart>
+          <AddToCart currentStyle={currentStyle} />
         </Grid>
       </Grid>
       <Grid item xs={3}></Grid>

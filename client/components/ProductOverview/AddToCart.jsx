@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Grid,
   InputLabel,
@@ -29,29 +29,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddToCart = () => {
+const AddToCart = ({ currentStyle }) => {
+  if (!currentStyle.skus) {
+    return null;
+  }
   const classes = useStyles();
+  const [selectedSize, setSelectedSize] = useState('xs');
+
+  const skus = Object.values(currentStyle.skus);
+
   return (
     <Grid container>
       <Grid item xs={12}>
         <Typography>Select size</Typography>
       </Grid>
       <Grid item xs={12}>
-        <Button className={classes.sizeButton} color="secondary" size="small">
-          XS
-        </Button>
-        <Button className={classes.sizeButton} color="secondary" size="small">
-          S
-        </Button>
-        <Button className={classes.sizeButton} color="secondary" size="small">
-          M
-        </Button>
-        <Button className={classes.sizeButton} color="secondary" size="small">
-          L
-        </Button>
-        <Button className={classes.sizeButton} color="secondary" size="small">
-          XL
-        </Button>
+        {skus.map((sku, idx) => (
+          <Button
+            key={idx}
+            className={classes.sizeButton}
+            variant="text"
+            color="secondary"
+            size="small"
+          >
+            {sku.size}
+          </Button>
+        ))}
       </Grid>
       <Grid item xs={10}>
         <ButtonGroup>
