@@ -48,7 +48,7 @@ const ImageGallery = ({ currentStyle }) => {
                   onClick={() => {
                     handleClick(idx);
                   }}
-                ></CardMedia>
+                />
               </Card>
             );
           })}
