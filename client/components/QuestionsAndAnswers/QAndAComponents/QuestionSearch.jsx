@@ -24,7 +24,7 @@ export default function QuestionSearch() {
       <div className={classes.root}>
         <TextField
           size="medium"
-          label="HAVE A QUESTION?"
+          label="HAVE A QUESTION? SEARCH FOR ANSWERS..."
           variant="outlined"
           InputProps={{
             endAdornment: (

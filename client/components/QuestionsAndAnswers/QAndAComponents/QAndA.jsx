@@ -11,6 +11,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Helpful from './Helpful.jsx';
+var dateFormat = require('dateformat');
+
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -18,40 +20,66 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px'
   },
   underlined: {
-    underline: 'always'
+    textDecoration: 'underline'
+  },
+  textSpacing: {
+    marginLeft: '10px',
+    marginRight: '10px'
+  },
+  verticalSpace: {
+    marginTop: '15px',
+    marginBottom: '15px'
   }
 }));
 
 const QAndA = (props) => {
+  // console.log(props);
   const classes = useStyles();
-
+  // const dateOne = new Date(props.questions.results[1].question_date);
+  // console.log('date', dateOne);
+  // console.log(dateFormat(dateOne, ))
   return (
     <Grid container spacing={2}>
-      <Grid xs={8}>
-        <Typography variant="h6"><b>Q: {props.questions.results[1].question_body}</b></Typography>
-      </Grid>
-
-      <Grid item justify="space-between" xs={2}>
-        <Helpful />
-      </Grid>
-      <Grid item justify="space-between" xs={2}>
-        <Typography variant="caption"> |   Add Answer</Typography>
-      </Grid>
-
-      <Grid item xs={12}>
-        <Typography variant="h6"><b>A: </b>{props.questions.results[1].answers[1628393].body}</Typography>
-      </Grid>
-      <Grid container spacing={1}>
-        <Grid item xs={6}>
-          <Typography variant="caption">by {props.questions.results[1].asker_name}, {props.questions.results[1].question_date}</Typography>
+      <Grid className={classes.verticalSpace}></Grid>
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={8}>
+          <Typography variant="h6"><b>Q: {props.questions.results[1].question_body}</b></Typography>
         </Grid>
-        <Grid item xs={3}>
-          <Helpful />
+        <Grid container justify="flex-end" xs={4}>
+          <Grid item className={classes.textSpacing}>
+            <Helpful questions={props.questions}/>
+          </Grid>
+          <Grid item>
+            <Typography variant="caption">|</Typography>
+          </Grid>
+          <Grid item className={classes.textSpacing}>
+            <Typography variant="caption" className={classes.underlined}>Add Answer</Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={3}>
+      </Grid>
+      <Grid container spacing={2} xs={12}>
+        <Grid item>
+          <Typography variant="h6"><b>A: </b>{props.questions.results[1].answers[1628393].body}</Typography>
+        </Grid>
+      </Grid>
+      <Grid container>
+        <Grid item>
+          <Typography variant="caption" className={classes.textSpacing}>by {props.questions.results[1].asker_name}, {dateFormat(new Date(props.questions.results[1].question_date), "mmmm, d, yyyy")}   </Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant="caption">|</Typography>
+        </Grid>
+        <Grid item className={classes.textSpacing}>
+          <Helpful questions={props.questions}/>
+        </Grid>
+        <Grid item>
+          <Typography variant="caption">|</Typography>
+        </Grid>
+        <Grid item className={classes.textSpacing}>
           <Typography variant="caption" className={classes.underlined}>Report</Typography>
         </Grid>
       </Grid>
+      <Grid className={classes.verticalSpace}></Grid>
     </Grid>
 
 
