@@ -33,14 +33,13 @@ const RelatedProducts = ({productId}) => {
     getRelatedIds(productId)
     .then(relatedIdsResult => {
       const nameCatPriceGetReq = relatedIdsResult.map(id => {
-        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`)
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`);
       })
-
-      Promise.all(nameCatPriceGetReq)
-      .then(response => response.map(item => item.data))
-      .then(nameCatPriceResult => setNameCatPrice(nameCatPriceResult))
+      return Promise.all(nameCatPriceGetReq);
     })
-  }, []);
+    .then(response => response.map(item => item.data))
+    .then(nameCatPriceResult => setNameCatPrice(nameCatPriceResult))
+  }, [productId]);
 
 
   return (
