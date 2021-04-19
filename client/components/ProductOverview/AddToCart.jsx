@@ -34,9 +34,13 @@ const AddToCart = ({ currentStyle }) => {
     return null;
   }
   const classes = useStyles();
-  const [selectedSize, setSelectedSize] = useState('xs');
+  const [selectedSize, setSelectedSize] = useState('');
 
   const skus = Object.values(currentStyle.skus);
+
+  const handleClick = (size) => {
+    setSelectedSize(size);
+  };
 
   return (
     <Grid container>
@@ -44,17 +48,35 @@ const AddToCart = ({ currentStyle }) => {
         <Typography>Select size</Typography>
       </Grid>
       <Grid item xs={12}>
-        {skus.map((sku, idx) => (
-          <Button
-            key={idx}
-            className={classes.sizeButton}
-            variant="text"
-            color="secondary"
-            size="small"
-          >
-            {sku.size}
-          </Button>
-        ))}
+        {skus.map((sku, idx) => {
+          return sku.size === selectedSize ? (
+            <Button
+              key={idx}
+              className={classes.sizeButton}
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={() => {
+                handleClick('');
+              }}
+            >
+              {sku.size}
+            </Button>
+          ) : (
+            <Button
+              key={idx}
+              className={classes.sizeButton}
+              variant="text"
+              color="secondary"
+              size="small"
+              onClick={() => {
+                handleClick(sku.size);
+              }}
+            >
+              {sku.size}
+            </Button>
+          );
+        })}
       </Grid>
       <Grid item xs={10}>
         <ButtonGroup>
