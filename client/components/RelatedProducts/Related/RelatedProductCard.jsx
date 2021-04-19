@@ -41,7 +41,7 @@ const useStyles = makeStyles({
 });
 
 
-const RelatedProductCard = (props) => {
+const RelatedProductCard = ({nameCatPrice}) => {
   const classes = useStyles();
 
   return (
@@ -59,13 +59,13 @@ const RelatedProductCard = (props) => {
           sale_price if on sale
           */}
           <Typography className={classes.category}>
-            {props.relatedWithNameCatPrice.category}
+            {nameCatPrice.category}
           </Typography>
           <Typography className={classes.name}>
-            {props.relatedWithNameCatPrice.name}
+            {nameCatPrice.name}
           </Typography>
           <Typography className={classes.price}>
-            {props.relatedWithNameCatPrice.default_price}
+            {nameCatPrice.default_price}
           </Typography>
           <Typography>
             <Rating
