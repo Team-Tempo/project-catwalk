@@ -41,7 +41,7 @@ const useStyles = makeStyles({
 });
 
 
-const RelatedProductCard = ({nameCatPrice}) => {
+const RelatedProductCard = ({nameCatPrice, salePic}) => {
   const classes = useStyles();
 
   return (
@@ -49,7 +49,7 @@ const RelatedProductCard = ({nameCatPrice}) => {
       <CardActionArea >
         <CardMedia
         className={classes.media}
-        image="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2xvdGhpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+        image={salePic.results[0].photos[0].url}
         />
         <IconButton className={classes.overlay}>
           <span className="material-icons">star_rate</span>
