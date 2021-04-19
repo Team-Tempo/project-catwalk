@@ -43,7 +43,7 @@ const ImageGallery = ({ currentStyle }) => {
               <Card key={idx}>
                 <CardMedia
                   className={classes.media}
-                  image={photo.url}
+                  image={photo.thumbnail_url}
                   title="style"
                   onClick={() => {
                     handleClick(idx);
