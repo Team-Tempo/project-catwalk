@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 });
 
 const ProductInformation = ({ product, currentStyle }) => {
-  console.log('currStyle', currentStyle);
   const classes = useStyles();
   return (
     <Grid container>
