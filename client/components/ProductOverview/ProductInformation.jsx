@@ -2,17 +2,33 @@ import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { StarBorder, Star } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core/styles';
 
-const ProductInformation = ({ product }) => {
+import { experimentalStyled as styled } from '@material-ui/core/styles';
+
+const StyledRating = withStyles({
+  iconFilled: {
+    color: '#442c2e',
+  },
+  iconEmpty: {
+    color: '#442c2e',
+  },
+})(Rating);
+
+const ProductInformation = ({ product, currentStyle }) => {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Rating
+        <StyledRating
+          emptyIcon={<StarBorder fontSize="inherit" />}
+          icon={<Star fontSize="inherit" />}
           name="rating"
           defaultValue={3.5}
           precision={0.25}
           size="small"
-        ></Rating>
+          readOnly={true}
+        ></StyledRating>
       </Grid>
       <Grid item xs={6}>
         <Typography variant="button">Read all reviews</Typography>
@@ -25,7 +41,7 @@ const ProductInformation = ({ product }) => {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="caption">
-          ${Math.round(product.default_price)}
+          ${Math.round(currentStyle.original_price)}
         </Typography>
       </Grid>
     </Grid>
