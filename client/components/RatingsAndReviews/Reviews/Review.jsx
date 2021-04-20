@@ -1,7 +1,6 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles, Typography, Grid, Divider } from '@material-ui/core';
-import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {

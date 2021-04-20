@@ -31,8 +31,12 @@ const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
   var recommendedData = reviewsMeta.recommended;
 
-  // calculating percentage of reviews recommending the product
+  // calculating percentage of reviewers recommending the product
   var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
+
+  var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
+  var yo = Number(reviewsMeta.ratings['1']) * 100 / numberOfReviews;
+  console.log("yoyo: ", yo)
 
   return (
     <div className={classes.root}>
@@ -47,7 +51,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
           <Typography>5 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={60} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['5'] ? Number(reviewsMeta.ratings['5']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
@@ -55,7 +59,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
          <Typography>4 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={40} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['4'] ? Number(reviewsMeta.ratings['4']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
@@ -63,7 +67,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
           <Typography>3 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={100} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['3'] ? Number(reviewsMeta.ratings['3']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
@@ -71,7 +75,9 @@ const RatingBreakdown = ({ reviewsMeta }) => {
           <Typography>2 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={45} />
+        <BorderLinearProgress variant="determinate" value={
+          reviewsMeta.ratings['2'] ? Number(reviewsMeta.ratings['2']) * 100 / numberOfReviews : 0
+           } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
@@ -79,7 +85,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
           <Typography>1 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={20} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['1'] ? Number(reviewsMeta.ratings['1']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
       </Grid>
