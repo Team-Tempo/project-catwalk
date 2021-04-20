@@ -1,11 +1,6 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import { makeStyles, TextField, IconButton, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { makeStyles } from '@material-ui/core/styles';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function QuestionSearch() {
   const classes = useStyles();
-
   return (
     <div className="search">
       <div className={classes.root}>
