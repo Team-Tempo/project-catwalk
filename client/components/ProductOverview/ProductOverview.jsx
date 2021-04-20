@@ -72,7 +72,6 @@ const ProductOverview = ({ productId }) => {
     setupStyles();
   }, []);
 
-  console.log(product);
   return (
     <>
       <Grid container spacing={2}>
