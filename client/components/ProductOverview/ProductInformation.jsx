@@ -67,16 +67,6 @@ const ProductInformation = ({ product, currentStyle }) => {
           </Typography>
         )}
       </Grid>
-      <Grid item xs={12}>
-        {/* <Accordion className={classes.productDetails}>
-          <AccordionSummary expandIcon={<ExpandMoreRounded />}>
-            <Typography variant="subtitle1">Product Details</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography variant="body1">{product.description}</Typography>
-          </AccordionDetails>
-        </Accordion> */}
-      </Grid>
     </Grid>
   );
 };
