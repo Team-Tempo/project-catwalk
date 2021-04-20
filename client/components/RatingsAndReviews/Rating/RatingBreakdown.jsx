@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import { LinearProgress, Grid, Typography } from '@material-ui/core';
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -41,12 +39,12 @@ const RatingBreakdown = ({ reviewsMeta }) => {
       <Grid container spacing={1}>
       <Grid container item xs={12} spacing={1}>
         <Grid item xs>
-          <p>{ recommendedPercentage }% of reviews recommend this product</p>
+          <Typography >{ recommendedPercentage }% of reviews recommend this product</Typography>
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>5 stars</>
+          <Typography>5 stars</Typography>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={60} />
@@ -54,7 +52,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-         <>4 stars</>
+         <Typography>4 stars</Typography>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={40} />
@@ -62,7 +60,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>3 stars</>
+          <Typography>3 stars</Typography>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={100} />
@@ -70,7 +68,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>2 stars</>
+          <Typography>2 stars</Typography>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={45} />
@@ -78,7 +76,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>1 stars</>
+          <Typography>1 stars</Typography>
         </Grid>
         <Grid item xs={9}>
         <BorderLinearProgress variant="determinate" value={20} />
