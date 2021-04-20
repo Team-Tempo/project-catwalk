@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import RelatedProductCard from './RelatedProductCard.jsx';
-import products from '../../DummyData/ProductDummyData';
-import GridList from '@material-ui/core/GridList';
 import Carousel from 'react-elastic-carousel';
 import Typography from '@material-ui/core/Typography';
 
@@ -10,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 //   visibility: hidden;
 // }
 
-const RelatedProductsList = ({relatedWithNameCatPrice}) => {
+const RelatedProductsList = ({relatedProductsData}) => {
 
   return  (
     <>
@@ -18,8 +16,7 @@ const RelatedProductsList = ({relatedWithNameCatPrice}) => {
         RELATED PRODUCTS
       </Typography>
       <Carousel showEmptySlots itemsToShow={4}>
-          {/* {products.products.map(item => <RelatedProductCard key={item.id} relatedWithNameCatPrice={item}/>)} */}
-          {relatedWithNameCatPrice.map(item => <RelatedProductCard key={item.id} relatedWithNameCatPrice={item}/>)}
+          {relatedProductsData.map(item => <RelatedProductCard key={item.id} relatedProductsData={item}/>)}
       </Carousel>
     </>
   )
