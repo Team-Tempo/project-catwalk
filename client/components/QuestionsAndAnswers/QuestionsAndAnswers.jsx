@@ -1,27 +1,20 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
 import Photos from './QAndAComponents/Photos.jsx';
 
 const QuestionsAndAnswers = () => {
-  console.log(QuestionsDummyData.questions);
-  var questions = QuestionsDummyData.questions;
+  var sortedQuestions = sortByHelpfulness(QuestionsDummyData.questions.results, 4);
   return (
     <div>
       <h3>QUESTIONS & ANSWERS</h3>
 
-      <QuestionSearch questions={QuestionsDummyData.questions}/>
-      <QAndA questions={QuestionsDummyData.questions}/>
+      <QuestionSearch questions={sortedQuestions}/>
+      {sortedQuestions.map((question) => {
+        return <QAndA question={question}/>
+      })}
       <Photos questions={QuestionsDummyData.questions}/>
 
       <h6>LOAD MORE</h6>
@@ -34,5 +27,19 @@ const QuestionsAndAnswers = () => {
     </div>
   );
 };
+
+const sortByHelpfulness = (questionsAndAnswersData, numQuestions) => {
+  var result = questionsAndAnswersData.slice();
+  for (var i = 0; i < questionsAndAnswersData.length; i++) {
+    var currentValue = questionsAndAnswersData[i].question_helpfulness;
+    var position = i;
+    while (position > 0 && questionsAndAnswersData[position] < questionsAndAnswersData[position - 1]) {
+      questionsAndAnswersData[position] = questionsAndAnswersData[position - 1];
+      questionsAndAnswersData[position - 1] = currentValue;
+    }
+  }
+  result = result.slice(0, numQuestions);
+  return result;
+}
 
 export default QuestionsAndAnswers;
