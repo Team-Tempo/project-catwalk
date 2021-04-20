@@ -16,12 +16,13 @@ const ReviewsList = () => {
   // console.log("This is reviews: ", reviewsData.reviews.results);
   const classes = useStyles();
   const reviewsToMap = reviewsData.reviews.results;
+  const reviewsCounter = reviewsData.reviews.results.length;
 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Typography className={classes.header}>248 reviews, sorted by relevance</Typography>
+          <Typography className={classes.header}>{ reviewsCounter } reviews, sorted by relevance</Typography>
         </Grid>
         <Grid item xs={12}>
         {reviewsToMap.map(review =>

@@ -1,8 +1,7 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import { makeStyles, Typography, Grid, Divider } from '@material-ui/core';
-// import Grid from '@material-ui/core/Grid';
-// import Typography from '@material-ui/core/Typography';
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +28,19 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Review = () => {
+const Review = ({ review }) => {
+
+  var timeDate = new Date(review.date).toLocaleDateString(
+    'en-gb',
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }
+  )
+
+  console.log("This is from One review: ", timeDate)
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -41,16 +52,16 @@ const Review = () => {
           {/* This is just to keep spacing between two items in this row */}
         </Grid>
         <Grid item xs={3}>
-          <Typography className={classes.userDateHelp}>User1234, January 1, 2019</Typography>
+          <Typography className={classes.userDateHelp}>{ review.reviewer_name }, { timeDate }</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography className={classes.reviewTitle}>Donut chocolate bar pudding yuuummmm</Typography>
+          <Typography className={classes.reviewTitle}>{ review.summary }</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography className={classes.reviewBody}>Donut gummi bears gingerbread gummies chocolate. Ice cream apple pie tiremisu fruitcake chupa chups icing apple pie. Lemon drops cake yummy pudding</Typography>
+          <Typography className={classes.reviewBody}>{ review.body }</Typography>
         </Grid>
         <Grid item xs>
-          <Typography className={classes.userDateHelp}>Helpful? Yes(10) &ensp; | &ensp; Report</Typography>
+          <Typography className={classes.userDateHelp}>Helpful? Yes({ review.helpfulness }) &ensp; | &ensp; Report</Typography>
         </Grid>
         <Grid item xs={12}>
           <Divider className={classes.dividerLine} />

@@ -29,8 +29,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const foundHelpful = (reviews) => {
+  let counter = 0;
+  const reviewsQuantity = reviews.length;
+
+  for (let reviewCounter = 0; reviewCounter < reviews.length; reviewCounter++) {
+    let currentReview = reviews[reviewCounter];
+    if (currentReview['recommend'] === true) {
+      counter += 1;
+    }
+  }
+
+ const percentage = (counter * 100) / reviewsQuantity
+ return percentage
+}
+
 const RatingBreakdown = ({ ratings }) => {
   const classes = useStyles();
+  console.log("HI: ", ratings.recommended);
 
   return (
     <div className={classes.root}>

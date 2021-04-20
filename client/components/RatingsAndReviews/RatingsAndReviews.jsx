@@ -1,9 +1,10 @@
 import React from 'react';
 import ReviewsList from './Reviews/ReviewsList.jsx'
 import Rating from './Rating/Rating.jsx'
-import Grid from "@material-ui/core/Grid";
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import reviewsData from '../DummyData/ReviewsDummyData.js';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +20,7 @@ const RatingsAndReviews = () => {
     <div className={classes.root}>
       <Grid container spacing={5}>
         <Grid item xs={3}>
-        <Rating />
+        <Rating reviewsMeta={reviewsData.reviewsMeta}/>
         </Grid>
         <Grid item xs={9}>
         <ReviewsList />
