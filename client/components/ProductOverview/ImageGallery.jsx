@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
   gridTest: {
     overflow: 'auto',
-    maxHeight: '500px',
+    maxHeight: '600px',
   },
 });
 
