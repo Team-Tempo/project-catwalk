@@ -76,7 +76,7 @@ const App = () => {
     }
 
     fetchAverageRating();
-  }, []);
+  }, [productId]);
 
   return (
     <ThemeProvider theme={theme}>
