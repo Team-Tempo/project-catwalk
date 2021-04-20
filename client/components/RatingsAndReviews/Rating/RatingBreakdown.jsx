@@ -29,31 +29,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const foundHelpful = (reviews) => {
-  let counter = 0;
-  const reviewsQuantity = reviews.length;
-
-  for (let reviewCounter = 0; reviewCounter < reviews.length; reviewCounter++) {
-    let currentReview = reviews[reviewCounter];
-    if (currentReview['recommend'] === true) {
-      counter += 1;
-    }
-  }
-
- const percentage = (counter * 100) / reviewsQuantity
- return percentage
-}
-
-const RatingBreakdown = ({ ratings }) => {
+const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
-  console.log("HI: ", ratings.recommended);
+  var recommendedData = reviewsMeta.recommended;
+
+  // calculating percentage of reviews recommending the product
+  var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
 
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
       <Grid container item xs={12} spacing={1}>
         <Grid item xs>
-          <p>100% of reviews recommend this product</p>
+          <p>{ recommendedPercentage }% of reviews recommend this product</p>
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
