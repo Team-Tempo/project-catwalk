@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RatingBreakdown = () => {
+const RatingBreakdown = ({ ratings }) => {
   const classes = useStyles();
 
+  console.log("This is from breakdown: ", ratings)
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
