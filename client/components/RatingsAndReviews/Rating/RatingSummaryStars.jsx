@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
 const RatingSummaryStars = ({ ratings }) => {
-  console.log("This is from summary and stars: ", ratings);
   return (
     <>
     <Container>
