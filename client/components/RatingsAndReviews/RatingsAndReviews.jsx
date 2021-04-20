@@ -17,7 +17,7 @@ const RatingsAndReviews = () => {
     <>
     <Typography variant="subtitle1">RATINGS & REVIEWS</Typography>
     <div className={classes.root}>
-      <Grid container spacing={4}>
+      <Grid container spacing={5}>
         <Grid item xs={3}>
         <Rating />
         </Grid>
