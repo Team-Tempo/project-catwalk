@@ -37,10 +37,7 @@ const Review = () => {
         <Grid item xs={3}>
         <Rating name="read-only" readOnly />
         </Grid>
-        <Grid item xs={3}>
-          {/* This is just to keep spacing between two items in this row */}
-        </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={6}>
           {/* This is just to keep spacing between two items in this row */}
         </Grid>
         <Grid item xs={3}>
