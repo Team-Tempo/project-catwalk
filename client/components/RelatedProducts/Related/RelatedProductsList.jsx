@@ -1,10 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import RelatedProductCard from './RelatedProductCard.jsx';
+import products from '../../DummyData/ProductDummyData';
+import GridList from '@material-ui/core/GridList';
+import Carousel from 'react-elastic-carousel';
+import Typography from '@material-ui/core/Typography';
 
-const RelatedProductsList = () => {
-  //get request for related product ids based on id of current product
-  //then get request for each product to product_id (for name, category, default_price) AND get request to id/styles (for sale_price and image) as well??
-  return <RelatedProductCard />;
+//CSS styling for later so disabled arrow does not show:
+// .rec.rec-arrow:disabled {
+//   visibility: hidden;
+// }
+
+const RelatedProductsList = ({relatedWithNameCatPrice}) => {
+
+  return  (
+    <>
+      <Typography>
+        RELATED PRODUCTS
+      </Typography>
+      <Carousel showEmptySlots itemsToShow={4}>
+          {/* {products.products.map(item => <RelatedProductCard key={item.id} relatedWithNameCatPrice={item}/>)} */}
+          {relatedWithNameCatPrice.map(item => <RelatedProductCard key={item.id} relatedWithNameCatPrice={item}/>)}
+      </Carousel>
+    </>
+  )
 };
 
 export default RelatedProductsList;
