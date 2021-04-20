@@ -1,6 +1,7 @@
 import React from 'react';
 import Review from './Review.jsx';
 import { Typography, Grid, makeStyles } from '@material-ui/core'
+import reviewsData from '../../DummyData/ReviewsDummyData.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,7 +13,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const ReviewsList = () => {
+  // console.log("This is reviews: ", reviewsData.reviews.results);
   const classes = useStyles();
+  const reviewsToMap = reviewsData.reviews.results;
 
   return (
     <div className={classes.root}>
@@ -21,7 +24,9 @@ const ReviewsList = () => {
           <Typography className={classes.header}>248 reviews, sorted by relevance</Typography>
         </Grid>
         <Grid item xs={12}>
-        <Review />
+        {reviewsToMap.map(review =>
+        <Review key={review.review_id} review={review}/>
+        )}
         </Grid>
       </Grid>
     </div>
