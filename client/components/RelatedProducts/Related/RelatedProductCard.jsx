@@ -7,8 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import products from '../../DummyData/ProductDummyData';
-import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import Rating from '@material-ui/lab/Rating';
 
 
@@ -41,31 +40,34 @@ const useStyles = makeStyles({
 });
 
 
-const RelatedProductCard = ({nameCatPrice, salePic}) => {
+const RelatedProductCard = ({relatedProductsData}) => {
   const classes = useStyles();
+  const image = relatedProductsData.results[0].photos[0].url;
 
   return (
     <Card className={classes.root}>
       <CardActionArea >
         <CardMedia
         className={classes.media}
-        image={salePic.results[0].photos[0].url}
+        component="img"
+        image={image}
+        alt="Image not available"
         />
-        <IconButton className={classes.overlay}>
+        <Icon className={classes.overlay}>
           <span className="material-icons">star_rate</span>
-        </IconButton>
+        </Icon>
         <CardContent>
           {/*
           sale_price if on sale
           */}
           <Typography className={classes.category}>
-            {nameCatPrice.category}
+            {relatedProductsData.category}
           </Typography>
           <Typography className={classes.name}>
-            {nameCatPrice.name}
+            {relatedProductsData.name}
           </Typography>
           <Typography className={classes.price}>
-            {nameCatPrice.default_price}
+            {relatedProductsData.default_price}
           </Typography>
           <Typography>
             <Rating
