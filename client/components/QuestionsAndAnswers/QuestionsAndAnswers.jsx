@@ -29,7 +29,6 @@ const QuestionsAndAnswers = () => {
 };
 
 const sortByHelpfulness = (questionsAndAnswersData, numQuestions) => {
-  console.log(questionsAndAnswersData);
   var result = questionsAndAnswersData.slice();
   for (var i = 0; i < questionsAndAnswersData.length; i++) {
     var currentValue = questionsAndAnswersData[i].question_helpfulness;

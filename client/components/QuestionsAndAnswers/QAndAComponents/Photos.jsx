@@ -27,8 +27,6 @@ const Photos = (props) => {
         <img className={classes.image} src={props.questions.results[2].answers[1628412].photos[1]} alt="pic2"/>
       </div>
     </Grid>
-
-
   );
 };
 

@@ -40,7 +40,7 @@ const QAndA = (props) => {
       </Grid>
       <Grid container spacing={2} xs={12}>
         <Grid item>
-          {/* <Typography variant="h6"><b>A: </b>{props.question.answers[1628393].body}</Typography> */}
+          <Typography variant="h6"><b>A: </b>Future answer goes here</Typography>
         </Grid>
       </Grid>
       <Grid container>
