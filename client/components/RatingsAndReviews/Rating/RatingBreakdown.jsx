@@ -35,8 +35,6 @@ const RatingBreakdown = ({ reviewsMeta }) => {
   var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
 
   var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
-  var yo = Number(reviewsMeta.ratings['1']) * 100 / numberOfReviews;
-  console.log("yoyo: ", yo)
 
   return (
     <div className={classes.root}>

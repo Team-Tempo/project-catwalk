@@ -38,8 +38,6 @@ const Review = ({ review }) => {
     }
   )
 
-  console.log("This is from One review: ", timeDate)
-
   const classes = useStyles();
   return (
     <div className={classes.root}>
