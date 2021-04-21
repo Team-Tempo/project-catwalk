@@ -23,10 +23,10 @@ const useStyles = makeStyles({
   }
 
 });
-const BlankOutfitCard = () => {
+const BlankOutfitCard = ({ addToOutfit }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={addToOutfit}>
       <CardActionArea >
         <CardHeader title="Add to Outfit" />
         <CardContent >
