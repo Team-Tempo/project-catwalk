@@ -3,7 +3,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -41,9 +40,16 @@ const useStyles = makeStyles({
 });
 
 
-const RelatedProductCard = ({relatedProductsData}) => {
+const RelatedProductCard = ({relatedProductData}) => {
   const classes = useStyles();
-  const image = relatedProductsData.results[0].photos[0].url;
+  const image = relatedProductData.results[0].photos[0].url;
+
+  let salePrice = null;
+  for (let style of relatedProductData.results) {
+    if (style['default?'] === true) {
+      salePrice = style['sale_price'];
+    }
+  }
 
   return (
     <Card className={classes.root}>
@@ -58,18 +64,24 @@ const RelatedProductCard = ({relatedProductsData}) => {
           <span className="material-icons">star_rate</span>
         </Icon>
         <CardContent>
-          {/*
-          sale_price if on sale
-          */}
           <Typography className={classes.category}>
-            {relatedProductsData.category}
+            {relatedProductData.category}
           </Typography>
           <Typography className={classes.name}>
-            {relatedProductsData.name}
+            {relatedProductData.name}
           </Typography>
-          <Typography className={classes.price}>
-            {relatedProductsData.default_price}
-          </Typography>
+          {salePrice ? (
+            <Typography className={classes.sale}>
+              {`$${salePrice}`}
+              <Typography className={classes.price}>
+              {`$${relatedProductData.default_price}`}
+              </Typography>
+            </Typography>
+          ) : (
+            <Typography className={classes.price}>
+            {`$${relatedProductData.default_price}`}
+            </Typography>
+          )}
           <Typography>
             <Rating
               name="rating"

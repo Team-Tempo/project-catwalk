@@ -81,6 +81,7 @@ const RelatedProducts = ({
   return (
     <div id='related'>
       <Grid container spacing={2}>
+        {console.log({relatedProductsData})}
         <RelatedProductsList relatedProductsData={relatedProductsData} />
       </Grid>
       <Grid>

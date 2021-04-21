@@ -16,7 +16,7 @@ const RelatedProductsList = ({relatedProductsData}) => {
         RELATED PRODUCTS
       </Typography>
       <Carousel showEmptySlots itemsToShow={4}>
-          {relatedProductsData.map(item => <RelatedProductCard key={item.id} relatedProductsData={item}/>)}
+          {relatedProductsData.map(item => <RelatedProductCard key={item.id} relatedProductData={item}/>)}
       </Carousel>
     </>
   )

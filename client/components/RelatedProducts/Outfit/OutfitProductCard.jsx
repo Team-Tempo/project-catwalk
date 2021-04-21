@@ -49,6 +49,7 @@ const useStyles = makeStyles({
   }
 });
 const OutfitProductCard = ({ outfitCardData }) => {
+  console.log({outfitCardData})
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -60,18 +61,24 @@ const OutfitProductCard = ({ outfitCardData }) => {
         <HighlightOffIcon className={classes.icon}>
         </HighlightOffIcon>
         <CardContent>
-          {/*
-          sale_price if on sale
-          */}
           <Typography className={classes.category}>
             {outfitCardData.category}
           </Typography>
           <Typography className={classes.name}>
             {outfitCardData.name}
           </Typography>
-          <Typography className={classes.price}>
+          {outfitCardData.sale_price ? (
+            <Typography className={classes.sale}>
+              {`$${outfitCardData.sale_price}`}
+              <Typography className={classes.price}>
+              {`$${outfitCardData.original_price}`}
+              </Typography>
+            </Typography>
+          ) : (
+            <Typography className={classes.price}>
             {`$${outfitCardData.original_price}`}
-          </Typography>
+            </Typography>
+          )}
           <Typography>
             <StyledRating
               emptyIcon={<StarBorder fontSize="inherit" />}
