@@ -70,7 +70,7 @@ const OutfitProductCard = ({ outfitCardData }) => {
             {outfitCardData.name}
           </Typography>
           <Typography className={classes.price}>
-            {outfitCardData.original_price}
+            {`$${outfitCardData.original_price}`}
           </Typography>
           <Typography>
             <StyledRating
