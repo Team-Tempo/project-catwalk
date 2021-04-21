@@ -10,7 +10,7 @@ const RatingSummaryStars = ({ ratings }) => {
       <Grid container direction="row" spacing={1}>
         <Grid item xs={3}><h1>3.5</h1></Grid>
         <Grid item xs={4}>
-        <Rating name="read-only" readOnly />
+        <Rating name="read-only" readOnly value={3.5} />
         </Grid>
       </Grid>
     </Container>

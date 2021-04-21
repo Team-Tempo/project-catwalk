@@ -43,7 +43,7 @@ const Review = ({ review }) => {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-        <Rating name="read-only" readOnly />
+        <Rating name="read-only" readOnly value={ review.rating }/>
         </Grid>
         <Grid item xs={6}>
           {/* This is just to keep spacing between two items in this row */}
