@@ -4,14 +4,14 @@ import BlankOutfitCard from './BlankOutfitCard.jsx'
 import Carousel from 'react-elastic-carousel';
 import Typography from '@material-ui/core/Typography';
 
-const CustomOutfitList = () => {
+const CustomOutfitList = ({ addToOutfit }) => {
   return (
     <>
       <Typography>
         YOUR OUTFIT
       </Typography>
       <Carousel showEmptySlots itemsToShow={4}>
-        <BlankOutfitCard />
+        <BlankOutfitCard addToOutfit={addToOutfit}/>
         <OutfitProductCard/>
       </Carousel>
     </>
