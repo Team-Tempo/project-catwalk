@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -48,8 +47,17 @@ const useStyles = makeStyles({
     color: '#442C2E'
   }
 });
-const OutfitProductCard = ({ outfitCardData }) => {
+const OutfitProductCard = ({
+  outfitCardData,
+  removeCard
+}) => {
+
   const classes = useStyles();
+
+  const handleXClick = () => {
+    removeCard(outfitCardData.style_id)
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea >
@@ -57,7 +65,7 @@ const OutfitProductCard = ({ outfitCardData }) => {
           className={classes.media}
           image={outfitCardData.photo}
         />
-        <HighlightOffIcon className={classes.icon}>
+        <HighlightOffIcon onClick={handleXClick} className={classes.icon}>
         </HighlightOffIcon>
         <CardContent>
           {/*
