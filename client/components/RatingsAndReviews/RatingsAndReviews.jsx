@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const RatingsAndReviews = () => {
+const RatingsAndReviews = ({ productId }) => {
   const classes = useStyles();
   return (
     <>
@@ -23,7 +23,7 @@ const RatingsAndReviews = () => {
         <Rating reviewsMeta={reviewsData.reviewsMeta}/>
         </Grid>
         <Grid item xs={9}>
-        <ReviewsList />
+        <ReviewsList productId={ productId }/>
         </Grid>
       </Grid>
     </div>
