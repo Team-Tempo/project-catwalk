@@ -44,7 +44,7 @@ const getProductStyles = (id) => {
     });
 };
 
-const ProductOverview = ({ productId }) => {
+const ProductOverview = ({ productId, averageRating }) => {
   const [product, setProduct] = useState([]);
   const [styles, setStyles] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
@@ -80,7 +80,11 @@ const ProductOverview = ({ productId }) => {
         </Grid>
         <Grid container direction="column" justify="space-between" item xs={4}>
           <Grid item>
-            <ProductInformation product={product} currentStyle={currentStyle} />
+            <ProductInformation
+              product={product}
+              currentStyle={currentStyle}
+              averageRating={averageRating}
+            />
           </Grid>
           <Grid item>
             <StyleSelector
