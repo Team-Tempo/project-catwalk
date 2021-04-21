@@ -6,7 +6,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import products from '../../DummyData/ProductDummyData';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Rating from '@material-ui/lab/Rating';
 
@@ -14,7 +13,8 @@ import Rating from '@material-ui/lab/Rating';
 const useStyles = makeStyles({
   root: {
     minWidth: 250,
-    minHeight: 300,
+    minHeight: 350,
+    maxHeight: 350,
     margin: 16
   },
   category: {
@@ -33,9 +33,9 @@ const useStyles = makeStyles({
   },
   icon: {
     position: 'absolute',
-    top: '1px',
-    right: '1px',
-    color: 'black'
+    top: '5px',
+    right: '5px',
+    color: '#442C2E'
   }
 });
 const OutfitProductCard = () => {
