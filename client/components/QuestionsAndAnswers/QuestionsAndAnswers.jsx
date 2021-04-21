@@ -7,7 +7,7 @@ import Photos from './QAndAComponents/Photos.jsx';
 import config from '../../../config';
 import axios from 'axios';
 
-console.log(config.GITHUB_TOKEN);
+// console.log(config.GITHUB_TOKEN);
 
 const getQuestions = (id) => {
   return axios
@@ -17,11 +17,11 @@ const getQuestions = (id) => {
       },
     })
     .then((response) => {
-      console.log('response data', response.data);
+      // console.log('response data', response.data);
       return response.data;
     })
     .catch((err) => {
-      console.log('error getting data');
+      // console.log('error getting data');
       console.error(err);
     });
 };
@@ -34,17 +34,17 @@ const getAnswers = (id) => {
       },
     })
     .then((response) => {
-      console.log('response data', response.data);
+      // console.log('response data', response.data);
       return response.data;
     })
     .catch((err) => {
-      console.log('error getting data');
+      // console.log('error getting data');
       console.error(err);
     });
 };
 
-console.log('response data log', getQuestions(24156));
-console.log('response data answers', getAnswers(24156))
+// console.log('response data log', getQuestions(24156));
+// console.log('response data answers', getAnswers(24156))
 
 // const getProductStyles = (id) => {
 //   return axios
@@ -126,13 +126,13 @@ const QuestionsAndAnswers = ( { productId }) => {
   useEffect(() => {
     async function fetchQuestions() {
       const questionData = await getQuestions(productId);
-      console.log('questions are here!', questionData.results);
+      // console.log('questions are here!', questionData.results);
       setQuestions(questionData.results);
     }
 
     async function fetchAnswers() {
       const answerData = await getAnswers(productId);
-      console.log('answers are here!', answerData);
+      // console.log('answers are here!', answerData);
       setAnswers(answerData);
       return answerData;
     }
@@ -141,17 +141,17 @@ const QuestionsAndAnswers = ( { productId }) => {
     fetchAnswers();
   }, []);
 
-  console.log('questions', questions);
-  var sortedQuestions = sortByHelpfulness(questions, 4);
-  console.log('sorted qs', sortedQuestions);
+  // console.log('questions', questions);
+  var sortedQuestions = sortQuestionsByHelpfulness(questions, 4);
+  // console.log('sorted qs', sortedQuestions);
   return (
     <div>
       <h3>QUESTIONS & ANSWERS</h3>
 
       <QuestionSearch questions={sortedQuestions}/>
-      {sortedQuestions.map((question, i) => {
-        return <QAndA question={question} key={i}/>
-      })}
+      {sortedQuestions.map((question, i) => (
+       <QAndA question={question} key={i}/>
+      ))}
       <Photos questions={QuestionsDummyData.questions}/>
 
       <h6>LOAD MORE</h6>
@@ -165,8 +165,8 @@ const QuestionsAndAnswers = ( { productId }) => {
   );
 };
 
-const sortByHelpfulness = (questionsAndAnswersData, numQuestions) => {
-  console.log('q and a data here!!', questionsAndAnswersData);
+const sortQuestionsByHelpfulness = (questionsAndAnswersData, numQuestions) => {
+  // console.log('q and a data here!!', questionsAndAnswersData);
   var result = questionsAndAnswersData.slice();
   for (var i = 0; i < questionsAndAnswersData.length; i++) {
     var currentValue = questionsAndAnswersData[i].question_helpfulness;
@@ -177,7 +177,7 @@ const sortByHelpfulness = (questionsAndAnswersData, numQuestions) => {
     }
   }
   result = result.slice(0, numQuestions);
-  console.log('sorted questions', result);
+  // console.log('sorted questions', result);
   return result;
 }
 
