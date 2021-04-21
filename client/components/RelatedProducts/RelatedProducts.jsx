@@ -67,6 +67,7 @@ const RelatedProducts = ({
         original_price: currentStyle.original_price,
         sale_price: currentStyle.sale_price,
         photo: currentStyle.photos[0].url,
+        style_id: currentStyle.style_id,
         category: product.category,
         rating: averageRating
       }

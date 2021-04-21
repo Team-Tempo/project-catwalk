@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     color: '#442C2E'
   }
 });
-const OutfitProductCard = () => {
+const OutfitProductCard = ({ outfitCardData }) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
