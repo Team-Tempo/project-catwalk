@@ -1,7 +1,6 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import { Grid, Container } from '@material-ui/core';
 
 const RatingSummaryStars = ({ ratings }) => {
   return (
