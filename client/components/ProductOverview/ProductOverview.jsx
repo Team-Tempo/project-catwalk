@@ -51,6 +51,8 @@ const ProductOverview = ({ productId }) => {
 
   const classes = useStyles();
 
+  console.log(currentStyle);
+
   useEffect(() => {
     async function fetchProduct() {
       const result = await getProduct(productId);
