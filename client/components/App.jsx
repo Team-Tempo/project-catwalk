@@ -60,14 +60,14 @@ const getAverageRatingFromId = async (id) => {
   }
 
   if (numberOfRatings === 0) {
-    return 5;
+    return 0;
   }
   return sumOfRatings / numberOfRatings;
 };
 
 const App = () => {
   const [productId] = useState(24156);
-  const [averageRating, setAverageRating] = useState(5);
+  const [averageRating, setAverageRating] = useState(0);
 
   useEffect(() => {
     async function fetchAverageRating() {
