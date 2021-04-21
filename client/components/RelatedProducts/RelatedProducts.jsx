@@ -84,7 +84,6 @@ const RelatedProducts = ({
         <RelatedProductsList relatedProductsData={relatedProductsData} />
       </Grid>
       <Grid>
-      {console.log({outfitCardsData})}
         <CustomOutfitList outfitCardsData={outfitCardsData} addToOutfit={addToOutfit} />
       </Grid>
      </div>
