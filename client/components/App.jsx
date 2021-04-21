@@ -57,7 +57,7 @@ const App = () => {
               <RelatedProducts />
             </Grid>
             <Grid item xs={12}>
-              <QuestionsAndAnswers />
+              <QuestionsAndAnswers productId={productId}/>
             </Grid>
             <Grid item xs={12}>
               <RatingsAndReviews />
