@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import { LinearProgress, Grid, Typography } from '@material-ui/core';
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -29,55 +27,63 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RatingBreakdown = () => {
+const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
+  var recommendedData = reviewsMeta.recommended;
+
+  // calculating percentage of reviewers recommending the product
+  var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
+
+  var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
 
   return (
     <div className={classes.root}>
       <Grid container spacing={1}>
       <Grid container item xs={12} spacing={1}>
         <Grid item xs>
-          <p>100% of reviews recommend this product</p>
+          <Typography >{ recommendedPercentage }% of reviews recommend this product</Typography>
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>5 stars</>
+          <Typography>5 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={60} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['5'] ? Number(reviewsMeta.ratings['5']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-         <>4 stars</>
+         <Typography>4 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={40} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['4'] ? Number(reviewsMeta.ratings['4']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>3 stars</>
+          <Typography>3 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={100} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['3'] ? Number(reviewsMeta.ratings['3']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>2 stars</>
+          <Typography>2 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={45} />
+        <BorderLinearProgress variant="determinate" value={
+          reviewsMeta.ratings['2'] ? Number(reviewsMeta.ratings['2']) * 100 / numberOfReviews : 0
+           } />
         </Grid>
         </Grid>
         <Grid container item xs={12} spacing={1}>
         <Grid item xs={3}>
-          <>1 stars</>
+          <Typography>1 stars</Typography>
         </Grid>
         <Grid item xs={9}>
-        <BorderLinearProgress variant="determinate" value={20} />
+        <BorderLinearProgress variant="determinate" value={ reviewsMeta.ratings['1'] ? Number(reviewsMeta.ratings['1']) * 100 / numberOfReviews : 0 } />
         </Grid>
         </Grid>
       </Grid>

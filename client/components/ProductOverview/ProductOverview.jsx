@@ -17,60 +17,14 @@ const useStyles = makeStyles({
   },
 });
 
-const getProduct = (id) => {
-  return axios
-    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`, {
-      headers: {
-        Authorization: config.GITHUB_TOKEN,
-      },
-    })
-    .then((response) => {
-      return response.data;
-    });
-};
-
-const getProductStyles = (id) => {
-  return axios
-    .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`,
-      {
-        headers: {
-          Authorization: config.GITHUB_TOKEN,
-        },
-      }
-    )
-    .then((response) => {
-      return response.data.results;
-    });
-};
-
-const ProductOverview = ({ productId }) => {
-  const [product, setProduct] = useState([]);
-  const [styles, setStyles] = useState([]);
-  const [currentStyle, setCurrentStyle] = useState({});
-
+const ProductOverview = ({
+  product,
+  currentStyle,
+  styles,
+  setCurrentStyle,
+  averageRating,
+}) => {
   const classes = useStyles();
-
-  useEffect(() => {
-    async function fetchProduct() {
-      const result = await getProduct(productId);
-      setProduct(result);
-    }
-
-    async function fetchProductStyles() {
-      const result = await getProductStyles(productId);
-      setStyles(result);
-      return result;
-    }
-
-    async function setupStyles() {
-      const result = await fetchProductStyles();
-      setCurrentStyle(result[0]);
-    }
-
-    fetchProduct();
-    setupStyles();
-  }, []);
 
   return (
     <>
@@ -80,7 +34,11 @@ const ProductOverview = ({ productId }) => {
         </Grid>
         <Grid container direction="column" justify="space-between" item xs={4}>
           <Grid item>
-            <ProductInformation product={product} currentStyle={currentStyle} />
+            <ProductInformation
+              product={product}
+              currentStyle={currentStyle}
+              averageRating={averageRating}
+            />
           </Grid>
           <Grid item>
             <StyleSelector

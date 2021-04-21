@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Grid,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  Button,
-  Typography,
-  ButtonGroup,
-} from '@material-ui/core';
+import { Grid, Button, Typography, ButtonGroup } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { FavoriteBorder } from '@material-ui/icons';
@@ -38,8 +29,13 @@ const AddToCart = ({ currentStyle }) => {
 
   const skus = Object.values(currentStyle.skus);
 
-  const handleClick = (size) => {
+  const handleSizeClick = (size) => {
     setSelectedSize(size);
+  };
+
+  const handleSubmit = () => {
+    console.log(selectedSize);
+    console.log(currentStyle.skus);
   };
 
   return (
@@ -57,7 +53,7 @@ const AddToCart = ({ currentStyle }) => {
               color="primary"
               size="small"
               onClick={() => {
-                handleClick('');
+                handleSizeClick('');
               }}
             >
               {sku.size}
@@ -70,7 +66,7 @@ const AddToCart = ({ currentStyle }) => {
               color="secondary"
               size="small"
               onClick={() => {
-                handleClick(sku.size);
+                handleSizeClick(sku.size);
               }}
             >
               {sku.size}
@@ -84,6 +80,7 @@ const AddToCart = ({ currentStyle }) => {
             startIcon={<AddShoppingCartIcon />}
             variant="contained"
             color="primary"
+            onClick={handleSubmit}
           >
             <Typography>Add to cart</Typography>
           </Button>

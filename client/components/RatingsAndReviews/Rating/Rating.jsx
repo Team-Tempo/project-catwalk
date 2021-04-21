@@ -2,11 +2,11 @@ import React from 'react';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import RatingSummaryStars from './RatingSummaryStars';
 
-const Rating = () => {
+const Rating = ({ reviewsMeta }) => {
   return (
     <>
-    <RatingSummaryStars />
-    <RatingBreakdown />
+    <RatingSummaryStars ratings={reviewsMeta.ratings}/>
+    <RatingBreakdown reviewsMeta={reviewsMeta}/>
     </>
   )
 

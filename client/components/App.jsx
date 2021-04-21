@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { AppBar, Toolbar } from '@material-ui/core';
+
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Header from './Header.jsx';
-import { AppBar, Toolbar } from '@material-ui/core';
+import config from '../../config';
 
 const theme = createMuiTheme({
   palette: {
@@ -37,8 +40,95 @@ const theme = createMuiTheme({
   },
 });
 
+const getAverageRatingFromId = async (id) => {
+  const result = await axios.get(
+    `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`,
+    {
+      headers: {
+        Authorization: config.GITHUB_TOKEN,
+      },
+    }
+  );
+
+  const ratings = result.data.ratings;
+  let sumOfRatings = 0;
+  let numberOfRatings = 0;
+
+  for (const rating in ratings) {
+    sumOfRatings += rating * ratings[rating];
+    numberOfRatings += Number(ratings[rating]);
+  }
+
+  if (numberOfRatings === 0) {
+    return 0;
+  }
+  return sumOfRatings / numberOfRatings;
+};
+
+const getProduct = (id) => {
+  return axios
+    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`, {
+      headers: {
+        Authorization: config.GITHUB_TOKEN,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
+
+const getProductStyles = (id) => {
+  return axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`,
+      {
+        headers: {
+          Authorization: config.GITHUB_TOKEN,
+        },
+      }
+    )
+    .then((response) => {
+      return response.data.results;
+    });
+};
+
 const App = () => {
   const [productId] = useState(24156);
+  const [product, setProduct] = useState([]);
+  const [currentStyle, setCurrentStyle] = useState({});
+  const [styles, setStyles] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
+
+  useEffect(() => {
+    async function fetchAverageRating() {
+      const avgRating = await getAverageRatingFromId(productId);
+      setAverageRating(avgRating);
+    }
+
+    fetchAverageRating();
+  }, [productId]);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      const result = await getProduct(productId);
+      setProduct(result);
+    }
+
+    async function fetchProductStyles() {
+      const result = await getProductStyles(productId);
+      setStyles(result);
+      return result;
+    }
+
+    async function setupStyles() {
+      const result = await fetchProductStyles();
+      setCurrentStyle(result[0]);
+    }
+
+    fetchProduct();
+    setupStyles();
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Paper>
@@ -51,7 +141,14 @@ const App = () => {
           <Grid container direction="column" spacing={10}>
             <Grid item xs={12}></Grid>
             <Grid item xs={12}>
-              <ProductOverview productId={productId} />
+              <ProductOverview
+                productId={productId}
+                product={product}
+                currentStyle={currentStyle}
+                setCurrentStyle={setCurrentStyle}
+                averageRating={averageRating}
+                styles={styles}
+              />
             </Grid>
             <Grid item xs={12}>
               <RelatedProducts productId={productId} />
@@ -60,7 +157,7 @@ const App = () => {
               <QuestionsAndAnswers />
             </Grid>
             <Grid item xs={12}>
-              <RatingsAndReviews />
+              <RatingsAndReviews productId={productId} />
             </Grid>
           </Grid>
         </Container>
