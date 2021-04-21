@@ -14,7 +14,8 @@ import Rating from '@material-ui/lab/Rating';
 const useStyles = makeStyles({
   root: {
     minWidth: 250,
-    minHeight: 300,
+    minHeight: 350,
+    maxHeight: 350,
     margin: 16
   },
   category: {
@@ -33,8 +34,8 @@ const useStyles = makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '1px',
-    right: '1px',
+    top: '5px',
+    right: '5px',
     color: '#ffb400'
   }
 });
