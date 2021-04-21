@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Grid,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  Button,
-  Typography,
-  ButtonGroup,
-} from '@material-ui/core';
+import { Grid, Button, Typography, ButtonGroup } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { FavoriteBorder } from '@material-ui/icons';

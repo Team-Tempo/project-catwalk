@@ -27,8 +27,9 @@ const useStyles = makeStyles({
   },
 });
 
-const ProductInformation = ({ product, currentStyle }) => {
+const ProductInformation = ({ product, currentStyle, averageRating }) => {
   const classes = useStyles();
+
   return (
     <Grid container>
       <Grid item xs={6}>
@@ -36,7 +37,7 @@ const ProductInformation = ({ product, currentStyle }) => {
           emptyIcon={<StarBorder fontSize="inherit" />}
           icon={<Star fontSize="inherit" />}
           name="rating"
-          defaultValue={3.5}
+          value={averageRating}
           precision={0.25}
           size="small"
           readOnly={true}
