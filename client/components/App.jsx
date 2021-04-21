@@ -65,8 +65,38 @@ const getAverageRatingFromId = async (id) => {
   return sumOfRatings / numberOfRatings;
 };
 
+const getProduct = (id) => {
+  return axios
+    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`, {
+      headers: {
+        Authorization: config.GITHUB_TOKEN,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
+
+const getProductStyles = (id) => {
+  return axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`,
+      {
+        headers: {
+          Authorization: config.GITHUB_TOKEN,
+        },
+      }
+    )
+    .then((response) => {
+      return response.data.results;
+    });
+};
+
 const App = () => {
   const [productId] = useState(24156);
+  const [product, setProduct] = useState([]);
+  const [currentStyle, setCurrentStyle] = useState({});
+  const [styles, setStyles] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
 
   useEffect(() => {
@@ -77,6 +107,27 @@ const App = () => {
 
     fetchAverageRating();
   }, [productId]);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      const result = await getProduct(productId);
+      setProduct(result);
+    }
+
+    async function fetchProductStyles() {
+      const result = await getProductStyles(productId);
+      setStyles(result);
+      return result;
+    }
+
+    async function setupStyles() {
+      const result = await fetchProductStyles();
+      setCurrentStyle(result[0]);
+    }
+
+    fetchProduct();
+    setupStyles();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -92,7 +143,11 @@ const App = () => {
             <Grid item xs={12}>
               <ProductOverview
                 productId={productId}
+                product={product}
+                currentStyle={currentStyle}
+                setCurrentStyle={setCurrentStyle}
                 averageRating={averageRating}
+                styles={styles}
               />
             </Grid>
             <Grid item xs={12}>
