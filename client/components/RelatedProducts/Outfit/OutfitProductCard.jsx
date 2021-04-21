@@ -8,7 +8,17 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Rating from '@material-ui/lab/Rating';
+import { withStyles } from '@material-ui/core/styles';
+import { StarBorder, Star } from '@material-ui/icons';
 
+const StyledRating = withStyles({
+  iconFilled: {
+    color: '#442c2e',
+  },
+  iconEmpty: {
+    color: '#442c2e',
+  },
+})(Rating);
 
 const useStyles = makeStyles({
   root: {
@@ -43,9 +53,9 @@ const OutfitProductCard = ({ outfitCardData }) => {
   return (
     <Card className={classes.root}>
       <CardActionArea >
-      <CardMedia
-        className={classes.media}
-        image="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2xvdGhpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+        <CardMedia
+          className={classes.media}
+          image={outfitCardData.photo}
         />
         <HighlightOffIcon className={classes.icon}>
         </HighlightOffIcon>
@@ -54,21 +64,24 @@ const OutfitProductCard = ({ outfitCardData }) => {
           sale_price if on sale
           */}
           <Typography className={classes.category}>
-            {/* {props.relatedWithNameCatPrice.category} */}
+            {outfitCardData.category}
           </Typography>
           <Typography className={classes.name}>
-            {/* {props.relatedWithNameCatPrice.name} */}
+            {outfitCardData.name}
           </Typography>
           <Typography className={classes.price}>
-            {/* {props.relatedWithNameCatPrice.default_price} */}
+            {outfitCardData.original_price}
           </Typography>
           <Typography>
-            <Rating
+            <StyledRating
+              emptyIcon={<StarBorder fontSize="inherit" />}
+              icon={<Star fontSize="inherit" />}
               name="rating"
-              defaultValue={3.5}
+              value={outfitCardData.rating}
               precision={0.25}
               size="small"
-          ></Rating>
+              readOnly={true}
+            ></StyledRating>
           </Typography>
         </CardContent>
       </CardActionArea>
