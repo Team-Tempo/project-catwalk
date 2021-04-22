@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Carousel from 'react-material-ui-carousel';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -26,9 +27,11 @@ const ImageGallery = ({ currentStyle }) => {
 
   const handleClick = (idx) => {
     setCurrentPhotoUrl(currentStyle.photos[idx].url);
+    setCurrentPhotoIdx(idx);
   };
 
   const [currentPhotoUrl, setCurrentPhotoUrl] = useState('');
+  const [currentPhotoIdx, setCurrentPhotoIdx] = useState(0);
   const classes = useStyles();
   const imageUrl = currentPhotoUrl
     ? currentPhotoUrl
@@ -54,9 +57,28 @@ const ImageGallery = ({ currentStyle }) => {
           })}
         </Grid>
         <Grid item xs>
-          <Card>
-            <CardMedia className={classes.media} image={imageUrl} />
-          </Card>
+          <Carousel
+            autoPlay={false}
+            animation="fade"
+            timeout={0}
+            indicators={false}
+            index={currentPhotoIdx}
+          >
+            {currentStyle.photos.map((photo, idx) => {
+              return (
+                <Card key={idx}>
+                  <CardMedia
+                    className={classes.media}
+                    image={photo.url}
+                    title="style"
+                    onClick={() => {
+                      handleClick(idx);
+                    }}
+                  />
+                </Card>
+              );
+            })}
+          </Carousel>
         </Grid>
       </Grid>
     </>
