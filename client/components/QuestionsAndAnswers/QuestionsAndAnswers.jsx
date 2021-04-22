@@ -32,7 +32,6 @@ const QuestionsAndAnswers = ( { productId }) => {
       setQuestions(questionData.results);
       setShownQuestions(questionData.results);
     }
-
     fetchQuestions();
   }, []);
 
