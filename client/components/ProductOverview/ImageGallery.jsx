@@ -64,9 +64,6 @@ const ImageGallery = ({ currentStyle }) => {
             indicators={false}
             index={currentPhotoIdx}
           >
-            {/* <Card>
-              <CardMedia className={classes.media} image={imageUrl} />
-            </Card> */}
             {currentStyle.photos.map((photo, idx) => {
               return (
                 <Card key={idx}>
