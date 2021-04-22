@@ -51,9 +51,17 @@ const useStyles = makeStyles({
     textDecoration: 'line-through',
   }
 });
+const OutfitProductCard = ({
+  outfitCardData,
+  removeCard
+}) => {
 
-const OutfitProductCard = ({ outfitCardData }) => {
   const classes = useStyles();
+
+  const handleXClick = () => {
+    removeCard(outfitCardData.style_id)
+  }
+
   return (
     <Card className={classes.root}>
       <CardActionArea >
@@ -61,7 +69,7 @@ const OutfitProductCard = ({ outfitCardData }) => {
           className={classes.media}
           image={outfitCardData.photo}
         />
-        <HighlightOffIcon className={classes.icon}>
+        <HighlightOffIcon onClick={handleXClick} className={classes.icon}>
         </HighlightOffIcon>
         <CardContent>
           <Typography className={classes.category} variant="caption">
