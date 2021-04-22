@@ -41,9 +41,24 @@ const useStyles = makeStyles({
 });
 
 
+
+
 const RelatedProductCard = ({relatedProductsData}) => {
+  console.log({relatedProductsData})
   const classes = useStyles();
   const image = relatedProductsData.results[0].photos[0].url;
+
+  //reused same logic from App.js for calculating ratings average:
+  const ratings = relatedProductsData.ratings;
+  let sumOfRatings = 0;
+  let numberOfRatings = 0;
+
+  for (const rating in ratings) {
+    sumOfRatings += rating * ratings[rating];
+    numberOfRatings += Number(ratings[rating]);
+  }
+
+  let ratingAverage = (sumOfRatings / numberOfRatings) || 0;
 
   return (
     <Card className={classes.root}>
@@ -73,7 +88,7 @@ const RelatedProductCard = ({relatedProductsData}) => {
           <Typography>
             <Rating
               name="rating"
-              defaultValue={3.5}
+              defaultValue={ratingAverage}
               precision={0.25}
               size="small"
           ></Rating>
