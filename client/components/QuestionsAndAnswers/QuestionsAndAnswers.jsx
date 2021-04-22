@@ -49,7 +49,7 @@ const QuestionsAndAnswers = ( { productId }) => {
     setShownQuestions(searchMatchingQuestions);
   };
 
-  var sortedQuestions = sortQuestionsByHelpfulness(shownQuestions, 4);
+  var sortedQuestions = sortQuestionsByHelpfulness(shownQuestions, 2);
   return (
     <div>
       <h6>QUESTIONS & ANSWERS</h6>

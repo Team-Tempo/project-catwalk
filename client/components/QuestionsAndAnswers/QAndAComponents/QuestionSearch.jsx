@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QuestionSearch({ questions, questionSearch }) {
+export default function QuestionSearch({ questionSearch }) {
   const classes = useStyles();
 
   const handleChange = (e) => {
