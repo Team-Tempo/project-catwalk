@@ -27,9 +27,11 @@ const ImageGallery = ({ currentStyle }) => {
 
   const handleClick = (idx) => {
     setCurrentPhotoUrl(currentStyle.photos[idx].url);
+    setCurrentPhotoIdx(idx);
   };
 
   const [currentPhotoUrl, setCurrentPhotoUrl] = useState('');
+  const [currentPhotoIdx, setCurrentPhotoIdx] = useState(0);
   const classes = useStyles();
   const imageUrl = currentPhotoUrl
     ? currentPhotoUrl
@@ -55,10 +57,30 @@ const ImageGallery = ({ currentStyle }) => {
           })}
         </Grid>
         <Grid item xs>
-          <Carousel>
-            <Card>
+          <Carousel
+            autoPlay={false}
+            animation="fade"
+            timeout={0}
+            indicators={false}
+            index={currentPhotoIdx}
+          >
+            {/* <Card>
               <CardMedia className={classes.media} image={imageUrl} />
-            </Card>
+            </Card> */}
+            {currentStyle.photos.map((photo, idx) => {
+              return (
+                <Card key={idx}>
+                  <CardMedia
+                    className={classes.media}
+                    image={photo.url}
+                    title="style"
+                    onClick={() => {
+                      handleClick(idx);
+                    }}
+                  />
+                </Card>
+              );
+            })}
           </Carousel>
         </Grid>
       </Grid>
