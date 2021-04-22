@@ -1,22 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
 import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
 import Photos from './QAndAComponents/Photos.jsx';
+import config from '../../../config';
+import axios from 'axios';
 
-const QuestionsAndAnswers = () => {
-  var sortedQuestions = sortByHelpfulness(QuestionsDummyData.questions.results, 4);
+const getQuestions = (id) => {
+  return axios
+    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}`, {
+      headers: {
+        Authorization: config.GITHUB_TOKEN,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+const QuestionsAndAnswers = ( { productId }) => {
+  const [questions, setQuestions] = useState([]);
+  const [shownQuestions, setShownQuestions] = useState([]);
+
+  useEffect(() => {
+    async function fetchQuestions() {
+      const questionData = await getQuestions(productId);
+      setQuestions(questionData.results);
+      setShownQuestions(questionData.results);
+    }
+    fetchQuestions();
+  }, []);
+
+  const questionSearch = (searchInput) => {
+    if (searchInput.length < 3) {
+      setShownQuestions(questions);
+      return;
+    }
+    var searchMatchingQuestions = [];
+    for (var i = 0; i < questions.length; i++) {
+      if (questions[i].question_body.includes(searchInput)) {
+        searchMatchingQuestions.push(questions[i]);
+      }
+    }
+    setShownQuestions(searchMatchingQuestions);
+  };
+
+  var sortedQuestions = sortQuestionsByHelpfulness(shownQuestions, 4);
   return (
     <div>
-      <h3>QUESTIONS & ANSWERS</h3>
-
-      <QuestionSearch questions={sortedQuestions}/>
-      {sortedQuestions.map((question) => {
-        return <QAndA question={question}/>
-      })}
+      <h6>QUESTIONS & ANSWERS</h6>
+      <QuestionSearch questions={sortedQuestions} questionSearch={questionSearch}/>
+      {sortedQuestions.map((question, i) => (
+       <QAndA question={question} key={i}/>
+      ))}
       <Photos questions={QuestionsDummyData.questions}/>
-
       <h6>LOAD MORE</h6>
       <Button variant="outlined">
         MORE ANSWERED QUESTIONS
@@ -28,7 +69,7 @@ const QuestionsAndAnswers = () => {
   );
 };
 
-const sortByHelpfulness = (questionsAndAnswersData, numQuestions) => {
+const sortQuestionsByHelpfulness = (questionsAndAnswersData, numQuestions) => {
   var result = questionsAndAnswersData.slice();
   for (var i = 0; i < questionsAndAnswersData.length; i++) {
     var currentValue = questionsAndAnswersData[i].question_helpfulness;
@@ -41,5 +82,7 @@ const sortByHelpfulness = (questionsAndAnswersData, numQuestions) => {
   result = result.slice(0, numQuestions);
   return result;
 }
+
+
 
 export default QuestionsAndAnswers;
