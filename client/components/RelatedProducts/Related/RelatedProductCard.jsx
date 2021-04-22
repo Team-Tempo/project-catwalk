@@ -3,30 +3,25 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Icon from '@material-ui/core/Icon';
 import Rating from '@material-ui/lab/Rating';
-
+import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
   root: {
     minWidth: 250,
-    minHeight: 350,
-    maxHeight: 350,
+    minHeight: 375,
+    maxHeight: 375,
     margin: 16
   },
   category: {
-    fontSize: 12,
     textTransform: 'uppercase'
   },
   name: {
     fontWeight: 700
-  },
-  price: {
-    fontSize: 12
   },
   media: {
     height: 250,
@@ -37,13 +32,27 @@ const useStyles = makeStyles({
     top: '5px',
     right: '5px',
     color: '#ffb400'
+  },
+  sale: {
+    marginLeft: '5px',
+    color: red[400],
+  },
+  strikethrough: {
+    textDecoration: 'line-through',
   }
 });
 
 
-const RelatedProductCard = ({relatedProductsData}) => {
+const RelatedProductCard = ({relatedProductData}) => {
   const classes = useStyles();
-  const image = relatedProductsData.results[0].photos[0].url;
+  const image = relatedProductData.results[0].photos[0].url;
+
+  let salePrice = null;
+  for (let style of relatedProductData.results) {
+    if (style['default?'] === true) {
+      salePrice = style['sale_price'];
+    }
+  }
 
   return (
     <Card className={classes.root}>
@@ -58,18 +67,26 @@ const RelatedProductCard = ({relatedProductsData}) => {
           <span className="material-icons">star_rate</span>
         </Icon>
         <CardContent>
-          {/*
-          sale_price if on sale
-          */}
-          <Typography className={classes.category}>
-            {relatedProductsData.category}
+          <Typography className={classes.category} variant="caption">
+            {relatedProductData.category}
           </Typography>
           <Typography className={classes.name}>
-            {relatedProductsData.name}
+            {relatedProductData.name}
           </Typography>
-          <Typography className={classes.price}>
-            {relatedProductsData.default_price}
-          </Typography>
+          {salePrice ? (
+            <>
+              <Typography className={classes.strikethrough} variant="caption">
+                ${Math.round(relatedProductData.default_price)}
+              </Typography>
+              <Typography className={classes.sale} variant="caption">
+                ${Math.round(salePrice)}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="caption">
+            ${Math.round(relatedProductData.default_price)}
+            </Typography>
+          )}
           <Typography>
             <Rating
               name="rating"
