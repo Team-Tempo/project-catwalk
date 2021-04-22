@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '10px',
     marginRight: '10px'
   },
+  miniSpacing: {
+    marginLeft: '5px',
+    marginRight: '5px'
+  },
   verticalSpace: {
     marginTop: '15px',
     marginBottom: '15px'
@@ -26,9 +30,13 @@ const Answer = ( {answer} ) => {
   const classes = useStyles();
   return (
     <div>
-      <Grid container className={classes.align} spacing={2}>
-          <Typography variant="h6"><b>A:    </b></Typography>
+      <Grid container className={classes.align}>
+        <Grid item>
+          <Typography variant="h6"><b>A:</b></Typography>
+        </Grid>
+        <Grid item className={classes.miniSpacing}>
           <Typography variant="caption">{answer.body ? answer.body : 'No answer for this question yet'}</Typography>
+        </Grid>
       </Grid>
       <Grid container>
         <Grid item>

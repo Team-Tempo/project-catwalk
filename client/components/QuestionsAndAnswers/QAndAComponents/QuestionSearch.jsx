@@ -11,8 +11,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function QuestionSearch() {
+export default function QuestionSearch({ questions, questionSearch }) {
+  console.log('qs', questions);
+  console.log('questionSearch', questionSearch);
   const classes = useStyles();
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    questionSearch(e.target.value);
+  }
+
   return (
     <div className="search">
       <div className={classes.root}>
@@ -20,6 +28,7 @@ export default function QuestionSearch() {
           size="medium"
           label="HAVE A QUESTION? SEARCH FOR ANSWERS..."
           variant="outlined"
+          onChange={handleChange}
           InputProps={{
             endAdornment: (
               <InputAdornment>
@@ -33,4 +42,8 @@ export default function QuestionSearch() {
       </div>
     </div>
   );
+
+
 }
+
+

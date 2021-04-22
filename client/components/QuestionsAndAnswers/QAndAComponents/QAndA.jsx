@@ -17,10 +17,16 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '15px'
   },
   alignHorizontally: {
-    justifyContent: 'flex-end'
+    display: 'flex',
+    justifyContent: 'flex-end',
+
   },
   alignVertically: {
     alignItems: 'center'
+  },
+  miniSpacing: {
+    marginLeft: '5px',
+    marginRight: '5px'
   }
 }));
 
@@ -32,11 +38,19 @@ const QAndA = ( {question} ) => {
   // console.log('sort ans answer', sortedAnswers[0].answer);
   const classes = useStyles();
   return (
-    <Grid container spacing={2}>
+    <Grid container>
       <Grid className={classes.verticalSpace}></Grid>
-      <Grid container className={classes.alignVertically} direction="row" spacing={2}>
-        <Typography variant="h6"><b>Q: {question.question_body}</b></Typography>
-        <Grid item className={classes.alignHorizontally}>
+      <Grid container direction="row" className={classes.alignVertically} item xs={12}>
+        <Grid container direction ="row" item xs={7}>
+          <Grid item>
+            <Typography variant="h6"><b>Q:</b></Typography>
+          </Grid>
+          <Grid item className={classes.miniSpacing}>
+            <Typography variant="h6"> {question.question_body}</Typography>
+          </Grid>
+        </Grid>
+        {/* <div className={classes.alignHorizontally}> */}
+        <Grid item xs={5} className={classes.alignHorizontally}>
           <Grid item className={classes.textSpacing}>
             <Helpful helpfulness={question.question_helpfulness}/>
           </Grid>
@@ -47,6 +61,7 @@ const QAndA = ( {question} ) => {
             <Typography variant="caption" className={classes.underlined}>Add Answer</Typography>
           </Grid>
         </Grid>
+        {/* </div> */}
       </Grid>
 
       <Grid>

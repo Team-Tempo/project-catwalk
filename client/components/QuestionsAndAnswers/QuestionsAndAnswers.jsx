@@ -116,6 +116,8 @@ const getAnswers = (id) => {
 
 // export default ProductOverview;
 
+
+
 const QuestionsAndAnswers = ( { productId }) => {
   // var sortedQuestions = sortByHelpfulness(QuestionsDummyData.questions.results, 4);
   const [questions, setQuestions] = useState([]);
@@ -141,19 +143,26 @@ const QuestionsAndAnswers = ( { productId }) => {
     fetchAnswers();
   }, []);
 
+  const questionSearch = (searchInput) => {
+    console.log(searchInput);
+    if (searchInput.length < 3) {
+      return;
+    }
+
+    setQuestions()
+  };
+
   // console.log('questions', questions);
   var sortedQuestions = sortQuestionsByHelpfulness(questions, 4);
   // console.log('sorted qs', sortedQuestions);
   return (
     <div>
-      <h3>QUESTIONS & ANSWERS</h3>
-
-      <QuestionSearch questions={sortedQuestions}/>
+      <h6>QUESTIONS & ANSWERS</h6>
+      <QuestionSearch questions={sortedQuestions} questionSearch={questionSearch}/>
       {sortedQuestions.map((question, i) => (
        <QAndA question={question} key={i}/>
       ))}
       <Photos questions={QuestionsDummyData.questions}/>
-
       <h6>LOAD MORE</h6>
       <Button variant="outlined">
         MORE ANSWERED QUESTIONS
@@ -180,5 +189,7 @@ const sortQuestionsByHelpfulness = (questionsAndAnswersData, numQuestions) => {
   // console.log('sorted questions', result);
   return result;
 }
+
+
 
 export default QuestionsAndAnswers;
