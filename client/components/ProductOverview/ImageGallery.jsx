@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Carousel from 'react-material-ui-carousel';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -54,9 +55,11 @@ const ImageGallery = ({ currentStyle }) => {
           })}
         </Grid>
         <Grid item xs>
-          <Card>
-            <CardMedia className={classes.media} image={imageUrl} />
-          </Card>
+          <Carousel>
+            <Card>
+              <CardMedia className={classes.media} image={imageUrl} />
+            </Card>
+          </Carousel>
         </Grid>
       </Grid>
     </>
