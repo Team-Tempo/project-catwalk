@@ -25,15 +25,29 @@ const getQuestions = (id) => {
 const QuestionsAndAnswers = ( { productId }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
+  const [allQuestionsShown, setAllQuestionsShown] = useState(false);
 
   useEffect(() => {
     async function fetchQuestions() {
       const questionData = await getQuestions(productId);
       setQuestions(questionData.results);
-      setShownQuestions(questionData.results);
+      setShownQuestions(sortQuestionsByHelpfulness(questionData.results, 2));
     }
     fetchQuestions();
   }, []);
+
+  const handleMoreQuestionsClick = () => {
+    var numQuestionsToShow;
+    var allQuestionsShown;
+    if (questions.length > shownQuestions.length + 2) {
+      numQuestionsToShow = shownQuestions.length + 2;
+    } else {
+      numQuestionsToShow = questions.length;
+    }
+    var moreQuestions = sortQuestionsByHelpfulness(questions, numQuestionsToShow);
+    setShownQuestions(moreQuestions);
+    setAllQuestionsShown(true);
+  }
 
   const questionSearch = (searchInput) => {
     if (searchInput.length < 3) {
@@ -49,19 +63,20 @@ const QuestionsAndAnswers = ( { productId }) => {
     setShownQuestions(searchMatchingQuestions);
   };
 
-  var sortedQuestions = sortQuestionsByHelpfulness(shownQuestions, 2);
   return (
     <div>
       <h6>QUESTIONS & ANSWERS</h6>
-      <QuestionSearch questions={sortedQuestions} questionSearch={questionSearch}/>
-      {sortedQuestions.map((question, i) => (
+      <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
+      {shownQuestions.map((question, i) => (
        <QAndA question={question} key={i}/>
       ))}
       <Photos questions={QuestionsDummyData.questions}/>
       <h6>LOAD MORE</h6>
-      <Button variant="outlined">
-        MORE ANSWERED QUESTIONS
-      </Button>
+      {questions.length > 1 && !allQuestionsShown ?
+        <Button variant="outlined" onClick={handleMoreQuestionsClick}>
+          MORE ANSWERED QUESTIONS
+        </Button>
+      : null}
       <Button variant="outlined">
         ADD A QUESTION   +
       </Button>
@@ -82,7 +97,5 @@ const sortQuestionsByHelpfulness = (questionsAndAnswersData, numQuestions) => {
   result = result.slice(0, numQuestions);
   return result;
 }
-
-
 
 export default QuestionsAndAnswers;
