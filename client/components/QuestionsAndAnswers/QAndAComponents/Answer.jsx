@@ -25,8 +25,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Answer = ( {answer} ) => {
-  console.log('answer in answer comp', answer);
-  // console.log('sort ans answer', sortedAnswers[0].answer);
   const classes = useStyles();
   return (
     <div>
@@ -38,23 +36,26 @@ const Answer = ( {answer} ) => {
           <Typography variant="caption">{answer.body ? answer.body : 'No answer for this question yet'}</Typography>
         </Grid>
       </Grid>
-      <Grid container>
-        <Grid item>
-          <Typography variant="caption" className={classes.textSpacing}>by {answer.answerer_name}, {dateFormat(new Date(answer.date), "mmmm, d, yyyy")}   </Typography>
+      {answer.helpfulness ?
+        <Grid container>
+          <Grid item>
+            <Typography variant="caption" className={classes.textSpacing}>by {answer.answerer_name}, {dateFormat(new Date(answer.date), "mmmm, d, yyyy")}   </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="caption">|</Typography>
+          </Grid>
+          <Grid item className={classes.textSpacing}>
+            <Helpful helpfulness={answer.helpfulness}/>
+          </Grid>
+          <Grid item>
+            <Typography variant="caption">|</Typography>
+          </Grid>
+          <Grid item className={classes.textSpacing}>
+            <Typography variant="caption" className={classes.underlined}>Report</Typography>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant="caption">|</Typography>
-        </Grid>
-        <Grid item className={classes.textSpacing}>
-          <Helpful helpfulness={answer.helpfulness}/>
-        </Grid>
-        <Grid item>
-          <Typography variant="caption">|</Typography>
-        </Grid>
-        <Grid item className={classes.textSpacing}>
-          <Typography variant="caption" className={classes.underlined}>Report</Typography>
-        </Grid>
-      </Grid>
+        :
+        null }
       <Grid className={classes.verticalSpace}></Grid>
     </div>
   );

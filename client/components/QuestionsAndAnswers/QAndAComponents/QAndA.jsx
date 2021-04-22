@@ -31,11 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const QAndA = ( {question} ) => {
-  console.log('q and a ------>:', question);
-  // console.log('QAndA question', question.answers);
-  // console.log(createSortedAnswers(question.answers, 3));
   var sortedAnswers = createSortedAnswers(question.answers, 2);
-  // console.log('sort ans answer', sortedAnswers[0].answer);
   const classes = useStyles();
   return (
     <Grid container>
@@ -49,7 +45,6 @@ const QAndA = ( {question} ) => {
             <Typography variant="h6"> {question.question_body}</Typography>
           </Grid>
         </Grid>
-        {/* <div className={classes.alignHorizontally}> */}
         <Grid item xs={5} className={classes.alignHorizontally}>
           <Grid item className={classes.textSpacing}>
             <Helpful helpfulness={question.question_helpfulness}/>
@@ -61,57 +56,25 @@ const QAndA = ( {question} ) => {
             <Typography variant="caption" className={classes.underlined}>Add Answer</Typography>
           </Grid>
         </Grid>
-        {/* </div> */}
       </Grid>
-
       <Grid>
-        {sortedAnswers.map((answer) => {
-          return <Answer answer={answer}/>
+        {sortedAnswers.map((answer, i) => {
+          return <Answer answer={answer} key={i}/>
         })}
       </Grid>
-      {/* <Grid container spacing={2}>
-          <Typography variant="h6"><b>A: </b></Typography>
-          <Typography variant="caption">{sortedAnswers[0] ? sortedAnswers[0].answer : null}</Typography>
-      </Grid>
-      <Grid container>
-        <Grid item>
-          <Typography variant="caption" className={classes.textSpacing}>by {question.asker_name}, {dateFormat(new Date(question.question_date), "mmmm, d, yyyy")}   </Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="caption">|</Typography>
-        </Grid>
-        <Grid item className={classes.textSpacing}>
-          <Helpful question={question}/>
-        </Grid>
-        <Grid item>
-          <Typography variant="caption">|</Typography>
-        </Grid>
-        <Grid item className={classes.textSpacing}>
-          <Typography variant="caption" className={classes.underlined}>Report</Typography>
-        </Grid>
-      </Grid> */}
       <Grid className={classes.verticalSpace}></Grid>
     </Grid>
   );
 };
 
 const createSortedAnswers = (answersToQuestion, numAnswers) => {
-  // var result = [{answer: null, helpfullness: null}];
   var result = [];
-  console.log('------>', answersToQuestion);
   for (var key in answersToQuestion) {
     var currentValue = answersToQuestion[key];
     var currentHelpfulness = currentValue.helpfulness;
     var currentAnswerer = currentValue.answerer_name;
-
-    // var currentValue = {
-    //   answer: currentAnswer,
-    //   helpfulness: currentHelpfulness
-    // }
-    // console.log(currentValue);
     result.push(currentValue);
     var position = result.length - 1;
-    // console.log('result sort ans', result);
     if (currentAnswerer === 'Seller') {
       result.unshift(currentValue);
       continue;
@@ -123,25 +86,12 @@ const createSortedAnswers = (answersToQuestion, numAnswers) => {
     }
   }
   result = result.slice(0, numAnswers);
-  // console.log('sortedAnswers', result);
+  if (result.length === 0) {
+    result = [{
+      body: 'No answer for this question yet.'
+    }]
+  }
   return result;
 }
-
-// const sortByHelpfulness = (questionsAndAnswersData, numQuestions) => {
-//   // console.log('q and a data here!!', questionsAndAnswersData);
-//   var result = questionsAndAnswersData.slice();
-//   for (var i = 0; i < questionsAndAnswersData.length; i++) {
-//     var currentValue = questionsAndAnswersData[i].question_helpfulness;
-//     var position = i;
-//     while (position > 0 && questionsAndAnswersData[position] > questionsAndAnswersData[position - 1]) {
-//       questionsAndAnswersData[position] = questionsAndAnswersData[position - 1];
-//       questionsAndAnswersData[position - 1] = currentValue;
-//       position--;
-//     }
-//   }
-//   result = result.slice(0, numQuestions);
-//   // console.log('sorted questions', result);
-//   return result;
-// }
 
 export default QAndA;

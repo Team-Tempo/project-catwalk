@@ -12,8 +12,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function QuestionSearch({ questions, questionSearch }) {
-  console.log('qs', questions);
-  console.log('questionSearch', questionSearch);
   const classes = useStyles();
 
   const handleChange = (e) => {
@@ -42,8 +40,6 @@ export default function QuestionSearch({ questions, questionSearch }) {
       </div>
     </div>
   );
-
-
 }
 
 
