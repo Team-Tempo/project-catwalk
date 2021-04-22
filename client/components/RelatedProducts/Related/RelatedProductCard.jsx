@@ -3,30 +3,25 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import products from '../../DummyData/ProductDummyData';
-import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import Rating from '@material-ui/lab/Rating';
-
+import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
   root: {
     minWidth: 250,
-    minHeight: 300,
+    minHeight: 375,
+    maxHeight: 375,
     margin: 16
   },
   category: {
-    fontSize: 12,
     textTransform: 'uppercase'
   },
   name: {
     fontWeight: 700
-  },
-  price: {
-    fontSize: 12
   },
   media: {
     height: 250,
@@ -34,39 +29,64 @@ const useStyles = makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '1px',
-    right: '1px',
+    top: '5px',
+    right: '5px',
     color: '#ffb400'
+  },
+  sale: {
+    marginLeft: '5px',
+    color: red[400],
+  },
+  strikethrough: {
+    textDecoration: 'line-through',
   }
 });
 
 
-const RelatedProductCard = (props) => {
+const RelatedProductCard = ({relatedProductData}) => {
   const classes = useStyles();
+  const image = relatedProductData.results[0].photos[0].url;
+
+  let salePrice = null;
+  for (let style of relatedProductData.results) {
+    if (style['default?'] === true) {
+      salePrice = style['sale_price'];
+    }
+  }
 
   return (
     <Card className={classes.root}>
       <CardActionArea >
         <CardMedia
         className={classes.media}
-        image="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2xvdGhpbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+        component="img"
+        image={image}
+        alt="Image not available"
         />
-        <IconButton className={classes.overlay}>
+        <Icon className={classes.overlay}>
           <span className="material-icons">star_rate</span>
-        </IconButton>
+        </Icon>
         <CardContent>
-          {/*
-          sale_price if on sale
-          */}
-          <Typography className={classes.category}>
-            {props.relatedWithNameCatPrice.category}
+          <Typography className={classes.category} variant="caption">
+            {relatedProductData.category}
           </Typography>
           <Typography className={classes.name}>
-            {props.relatedWithNameCatPrice.name}
+            {relatedProductData.name}
           </Typography>
-          <Typography className={classes.price}>
-            {props.relatedWithNameCatPrice.default_price}
-          </Typography>
+          {salePrice ? (
+            <>
+              <Typography className={classes.strikethrough} variant="caption">
+                ${Math.round(relatedProductData.default_price)}
+              </Typography>
+              <Typography className={classes.sale} variant="caption">
+                ${Math.round(salePrice)}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="caption">
+            ${Math.round(relatedProductData.default_price)}
+            </Typography>
+          )}
           <Typography>
             <Rating
               name="rating"
