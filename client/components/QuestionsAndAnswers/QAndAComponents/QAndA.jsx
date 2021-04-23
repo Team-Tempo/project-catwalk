@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QAndA = ({ question, handleHelpfulClick }) => {
+const QAndA = ({ question}) => {
   var sortedAnswers = createSortedAnswers(question.answers, 2);
   const classes = useStyles();
   return (
@@ -47,7 +47,7 @@ const QAndA = ({ question, handleHelpfulClick }) => {
         </Grid>
         <Grid item xs={5} className={classes.alignHorizontally}>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={question.question_helpfulness} handleHelpfulClick={handleHelpfulClick} data={question}/>
+            <Helpful helpfulness={question.question_helpfulness}/>
           </Grid>
           <Grid item className={classes.textSpacing}>
             <Typography variant="caption">|</Typography>
@@ -59,7 +59,7 @@ const QAndA = ({ question, handleHelpfulClick }) => {
       </Grid>
       <Grid>
         {sortedAnswers.map((answer, i) => {
-          return <Answer answer={answer} handleHelpfulClick={handleHelpfulClick} key={i}/>
+          return <Answer answer={answer} key={i}/>
         })}
       </Grid>
       <Grid className={classes.verticalSpace}></Grid>

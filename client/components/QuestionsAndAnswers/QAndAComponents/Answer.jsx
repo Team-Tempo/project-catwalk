@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Answer = ({ answer, handleHelpfulClick }) => {
+const Answer = ({ answer }) => {
   const classes = useStyles();
   return (
     <div>
@@ -45,7 +45,7 @@ const Answer = ({ answer, handleHelpfulClick }) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={answer.helpfulness} handleHelpfulClick={handleHelpfulClick} data={answer}/>
+            <Helpful helpfulness={answer.helpfulness}/>
           </Grid>
           <Grid item>
             <Typography variant="caption">|</Typography>

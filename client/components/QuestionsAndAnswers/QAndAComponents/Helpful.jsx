@@ -8,33 +8,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Helpful = ({ helpfulness, handleHelpfulClick, data }) => {
+const Helpful = ({ helpfulness }) => {
   const classes = useStyles();
   const [helpful, setHelpful] = useState(helpfulness);
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
-    // console.log('clicked helpful');
-    // console.log('data in help', data);
-    // var dataType;
-    // var id;
-    // if (data.answerer_name) {
-    //   dataType = 'answer';
-    //   id = data.id;
-    // } else {
-    //   dataType = 'question';
-    //   id = data.question_id;
-    // }
-    // handleHelpfulClick(data, dataType, id);
     if (!clicked) {
       setHelpful(helpfulness + 1);
       setClicked(true);
     }
-
-    // check if it's a question or an answer
-    // revise the helpfulness of it
-    // axios.patch()
   }
+
   return (
     <div>
       <Typography variant="caption">Helpful?   </Typography>

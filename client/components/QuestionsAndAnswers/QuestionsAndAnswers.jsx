@@ -36,35 +36,6 @@ const QuestionsAndAnswers = ( { productId }) => {
     fetchQuestions();
   }, []);
 
-  const handleHelpfulClick = (data, dataType, id) => {
-    if (dataType === 'answer') {
-      console.log('boom, answer baby!');
-      var newQuestions = shownQuestions;
-      for (var i = 0; i < shownQuestions.length; i++) {
-        for (var key in shownQuestions[i].answers) {
-          if (shownQuestions[i].answers[key].id === id) {
-            console.log('found ya bitch!', shownQuestions[i].answers[key].helpfulness);
-            newQuestions[i].answers[key].helpfulness++;
-            console.log('upped it i think', newQuestions);
-            setShownQuestions(newQuestions);
-            return;
-          }
-        }
-      }
-    } else if (dataType === 'question') {
-      console.log('boom, izzza question');
-      for (var i = 0; i < shownQuestions.length; i++) {
-        if (shownQuestions[i].question_id === id) {
-          console.log('found that question baby', shownQuestions[i].question_helpfulness);
-          newQuestions[i].question_helpfulness++;
-          console.log('upped it i think', newQuestions[i].question_helpfulness);
-          setShownQuestions(newQuestions);
-        }
-      }
-    }
-    console.log('all shown qs', shownQuestions);
-  }
-
   const handleMoreQuestionsClick = () => {
     var numQuestionsToShow;
     if (questions.length > shownQuestions.length + 2) {
@@ -96,7 +67,7 @@ const QuestionsAndAnswers = ( { productId }) => {
       <h6>QUESTIONS & ANSWERS</h6>
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
       {shownQuestions.map((question, i) => (
-       <QAndA question={question} handleHelpfulClick={handleHelpfulClick} key={i}/>
+       <QAndA question={question} key={i}/>
       ))}
       <Photos questions={QuestionsDummyData.questions}/>
       <h6>LOAD MORE</h6>
