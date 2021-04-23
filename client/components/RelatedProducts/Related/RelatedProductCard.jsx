@@ -54,11 +54,6 @@ const useStyles = makeStyles({
   },
   strikethrough: {
     textDecoration: 'line-through',
-  },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 });
 
@@ -119,7 +114,7 @@ const RelatedProductCard = ({
           open={open}
           onClose={handleClose}
         >
-          <ComparisonModal relatedProductData={relatedProductData} product={product} />
+          <ComparisonModal  relatedProductData={relatedProductData} product={product} />
         </Dialog>
         <CardContent>
           <Typography className={classes.category} variant="caption">

@@ -7,6 +7,17 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   table: {
    textAlign: 'center'
+  },
+  content: {
+    backgroundColor: '#FEDBD0'
+  },
+  title: {
+    backgroundColor: '#442c2e',
+    color: '#FEDBD0',
+    textAlign: 'center'
+  },
+  feature: {
+    fontWeight: 700
   }
 });
 
@@ -38,14 +49,13 @@ const ComparisonModal = ({
 
   return (
     <>
-      <DialogTitle>Comparing</DialogTitle>
-      <DialogContent>
-        <table className={classes.table}>
-          <thead>
+      <DialogTitle className={classes.title}>Comparing</DialogTitle>
+      <DialogContent className={classes.content}>
+        <table cellPadding="10px" cellSpacing="20px" className={classes.table}>
+          <thead >
           <tr>
             <th>{product.name}</th>
-            <th>
-            </th>
+            <th></th>
             <th>{relatedProductData.name}</th>
           </tr>
           </thead>
@@ -53,7 +63,7 @@ const ComparisonModal = ({
           {uniqueFeatures.map(feature => (
             <tr key={feature}>
               <td>{combinedCharacteristics[feature].current}</td>
-              <td>{feature}</td>
+              <td className={classes.feature}>{feature}</td>
               <td>{combinedCharacteristics[feature].related}</td>
             </tr>
           ))}
