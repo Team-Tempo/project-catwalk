@@ -5,8 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 
-console.log(`${window.innerWidth * 0.8333}px`);
-
 const useStyles = makeStyles({
   media: {
     height: 0,
