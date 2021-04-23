@@ -1,43 +1,46 @@
 import React from 'react';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+  table: {
+   textAlign: 'center'
+  }
+});
 
 const ComparisonModal = ({
  relatedProductData,
  product
 }) => {
+  const classes = useStyles();
 
-  //create array of objects containing each feature, currentProductValue if available and relatedProductValue if available
-  //get array of all uniqueFeatures from both product and relatedProductData
+  //create uniqueFeatures array of all unique features from both product and relatedProductData:
   let currentProductFeatures = product.features.map(feature => feature.feature);
   let relatedProductFeatures = relatedProductData.features.map(feature => feature.feature);
   let uniqueFeaturesSet = new Set([...currentProductFeatures, ...relatedProductFeatures])
   let uniqueFeatures = [...uniqueFeaturesSet];
-  //iterate over uniqueFeatures and create combinedCharacteristics object of objects with uniqueFeatures[i]: {current: '', related: ''}
+
+  //consolidate feature values for both current product and related product into one object:
   let combinedCharacteristics = {};
   for (let feature of uniqueFeatures) {
     combinedCharacteristics[feature] = {current: '', related: ''}
   }
-  //iterate over product.features
+
   for (let characteristic of product.features) {
-    //update current to value of feature
     combinedCharacteristics[characteristic.feature].current = characteristic.value
   }
-  //iterate over relatedProductData.features
+
   for (let characteristic of relatedProductData.features) {
-    //update related to value of feature
     combinedCharacteristics[characteristic.feature].related = characteristic.value
   }
-  console.log({combinedCharacteristics})
-
 
   return (
     <>
       <DialogTitle>Comparing</DialogTitle>
       <DialogContent>
-        <table>
+        <table className={classes.table}>
           <thead>
           <tr>
             <th>{product.name}</th>

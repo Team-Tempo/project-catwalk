@@ -70,7 +70,6 @@ const RelatedProductCard = ({
   const classes = useStyles();
 
   const image = relatedProductData.results[0].photos[0].url;
-  console.log({relatedProductData})
 
   let salePrice = null;
   for (let style of relatedProductData.results) {
@@ -117,8 +116,6 @@ const RelatedProductCard = ({
           </path>
         </SvgIcon>
         <Dialog
-          // fullWidth={fullWidth}
-          // maxWidth={maxWidth}
           open={open}
           onClose={handleClose}
         >
