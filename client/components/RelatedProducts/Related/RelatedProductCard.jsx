@@ -44,7 +44,6 @@ const useStyles = makeStyles({
 
 
 const RelatedProductCard = ({relatedProductsData}) => {
-  console.log({relatedProductsData})
   const classes = useStyles();
   const image = relatedProductsData.results[0].photos[0].url;
 
