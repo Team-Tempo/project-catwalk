@@ -6,17 +6,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  root: {
-    height: '200px',
-    alignItems: 'center',
-  },
   media: {
     height: 0,
-    paddingTop: '100%', // 16:9
+    paddingTop: '100%',
   },
   gridTest: {
     overflow: 'auto',
-    maxHeight: '600px',
+    maxHeight: '595px',
   },
 });
 
@@ -26,16 +22,11 @@ const ImageGallery = ({ currentStyle }) => {
   }
 
   const handleClick = (idx) => {
-    setCurrentPhotoUrl(currentStyle.photos[idx].url);
     setCurrentPhotoIdx(idx);
   };
 
-  const [currentPhotoUrl, setCurrentPhotoUrl] = useState('');
   const [currentPhotoIdx, setCurrentPhotoIdx] = useState(0);
   const classes = useStyles();
-  const imageUrl = currentPhotoUrl
-    ? currentPhotoUrl
-    : currentStyle.photos[0].url;
 
   return (
     <>
