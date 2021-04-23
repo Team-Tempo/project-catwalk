@@ -36,17 +36,20 @@ const QuestionsAndAnswers = ( { productId }) => {
     fetchQuestions();
   }, []);
 
+  const handleHelpfulClick = () => {
+
+  }
+
   const handleMoreQuestionsClick = () => {
     var numQuestionsToShow;
-    var allQuestionsShown;
     if (questions.length > shownQuestions.length + 2) {
       numQuestionsToShow = shownQuestions.length + 2;
     } else {
       numQuestionsToShow = questions.length;
+      setAllQuestionsShown(true);
     }
     var moreQuestions = sortQuestionsByHelpfulness(questions, numQuestionsToShow);
     setShownQuestions(moreQuestions);
-    setAllQuestionsShown(true);
   }
 
   const questionSearch = (searchInput) => {
