@@ -8,7 +8,10 @@ import Typography from '@material-ui/core/Typography';
 //   visibility: hidden;
 // }
 
-const RelatedProductsList = ({relatedProductsData}) => {
+const RelatedProductsList = ({
+  relatedProductsData,
+  product
+}) => {
 
   return  (
     <>
@@ -16,7 +19,7 @@ const RelatedProductsList = ({relatedProductsData}) => {
         RELATED PRODUCTS
       </Typography>
       <Carousel showEmptySlots itemsToShow={4}>
-          {relatedProductsData.map(item => <RelatedProductCard key={item.id} relatedProductData={item}/>)}
+          {relatedProductsData.map(item => <RelatedProductCard key={item.id} relatedProductData={item} product={product} />)}
       </Carousel>
     </>
   )

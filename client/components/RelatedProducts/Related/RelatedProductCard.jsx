@@ -63,7 +63,10 @@ const useStyles = makeStyles({
 });
 
 
-const RelatedProductCard = ({relatedProductData}) => {
+const RelatedProductCard = ({
+  relatedProductData,
+  product
+}) => {
   const classes = useStyles();
 
   const image = relatedProductData.results[0].photos[0].url;
@@ -119,7 +122,7 @@ const RelatedProductCard = ({relatedProductData}) => {
           open={open}
           onClose={handleClose}
         >
-          <ComparisonModal />
+          <ComparisonModal relatedProductData={relatedProductData} product={product} />
         </Dialog>
         <CardContent>
           <Typography className={classes.category} variant="caption">
