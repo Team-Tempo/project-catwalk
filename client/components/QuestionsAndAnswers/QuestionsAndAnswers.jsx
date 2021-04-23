@@ -45,8 +45,8 @@ const QuestionsAndAnswers = ( { productId }) => {
     if (questions.length > shownQuestions.length + 2) {
       numQuestionsToShow = shownQuestions.length + 2;
     } else {
-      numQuestionsToShow = questions.length;
       setAllQuestionsShown(true);
+      numQuestionsToShow = questions.length;
     }
     var moreQuestions = sortQuestionsByHelpfulness(questions, numQuestionsToShow);
     setShownQuestions(moreQuestions);
