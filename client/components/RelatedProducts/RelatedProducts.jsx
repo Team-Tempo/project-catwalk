@@ -35,19 +35,24 @@ const RelatedProducts = ({
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`);
       })
 
-      return Promise.all([...productsIdGetReq, ...stylesGetReq]);
-    })
-    .then(bothResponses => bothResponses.map(response => response.data))
-    .then(bothResponsesData => {
+      const ratingsGetReq = relatedIdsResult.map(id => {
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`);
+      })
 
+      return Promise.all([...productsIdGetReq, ...stylesGetReq, ...ratingsGetReq]);
+    })
+    .then(allResponses => allResponses.map(response => response.data))
+    .then(productCardData => {
       //consolidates each product into one object within the combinedResults array:
-      const midIndex = bothResponsesData.length / 2
-      const productsIdResult = bothResponsesData.slice(0, midIndex);
-      const stylesResult = bothResponsesData.slice(midIndex);
+      const firstSplitIndex = productCardData.length / 3
+      const secondSplitIndex = firstSplitIndex * 2;
+      const productsIdResult = productCardData.slice(0, firstSplitIndex);
+      const stylesResult = productCardData.slice(firstSplitIndex, secondSplitIndex);
+      const ratingsResult = productCardData.slice(secondSplitIndex)
       const combinedResults = [];
 
       for (let i = 0; i < productsIdResult.length; i++) {
-        let temp = {...productsIdResult[i], ...stylesResult[i]};
+        let temp = {...productsIdResult[i], ...stylesResult[i], ...ratingsResult[i]};
         combinedResults.push(temp);
       }
 
