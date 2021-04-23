@@ -2,8 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Review from './Review.jsx';
 import { Typography, Grid, makeStyles } from '@material-ui/core'
 import axios from 'axios';
-import config from '../../../../config.js'
+import config from '../../../../config.js';
+import Button from '@material-ui/core/Button';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
+import AddReviewForm from './AddReviewForm';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const getReviewsData = async (id) => {
       const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}`);
@@ -16,11 +24,25 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     fontWeight: 500,
+  },
+  buttons: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   }
 }))
 
 const ReviewsList = ({ productId }) => {
   const [reviewsData, setReviewsData] = useState([]);
+  const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     getReviewsData(productId)
@@ -43,6 +65,31 @@ const ReviewsList = ({ productId }) => {
         {reviewsData.map(review =>
         <Review key={review.review_id} review={review}/>
         )}
+        </Grid>
+        <Grid item xs={12} className={classes.buttons}>
+        <Button variant='contained' color='primary'>MORE REVIEWS</Button>
+        <Button variant='contained' color='primary' onClick={handleClickOpen}>ADD A REVIEW +</Button>
+        {/* <AddReviewForm selectedValue={selectedValue} open={open} onClose={handleClose} /> */}
+        </Grid>
+        <Grid item xs>
+        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Write your review</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {/* Should display actual product name */}
+            About the Camo Onesie
+          </DialogContentText>
+          <AddReviewForm />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="pink">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="pink">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
         </Grid>
       </Grid>
     </div>

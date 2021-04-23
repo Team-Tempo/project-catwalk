@@ -5,7 +5,6 @@ import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import reviewsData from '../DummyData/ReviewsDummyData.js';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
