@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Answer = ( {answer} ) => {
+const Answer = ({ answer, handleHelpfulClick }) => {
   const classes = useStyles();
   return (
     <div>
@@ -36,7 +36,7 @@ const Answer = ( {answer} ) => {
           <Typography variant="caption">{answer.body ? answer.body : 'No answer for this question yet'}</Typography>
         </Grid>
       </Grid>
-      {answer.helpfulness ?
+      {answer.date ?
         <Grid container>
           <Grid item>
             <Typography variant="caption" className={classes.textSpacing}>by {answer.answerer_name}, {dateFormat(new Date(answer.date), "mmmm, d, yyyy")}   </Typography>
@@ -45,7 +45,7 @@ const Answer = ( {answer} ) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={answer.helpfulness}/>
+            <Helpful helpfulness={answer.helpfulness} handleHelpfulClick={handleHelpfulClick} data={answer}/>
           </Grid>
           <Grid item>
             <Typography variant="caption">|</Typography>
