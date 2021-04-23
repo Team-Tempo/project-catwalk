@@ -14,6 +14,8 @@ const RelatedProducts = ({
   averageRating
 }) => {
 
+  console.log({product})
+
   const [relatedProductsData, setRelatedProductsData] = useState([]);
   const [outfitStylesList, setOutfitStylesList] = useState([]);
   const [outfitCardsData, setOutfitCardsData] = useState([]);

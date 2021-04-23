@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
+import ComparisonModal from '../ComparisonModal.jsx'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -11,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { StarBorder, Star } from '@material-ui/icons';
 import { red } from '@material-ui/core/colors';
 import SvgIcon from '@material-ui/core/SvgIcon';
+import Dialog from '@material-ui/core/Dialog';
 
 const StyledRating = withStyles({
   iconFilled: {
@@ -52,19 +54,37 @@ const useStyles = makeStyles({
   },
   strikethrough: {
     textDecoration: 'line-through',
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
 
 const RelatedProductCard = ({relatedProductData}) => {
   const classes = useStyles();
+
   const image = relatedProductData.results[0].photos[0].url;
+  console.log({relatedProductData})
 
   let salePrice = null;
   for (let style of relatedProductData.results) {
     if (style['default?'] === true) {
       salePrice = style['sale_price'];
     }
+  }
+
+  //Click handlers for Comparison Modal
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
   }
 
   //reused same logic from App.js for calculating ratings average:
@@ -88,11 +108,19 @@ const RelatedProductCard = ({relatedProductData}) => {
         image={image}
         alt="Image not available"
         />
-        <SvgIcon className={classes.overlay}>
+        <SvgIcon onClick={handleOpen} className={classes.overlay}>
           <path
           d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
           </path>
         </SvgIcon>
+        <Dialog
+          // fullWidth={fullWidth}
+          // maxWidth={maxWidth}
+          open={open}
+          onClose={handleClose}
+        >
+          <ComparisonModal />
+        </Dialog>
         <CardContent>
           <Typography className={classes.category} variant="caption">
             {relatedProductData.category}
