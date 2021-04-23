@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 
 const CustomOutfitList = ({
   addToOutfit,
+  removeCard,
   outfitCardsData
 }) => {
   return (
@@ -16,7 +17,7 @@ const CustomOutfitList = ({
       <Carousel showEmptySlots itemsToShow={4}>
         <BlankOutfitCard addToOutfit={addToOutfit} />
           {outfitCardsData.length ? (
-            outfitCardsData.map(card => <OutfitProductCard key={card.style_id} outfitCardData={card} />)
+            outfitCardsData.map(card => <OutfitProductCard key={card.style_id} outfitCardData={card} removeCard={removeCard}/>)
             ) : (
             <> </>
           )}

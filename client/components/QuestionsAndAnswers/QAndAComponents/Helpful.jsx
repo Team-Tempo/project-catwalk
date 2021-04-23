@@ -7,14 +7,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Helpful = (props) => {
+const Helpful = ( {helpfulness} ) => {
   const classes = useStyles();
   return (
-    <Grid spacing={3}>
-      <Typography variant="caption">Helpful?  </Typography>
+    <div>
+      <Typography variant="caption">Helpful?   </Typography>
       <Typography variant="caption" className={classes.underlined}>Yes</Typography>
-      <Typography variant="caption">({props.question.question_helpfulness})</Typography>
-    </Grid>
+      <Typography variant="caption">  ({helpfulness})</Typography>
+    </div>
   );
 };
 

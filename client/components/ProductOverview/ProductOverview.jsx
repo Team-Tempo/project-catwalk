@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -7,7 +6,6 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInformation from './ProductInformation.jsx';
 import StyleSelector from './StyleSelector';
 import AddToCart from './AddToCart';
-import config from '../../../config';
 import { Typography } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 

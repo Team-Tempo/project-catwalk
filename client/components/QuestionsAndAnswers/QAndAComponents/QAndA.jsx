@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
+import Answer from './Answer.jsx';
 var dateFormat = require('dateformat');
 
 const useStyles = makeStyles((theme) => ({
@@ -14,23 +15,41 @@ const useStyles = makeStyles((theme) => ({
   verticalSpace: {
     marginTop: '15px',
     marginBottom: '15px'
+  },
+  alignHorizontally: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+
+  },
+  alignVertically: {
+    alignItems: 'center'
+  },
+  miniSpacing: {
+    marginLeft: '5px',
+    marginRight: '5px'
   }
 }));
 
-const QAndA = (props) => {
+const QAndA = ( {question} ) => {
+  var sortedAnswers = createSortedAnswers(question.answers, 2);
   const classes = useStyles();
   return (
-    <Grid container spacing={2}>
+    <Grid container>
       <Grid className={classes.verticalSpace}></Grid>
-      <Grid container direction="row" spacing={2}>
-        <Grid item xs={8}>
-          <Typography variant="h6"><b>Q: {props.question.question_body}</b></Typography>
-        </Grid>
-        <Grid container justify="flex-end" xs={4}>
-          <Grid item className={classes.textSpacing}>
-            <Helpful question={props.question}/>
-          </Grid>
+      <Grid container direction="row" className={classes.alignVertically} item xs={12}>
+        <Grid container direction ="row" item xs={7}>
           <Grid item>
+            <Typography variant="h6"><b>Q:</b></Typography>
+          </Grid>
+          <Grid item className={classes.miniSpacing}>
+            <Typography variant="h6"> {question.question_body}</Typography>
+          </Grid>
+        </Grid>
+        <Grid item xs={5} className={classes.alignHorizontally}>
+          <Grid item className={classes.textSpacing}>
+            <Helpful helpfulness={question.question_helpfulness}/>
+          </Grid>
+          <Grid item className={classes.textSpacing}>
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
@@ -38,31 +57,41 @@ const QAndA = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container spacing={2} xs={12}>
-        <Grid item>
-          <Typography variant="h6"><b>A: </b>Future answer goes here</Typography>
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item>
-          <Typography variant="caption" className={classes.textSpacing}>by {props.question.asker_name}, {dateFormat(new Date(props.question.question_date), "mmmm, d, yyyy")}   </Typography>
-        </Grid>
-        <Grid item>
-          <Typography variant="caption">|</Typography>
-        </Grid>
-        <Grid item className={classes.textSpacing}>
-          <Helpful question={props.question}/>
-        </Grid>
-        <Grid item>
-          <Typography variant="caption">|</Typography>
-        </Grid>
-        <Grid item className={classes.textSpacing}>
-          <Typography variant="caption" className={classes.underlined}>Report</Typography>
-        </Grid>
+      <Grid>
+        {sortedAnswers.map((answer, i) => {
+          return <Answer answer={answer} key={i}/>
+        })}
       </Grid>
       <Grid className={classes.verticalSpace}></Grid>
     </Grid>
   );
 };
+
+const createSortedAnswers = (answersToQuestion, numAnswers) => {
+  var result = [];
+  for (var key in answersToQuestion) {
+    var currentValue = answersToQuestion[key];
+    var currentHelpfulness = currentValue.helpfulness;
+    var currentAnswerer = currentValue.answerer_name;
+    result.push(currentValue);
+    var position = result.length - 1;
+    if (currentAnswerer === 'Seller') {
+      result.unshift(currentValue);
+      continue;
+    }
+    while (position > 0 && currentHelpfulness > result[position - 1].helpfulness) {
+      result[position] = result[position - 1];
+      result[position - 1] = currentValue;
+      position--;
+    }
+  }
+  result = result.slice(0, numAnswers);
+  if (result.length === 0) {
+    result = [{
+      body: 'No answer for this question yet.'
+    }]
+  }
+  return result;
+}
 
 export default QAndA;

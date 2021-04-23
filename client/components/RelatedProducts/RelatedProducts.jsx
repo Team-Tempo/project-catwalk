@@ -83,13 +83,25 @@ const RelatedProducts = ({
     }
   }
 
+  const removeCard = (styleId) => {
+    let indexOfCardToRemove = outfitStylesList.indexOf(styleId);
+
+    outfitStylesList.splice(indexOfCardToRemove, 1);
+    let removedOutfitStylesList = outfitStylesList.slice();
+    setOutfitStylesList(removedOutfitStylesList);
+
+    outfitCardsData.splice(indexOfCardToRemove, 1);
+    let removedOutfitCardsData = outfitCardsData.slice();
+    setOutfitCardsData(removedOutfitCardsData);
+  }
+
   return (
     <div id='related'>
       <Grid container spacing={2}>
         <RelatedProductsList relatedProductsData={relatedProductsData} />
       </Grid>
       <Grid>
-        <CustomOutfitList outfitCardsData={outfitCardsData} addToOutfit={addToOutfit} />
+        <CustomOutfitList outfitCardsData={outfitCardsData} addToOutfit={addToOutfit} removeCard={removeCard} />
       </Grid>
      </div>
   );

@@ -10,13 +10,12 @@ import CardHeader from '@material-ui/core/CardHeader';
 const useStyles = makeStyles({
   root: {
     minWidth: 250,
-    minHeight: 350,
+    minHeight: 375,
     margin: 16,
     display: 'flex',
     backgroundColor: '#FEDBD0',
     textAlign: 'center'
   },
-
   plus: {
     fontSize: 60,
     color: '#442C2E',
