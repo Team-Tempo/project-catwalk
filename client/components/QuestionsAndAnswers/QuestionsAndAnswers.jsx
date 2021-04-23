@@ -36,10 +36,6 @@ const QuestionsAndAnswers = ( { productId }) => {
     fetchQuestions();
   }, []);
 
-  const handleHelpfulClick = () => {
-
-  }
-
   const handleMoreQuestionsClick = () => {
     var numQuestionsToShow;
     if (questions.length > shownQuestions.length + 2) {

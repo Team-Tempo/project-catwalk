@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QAndA = ( {question} ) => {
+const QAndA = ({ question}) => {
   var sortedAnswers = createSortedAnswers(question.answers, 2);
   const classes = useStyles();
   return (
