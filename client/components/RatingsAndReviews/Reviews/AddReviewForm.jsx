@@ -11,12 +11,20 @@ export default function AddReviewForm() {
   const classes = useStyles();
   const [rating, setRating] = useState(0);
   const [reviewSummary, setReviewSummary] = useState('');
-  // const [] = useState();
-  // const [] = useState();
+  const [reviewBody, setReviewBody] = useState('');
+  const [email, setEmail] = useState();
 
-  function handleSummaryChange(event) {
+  function onSummaryChange(event) {
     console.log(event.target.value);
     setReviewSummary(event.target.value);
+  }
+
+  function onReviewBodyChange(event) {
+    setReviewBody(event.target.value);
+  }
+
+  function onEmailChange(event) {
+    setEmail(event.target.value);
   }
 
 
@@ -53,13 +61,20 @@ export default function AddReviewForm() {
       type="text"
       name="reviewSummary"
       value={ reviewSummary }
-      onChange={handleSummaryChange}
-
+      onChange={onSummaryChange}
       />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
       <label htmlFor="name">Write your review here</label>
-    <input className="form-control" id="name" placeholder=""/>
+    <input
+      className="form-control"
+      id="name"
+      placeholder=""
+      type="text"
+      name="reviewBody"
+      value={ reviewBody }
+      onChange={onReviewBodyChange}
+      />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
       <label htmlFor="name">What is your nickname?</label>
@@ -67,11 +82,21 @@ export default function AddReviewForm() {
     <small id="emailHelp" className="form-text text-muted">For privacy reasons, do not use your full name or email address.</small>
       </Box>
       <Box component="fieldset" className="form-group" mb={3} borderColor="transparent">
-  <div className="form-group">
-    <label htmlFor="exampleInputEmail1">Email address</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" size="500"/>
-    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
+      <div className="form-group">
+        <label htmlFor="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          className="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          size="500"
+          name="email"
+          value={email}
+          onChange={onEmailChange}
+          />
+        <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
+      </div>
    </Box>
 </form>
     </div>
