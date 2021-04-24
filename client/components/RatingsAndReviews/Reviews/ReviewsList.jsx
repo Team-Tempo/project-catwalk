@@ -67,9 +67,10 @@ const ReviewsList = ({ productId }) => {
         )}
         </Grid>
         <Grid item xs={12} className={classes.buttons}>
+
+        {/* Buttons */}
         <Button variant='contained' color='primary'>MORE REVIEWS</Button>
         <Button variant='contained' color='primary' onClick={handleClickOpen}>ADD A REVIEW +</Button>
-        {/* <AddReviewForm selectedValue={selectedValue} open={open} onClose={handleClose} /> */}
         </Grid>
         <Grid item xs>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -82,11 +83,11 @@ const ReviewsList = ({ productId }) => {
           <AddReviewForm />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="pink">
+          <Button variant="contained" onClick={handleClose} color="primary" className="form-control btn btn-primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="pink">
-            Submit
+          <Button variant="contained" color="primary" onClick={handleClose} className="form-control btn btn-primary" type="submit">
+            Submit Review
           </Button>
         </DialogActions>
       </Dialog>
