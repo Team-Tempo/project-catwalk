@@ -98,7 +98,7 @@ const RelatedProducts = ({
   return (
     <div id='related'>
       <Grid container spacing={2}>
-        <RelatedProductsList relatedProductsData={relatedProductsData} />
+        <RelatedProductsList relatedProductsData={relatedProductsData} product={product} />
       </Grid>
       <Grid>
         <CustomOutfitList outfitCardsData={outfitCardsData} addToOutfit={addToOutfit} removeCard={removeCard} />
