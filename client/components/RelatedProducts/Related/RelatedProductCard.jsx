@@ -73,7 +73,7 @@ const RelatedProductCard = ({
       salePrice = style['sale_price'];
     }
   }
-  console.log({relatedProductData})
+
   //Click handlers for Comparison Modal
   const [open, setOpen] = useState(false);
 
@@ -88,7 +88,6 @@ const RelatedProductCard = ({
   //Click handler for changing current product in overview
   const handleRelatedCardClick = () => {
     setProductId(relatedProductData.id)
-    console.log('related id:', relatedProductData.id)
   }
 
   //reused same logic from App.js for calculating ratings average:

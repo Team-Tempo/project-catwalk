@@ -27,16 +27,18 @@ const RelatedProducts = ({
   useEffect(() => {
     getRelatedIds(productId)
     .then(relatedIdsResult => {
+      const uniqueRelatedIdsSet = new Set(relatedIdsResult);
+      const uniqueRelatedIds = [...uniqueRelatedIdsSet]
 
-      const productsIdGetReq = relatedIdsResult.map(id => {
+      const productsIdGetReq = uniqueRelatedIds.map(id => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`);
       })
 
-      const stylesGetReq = relatedIdsResult.map(id => {
+      const stylesGetReq = uniqueRelatedIds.map(id => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`);
       })
 
-      const ratingsGetReq = relatedIdsResult.map(id => {
+      const ratingsGetReq = uniqueRelatedIds.map(id => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`);
       })
 

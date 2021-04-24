@@ -111,7 +111,6 @@ const App = () => {
   useEffect(() => {
     async function fetchProduct() {
       const result = await getProduct(productId);
-      console.log({productId})
       setProduct(result);
     }
 
