@@ -17,20 +17,28 @@ export default function SimpleRating() {
   // const [nickname, setNickname] = useState();
   // const [email, setEmail] = useState();
 
-  const [state, setState] = useState({
-    rating: 0,
-    recommend: '',
-    reviewSummary: '',
-    reviewBody: '',
-    nickname: '',
-    email: '',
-  })
+  // const initialState = {
+  //   rating: 3,
+  //   recommend: '',
+  //   reviewSummary: '',
+  //   reviewBody: '',
+  //   nickname: '',
+  //   email: '',
+  // };
 
+  // // Initializing state
+  // const [value, setValue] = useState(initialState);
+  // const { rating, recommend, reviewSummary, reviewBody, nickname, email } = value;
 
+  // common event handler for all the controlled components
+  // using spread operator to update the state
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const handleRatingChange = (event) => {
+  //   setValue({ ...value, [event.target.rating]: Number(event.target.value) })
+  // }
+  // const handleChange = (event) => {
+  //   setValue({ ...value, [event.target.name]: event.target.value })
+  // };
 
   return (
     <div>
@@ -39,11 +47,7 @@ export default function SimpleRating() {
       <Typography>Overall rating: </Typography>
         <Rating
           name="simple-controlled"
-          value={state.rating}
-          onChange={(event) => {
-            setState({...state, rating: Number(event.target.value)})
-            console.log("STATE: ", event.target.value)
-          }}
+          value={ rating } onChange={handleRatingChange}
         />
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
@@ -59,7 +63,7 @@ export default function SimpleRating() {
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
       <label htmlFor="name">Review summary</label>
-    <input className="form-control" id="name" placeholder="Best purchase ever!" maxLength="60"/>
+    <input className="form-control" id="name" placeholder="Best purchase ever!" maxLength="60" onChange={console.log(value)}/>
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
       <label htmlFor="name">Write your review here</label>
