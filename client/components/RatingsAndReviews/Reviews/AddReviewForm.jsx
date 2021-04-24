@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -12,7 +12,14 @@ export default function AddReviewForm() {
   const [rating, setRating] = useState(0);
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState('');
+
+  const stateObject = {
+    "rating": rating,
+    "reviewSummary": reviewSummary,
+    "reviewBody": reviewBody,
+    "email": email
+  }
 
   function onSummaryChange(event) {
     console.log(event.target.value);
@@ -27,7 +34,6 @@ export default function AddReviewForm() {
     setEmail(event.target.value);
   }
 
-
   return (
     <div>
       <form>
@@ -36,7 +42,6 @@ export default function AddReviewForm() {
         <Rating
           name="simple-controlled"
           value={ rating } onChange={(event, newRating) => {
-            console.log(event, newRating)
             setRating(newRating);
           }}
         />
@@ -93,6 +98,7 @@ export default function AddReviewForm() {
           size="500"
           name="email"
           value={email}
+          // onChange={onEmailChange}
           onChange={onEmailChange}
           />
         <small id="emailHelp" className="form-text text-muted">We will never share your email with anyone else.</small>
