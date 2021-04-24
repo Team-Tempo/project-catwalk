@@ -4,6 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { StarBorder, Star } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import IconButton from '@material-ui/core/IconButton';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import PinterestIcon from '@material-ui/icons/Pinterest';
 
 import { makeStyles } from '@material-ui/styles';
 import { red } from '@material-ui/core/colors';
@@ -67,6 +71,21 @@ const ProductInformation = ({ product, currentStyle, averageRating }) => {
             ${Math.round(currentStyle.original_price)}
           </Typography>
         )}
+      </Grid>
+      <Grid item>
+        <IconButton color="secondary">
+          <FacebookIcon />
+        </IconButton>
+      </Grid>
+      <Grid item>
+        <IconButton color="secondary">
+          <TwitterIcon />
+        </IconButton>
+      </Grid>
+      <Grid item>
+        <IconButton color="secondary">
+          <PinterestIcon />
+        </IconButton>
       </Grid>
     </Grid>
   );
