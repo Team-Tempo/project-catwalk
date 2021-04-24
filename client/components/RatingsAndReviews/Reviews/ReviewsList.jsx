@@ -83,7 +83,7 @@ const ReviewsList = ({ productId }) => {
           <AddReviewForm />
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" onClick={handleClose} color="primary" className="form-control btn btn-primary">
+          <Button variant="contained" onClick={handleClose} color="primary" className="btn btn-primary">
             Cancel
           </Button>
           <Button variant="contained" color="primary" onClick={handleClose} className="form-control btn btn-primary" type="submit">

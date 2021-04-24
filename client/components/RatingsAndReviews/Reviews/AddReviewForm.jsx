@@ -10,12 +10,23 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleRating() {
   const classes = useStyles();
 
-  const [rating, setRating] = useState(0);
-  const [recommend, setRecommend] = useState();
-  const [reviewSummary, setReviewSummary] = useState();
-  const [reviewBody, setReviewBody] = useState();
-  const [nickname, setNickname] = useState();
-  const [email, setEmail] = useState();
+  // const [rating, setRating] = useState(0);
+  // const [recommend, setRecommend] = useState();
+  // const [reviewSummary, setReviewSummary] = useState();
+  // const [reviewBody, setReviewBody] = useState();
+  // const [nickname, setNickname] = useState();
+  // const [email, setEmail] = useState();
+
+  const [state, setState] = useState({
+    rating: 0,
+    recommend: '',
+    reviewSummary: '',
+    reviewBody: '',
+    nickname: '',
+    email: '',
+  })
+
+
 
   const handleChange = (event) => {
     setAge(event.target.value);
