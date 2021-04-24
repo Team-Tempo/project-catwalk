@@ -60,7 +60,8 @@ const useStyles = makeStyles({
 
 const RelatedProductCard = ({
   relatedProductData,
-  product
+  product,
+  setProductId
 }) => {
   const classes = useStyles();
 
@@ -72,7 +73,7 @@ const RelatedProductCard = ({
       salePrice = style['sale_price'];
     }
   }
-
+  console.log({relatedProductData})
   //Click handlers for Comparison Modal
   const [open, setOpen] = useState(false);
 
@@ -82,6 +83,12 @@ const RelatedProductCard = ({
 
   const handleClose = () => {
     setOpen(false)
+  }
+
+  //Click handler for changing current product in overview
+  const handleRelatedCardClick = () => {
+    setProductId(relatedProductData.id)
+    console.log('related id:', relatedProductData.id)
   }
 
   //reused same logic from App.js for calculating ratings average:
@@ -97,7 +104,7 @@ const RelatedProductCard = ({
   let ratingAverage = (sumOfRatings / numberOfRatings) || 0;
 
   return (
-    <Card className={classes.root}>
+    <Card onClick={handleRelatedCardClick} className={classes.root}>
       <CardActionArea >
         <CardMedia
         className={classes.media}

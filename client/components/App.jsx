@@ -93,7 +93,7 @@ const getProductStyles = (id) => {
 };
 
 const App = () => {
-  const [productId] = useState(24156);
+  const [productId, setProductId] = useState(24156);
   const [product, setProduct] = useState([]);
   const [currentStyle, setCurrentStyle] = useState({});
   const [styles, setStyles] = useState([]);
@@ -111,6 +111,7 @@ const App = () => {
   useEffect(() => {
     async function fetchProduct() {
       const result = await getProduct(productId);
+      console.log({productId})
       setProduct(result);
     }
 
@@ -127,7 +128,8 @@ const App = () => {
 
     fetchProduct();
     setupStyles();
-  }, []);
+  }, [productId]);
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -156,6 +158,7 @@ const App = () => {
                 product={product}
                 currentStyle={currentStyle}
                 averageRating={averageRating}
+                setProductId={setProductId}
               />
             </Grid>
             <Grid item xs={12}>

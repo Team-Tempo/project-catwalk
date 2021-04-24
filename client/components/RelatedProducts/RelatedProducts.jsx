@@ -11,7 +11,8 @@ const RelatedProducts = ({
   productId,
   product,
   currentStyle,
-  averageRating
+  averageRating,
+  setProductId
 }) => {
 
   const [relatedProductsData, setRelatedProductsData] = useState([]);
@@ -98,7 +99,7 @@ const RelatedProducts = ({
   return (
     <div id='related'>
       <Grid container spacing={2}>
-        <RelatedProductsList relatedProductsData={relatedProductsData} product={product} />
+        <RelatedProductsList setProductId={setProductId} relatedProductsData={relatedProductsData} product={product} />
       </Grid>
       <Grid>
         <CustomOutfitList outfitCardsData={outfitCardsData} addToOutfit={addToOutfit} removeCard={removeCard} />
