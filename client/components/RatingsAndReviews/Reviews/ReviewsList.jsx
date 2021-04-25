@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Review from './Review.jsx';
+import AddReviewDialog from './AddReviewDialog';
 import { Typography, Grid, makeStyles } from '@material-ui/core'
 import axios from 'axios';
-import config from '../../../../config.js'
+import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
 
 const getReviewsData = async (id) => {
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     fontWeight: 500,
-  }
+  },
 }))
 
 const ReviewsList = ({ productId }) => {
@@ -29,7 +30,6 @@ const ReviewsList = ({ productId }) => {
     })
   }, [productId])
 
-
   const classes = useStyles();
   const reviewsCounter = reviewsData.length;
 
@@ -40,9 +40,12 @@ const ReviewsList = ({ productId }) => {
           <Typography className={classes.header}>{ reviewsCounter } reviews, sorted by relevance</Typography>
         </Grid>
         <Grid item xs={12}>
-        {reviewsData.map(review =>
-        <Review key={review.review_id} review={review}/>
+          {reviewsData.map(review =>
+          <Review key={review.review_id} review={review}/>
         )}
+        </Grid>
+        <Grid item xs={12} className={classes.buttons}>
+          <AddReviewDialog productId={productId}/>
         </Grid>
       </Grid>
     </div>
