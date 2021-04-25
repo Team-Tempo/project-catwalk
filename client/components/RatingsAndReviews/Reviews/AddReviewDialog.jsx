@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AddReviewDialog = ({ productId }) => {
   const [open, setOpen] = useState(false);
-  const dataFromFormStorage = {};
-
+  const formDataStorage = {};
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,39 +33,41 @@ const AddReviewDialog = ({ productId }) => {
 
   const handleFormData = () => {
     handleClose();
-    dataFromFormStorage.data["product_id"] = productId;
+    formDataStorage.data["product_id"] = productId;
 
     axios
-      .post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`, dataFromFormStorage.data)
+      .post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`, formDataStorage.data)
       .then(res => {
       console.log(res)
       })
       .catch(err => console.log(err));
   }
 
+  const classes = useStyles();
+
   return (
-    <>
+    <div className={classes.buttons}>
       <Button variant='contained' color='primary'>MORE REVIEWS</Button>
       <Button variant='contained' color='primary' onClick={handleClickOpen}>ADD A REVIEW +</Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Write your review</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          {/* Change to display actual product name later*/}
-          About the Camo Onesie
-        </DialogContentText>
-          <AddReviewForm formObject={dataFromFormStorage}/>
-      </DialogContent>
-      <DialogActions>
-        <Button variant="contained" onClick={handleClose} color="primary" className="btn btn-primary">
+        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Write your review</DialogTitle>
+          <DialogContent>
+          <DialogContentText>
+            {/*  Pass actual product name later */}
+            About the Camo Onesie
+          </DialogContentText>
+          <AddReviewForm formData={formDataStorage}/>
+          </DialogContent>
+          <DialogActions>
+          <Button variant="contained" onClick={handleClose} color="primary" className="btn btn-primary">
             Cancel
-        </Button>
-        <Button variant="contained" color="primary" onClick={handleFormData} className="form-control btn btn-primary" type="submit">
-          Submit Review
-        </Button>
-      </DialogActions>
+          </Button>
+          <Button variant="contained" color="primary" onClick={handleFormData} className="form-control btn btn-primary" type="submit">
+            Submit Review
+          </Button>
+        </DialogActions>
       </Dialog>
-    </>
+    </div>
   )
 }
 

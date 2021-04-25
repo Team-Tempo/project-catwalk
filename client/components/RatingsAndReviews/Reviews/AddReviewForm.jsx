@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddReviewForm({ formObject }) {
+export default function AddReviewForm({ formData }) {
   const classes = useStyles();
   const [rating, setRating] = useState(0);
   const [reviewSummary, setReviewSummary] = useState('');
@@ -26,7 +26,7 @@ export default function AddReviewForm({ formObject }) {
     name: username,
   }
 
-  formObject["data"] = stateObject;
+  formData["data"] = stateObject;
 
   function onSummaryChange(event) {
     setReviewSummary(event.target.value);
@@ -41,7 +41,7 @@ export default function AddReviewForm({ formObject }) {
   }
 
   function onUsernameChange(event) {
-    setUsername(event.target.value);
+    setUsername(event.target.value)
   }
 
   return (
