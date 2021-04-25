@@ -16,6 +16,7 @@ const useStyles = makeStyles({
 });
 
 const ProductOverview = ({
+  productId,
   product,
   currentStyle,
   styles,
@@ -40,6 +41,7 @@ const ProductOverview = ({
           </Grid>
           <Grid item>
             <StyleSelector
+              productId={productId}
               styles={styles}
               currentStyle={currentStyle}
               setCurrentStyle={setCurrentStyle}

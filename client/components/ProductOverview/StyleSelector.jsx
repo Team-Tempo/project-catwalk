@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Grid, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,9 +15,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StyleSelector = ({ styles, currentStyle, setCurrentStyle }) => {
+const StyleSelector = ({
+  productId,
+  styles,
+  currentStyle,
+  setCurrentStyle,
+}) => {
   const [currentStyleIdx, setCurrentStyleIdx] = useState(0);
   const classes = useStyles();
+
+  useEffect(() => {
+    setCurrentStyleIdx(0);
+  }, [productId]);
 
   const handleClick = (idx) => {
     setCurrentStyle(styles[idx]);
