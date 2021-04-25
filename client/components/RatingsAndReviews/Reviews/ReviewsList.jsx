@@ -18,11 +18,6 @@ const useStyles = makeStyles((theme) => ({
   header: {
     fontWeight: 500,
   },
-  buttons: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  }
 }))
 
 const ReviewsList = ({ productId }) => {
