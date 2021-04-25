@@ -60,7 +60,8 @@ const useStyles = makeStyles({
 
 const RelatedProductCard = ({
   relatedProductData,
-  product
+  product,
+  setProductId
 }) => {
   const classes = useStyles();
 
@@ -84,6 +85,11 @@ const RelatedProductCard = ({
     setOpen(false)
   }
 
+  //Click handler for changing current product in overview
+  const handleRelatedCardClick = () => {
+    setProductId(relatedProductData.id)
+  }
+
   //reused same logic from App.js for calculating ratings average:
   const ratings = relatedProductData.ratings;
   let sumOfRatings = 0;
@@ -97,7 +103,7 @@ const RelatedProductCard = ({
   let ratingAverage = (sumOfRatings / numberOfRatings) || 0;
 
   return (
-    <Card className={classes.root}>
+    <Card onClick={handleRelatedCardClick} className={classes.root}>
       <CardActionArea >
         <CardMedia
         className={classes.media}

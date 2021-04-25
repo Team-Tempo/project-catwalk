@@ -34,7 +34,7 @@ const QuestionsAndAnswers = ( { productId }) => {
       setShownQuestions(sortQuestionsByHelpfulness(questionData.results, 2));
     }
     fetchQuestions();
-  }, []);
+  }, [productId]);
 
   const handleMoreQuestionsClick = () => {
     var numQuestionsToShow;

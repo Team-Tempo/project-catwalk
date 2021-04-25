@@ -11,7 +11,8 @@ const RelatedProducts = ({
   productId,
   product,
   currentStyle,
-  averageRating
+  averageRating,
+  setProductId
 }) => {
 
   const [relatedProductsData, setRelatedProductsData] = useState([]);
@@ -26,16 +27,18 @@ const RelatedProducts = ({
   useEffect(() => {
     getRelatedIds(productId)
     .then(relatedIdsResult => {
+      const uniqueRelatedIdsSet = new Set(relatedIdsResult);
+      const uniqueRelatedIds = [...uniqueRelatedIdsSet]
 
-      const productsIdGetReq = relatedIdsResult.map(id => {
+      const productsIdGetReq = uniqueRelatedIds.map(id => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`);
       })
 
-      const stylesGetReq = relatedIdsResult.map(id => {
+      const stylesGetReq = uniqueRelatedIds.map(id => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`);
       })
 
-      const ratingsGetReq = relatedIdsResult.map(id => {
+      const ratingsGetReq = uniqueRelatedIds.map(id => {
         return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`);
       })
 
@@ -98,7 +101,7 @@ const RelatedProducts = ({
   return (
     <div id='related'>
       <Grid container spacing={2}>
-        <RelatedProductsList relatedProductsData={relatedProductsData} product={product} />
+        <RelatedProductsList setProductId={setProductId} relatedProductsData={relatedProductsData} product={product} />
       </Grid>
       <Grid>
         <CustomOutfitList outfitCardsData={outfitCardsData} addToOutfit={addToOutfit} removeCard={removeCard} />
