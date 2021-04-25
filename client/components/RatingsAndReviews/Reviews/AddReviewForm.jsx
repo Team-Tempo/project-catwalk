@@ -7,22 +7,28 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AddReviewForm() {
+export default function AddReviewForm({ formObject }) {
   const classes = useStyles();
   const [rating, setRating] = useState(0);
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
 
   const stateObject = {
-    "rating": rating,
-    "reviewSummary": reviewSummary,
-    "reviewBody": reviewBody,
-    "email": email
+    rating: rating,
+    summary: reviewSummary,
+    body: reviewBody,
+    email: email,
+    recommend: false,
+    photos: [],
+    characteristics: {},
+    name: username,
   }
 
+  formObject["data"] = stateObject;
+
   function onSummaryChange(event) {
-    console.log(event.target.value);
     setReviewSummary(event.target.value);
   }
 
@@ -32,6 +38,10 @@ export default function AddReviewForm() {
 
   function onEmailChange(event) {
     setEmail(event.target.value);
+  }
+
+  function onUsernameChange(event) {
+    setUsername(event.target.value);
   }
 
   return (
@@ -83,8 +93,17 @@ export default function AddReviewForm() {
       </Box>
       <Box component="fieldset" mb={3} borderColor="transparent">
       <label htmlFor="name">What is your nickname?</label>
-    <input className="form-control" id="name" placeholder="strawbery_fields" maxLength="60"/>
-    <small id="emailHelp" className="form-text text-muted">For privacy reasons, do not use your full name or email address.</small>
+     <input
+      className="form-control"
+      id="name"
+      placeholder="strawbery_fields"
+      maxLength="60"
+      type="text"
+      name="username"
+      value={ username }
+      onChange={onUsernameChange}
+     />
+       <small id="emailHelp" className="form-text text-muted">For privacy reasons, do not use your full name or email address.</small>
       </Box>
       <Box component="fieldset" className="form-group" mb={3} borderColor="transparent">
       <div className="form-group">

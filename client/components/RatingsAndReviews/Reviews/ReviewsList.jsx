@@ -50,7 +50,7 @@ const ReviewsList = ({ productId }) => {
         )}
         </Grid>
         <Grid item xs={12} className={classes.buttons}>
-          <AddReviewDialog />
+          <AddReviewDialog productId={productId}/>
         </Grid>
       </Grid>
     </div>

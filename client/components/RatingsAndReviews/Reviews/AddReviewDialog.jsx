@@ -20,20 +20,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const AddReviewDialog = () => {
+const AddReviewDialog = ({ productId }) => {
   const [open, setOpen] = useState(false);
+  const childObjectData = {};
+
 
   const handleClickOpen = () => {
     setOpen(true);
+    console.log(productId)
   };
 
   const handleClose = () => {
     setOpen(false);
+
+    console.log("I'm called");
   };
 
   const handleFormData = (data) => {
-  // post
+    handleClose();
+    childObjectData.data["product_id"] = 24176;
+    console.log(childObjectData.data);
+    axios
+      .post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`, childObjectData.data)
+      .then(res => {
+      console.log(res)
+      })
+      .catch(err => console.log(err));
   }
+
+
 
   const classes = useStyles();
 
@@ -48,13 +63,16 @@ const AddReviewDialog = () => {
             {/* Should display actual product name */}
             About the Camo Onesie
           </DialogContentText>
-          <AddReviewForm />
+          <AddReviewForm formObject={childObjectData}/>
         </DialogContent>
         <DialogActions>
           <Button variant="contained" onClick={handleClose} color="primary" className="btn btn-primary">
             Cancel
           </Button>
-          <Button variant="contained" color="primary" onClick={handleClose} className="form-control btn btn-primary" type="submit">
+          {/* <Button variant="contained" color="primary" onClick={handleClose} className="form-control btn btn-primary" type="submit">
+            Submit Review
+          </Button> */}
+               <Button variant="contained" color="primary" onClick={handleFormData} className="form-control btn btn-primary" type="submit">
             Submit Review
           </Button>
         </DialogActions>
