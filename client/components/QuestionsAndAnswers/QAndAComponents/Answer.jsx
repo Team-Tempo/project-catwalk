@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 const Answer = ({ answer }) => {
   const [reportClicked, setReportClicked] = useState(false);
   const classes = useStyles();
-  console.log('answer', answer);
 
   const handleReportClick = (e) => {
     setReportClicked(true);
@@ -77,7 +76,5 @@ const Answer = ({ answer }) => {
     </div>
   );
 };
-
-
 
 export default Answer;
