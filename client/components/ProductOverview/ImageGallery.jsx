@@ -4,6 +4,8 @@ import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
+import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap';
+import Backdrop from '@material-ui/core/Backdrop';
 
 const useStyles = makeStyles({
   media: {
@@ -13,6 +15,25 @@ const useStyles = makeStyles({
   gridTest: {
     overflow: 'auto',
     maxHeight: '595px',
+  },
+  zoomIcon: {
+    zIndex: '1',
+    position: 'absolute',
+    top: '5px',
+    right: '5px',
+    background: '#FEDBD0',
+    borderRadius: '5px',
+  },
+  image: {
+    position: 'relative',
+  },
+  backdrop: {
+    zIndex: 5,
+    color: '#fff',
+  },
+  backdropImage: {
+    maxHeight: '100vh',
+    maxWidth: '100vw',
   },
 });
 
@@ -26,11 +47,29 @@ const ImageGallery = ({ currentStyle }) => {
   };
 
   const [currentPhotoIdx, setCurrentPhotoIdx] = useState(0);
+  const [open, setOpen] = React.useState(false);
+
   const classes = useStyles();
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   return (
     <>
       <Grid container>
+        <Backdrop
+          className={classes.backdrop}
+          open={open}
+          onClick={handleClose}
+        >
+          <img
+            className={classes.backdropImage}
+            src={currentStyle.photos[currentPhotoIdx].url}
+          />
+        </Backdrop>
         <Grid item xs={2} className={classes.gridTest}>
           {currentStyle.photos.map((photo, idx) => {
             return (
@@ -47,13 +86,21 @@ const ImageGallery = ({ currentStyle }) => {
             );
           })}
         </Grid>
-        <Grid item xs>
+        <Grid item xs className={classes.image}>
+          <ZoomOutMapIcon
+            className={classes.zoomIcon}
+            fontSize="large"
+            onClick={handleToggle}
+          />
           <Carousel
             autoPlay={false}
             animation="fade"
             timeout={0}
             indicators={false}
             index={currentPhotoIdx}
+            onChange={(index) => {
+              handleClick(index);
+            }}
           >
             {currentStyle.photos.map((photo, idx) => {
               return (
