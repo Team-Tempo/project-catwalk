@@ -73,6 +73,10 @@ const AddToCart = ({ currentStyle }) => {
       </Grid>
       <Grid item xs={12}>
         {skus.map((sku, idx) => {
+          let isOutOfStock = false;
+          if (sku.quantity === 0) {
+            isOutOfStock = true;
+          }
           return sku.size === selectedSize ? (
             <Button
               key={idx}
@@ -93,6 +97,7 @@ const AddToCart = ({ currentStyle }) => {
               variant="text"
               color="secondary"
               size="small"
+              disabled={isOutOfStock}
               onClick={() => {
                 handleSizeClick(sku.size);
               }}
