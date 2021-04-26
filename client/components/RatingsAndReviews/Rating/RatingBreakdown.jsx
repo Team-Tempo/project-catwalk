@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { LinearProgress, Grid, Typography } from '@material-ui/core';
 
@@ -20,45 +20,23 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
 
 const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
+  console.log("FROM B: ", reviewsMeta)
+  // const [metaData, setMetaData] = useState({});
 
-  const defaultData = {
-    "product_id": "24156",
-    "ratings": {
-        "3": "1",
-        "4": "3",
-        "5": "4"
-    },
-    "recommended": {
-        "false": "5",
-        "true": "3"
-    },
-    "characteristics": {
-        "Fit": {
-            "id": 81054,
-            "value": "4.0000000000000000"
-        },
-        "Length": {
-            "id": 81055,
-            "value": "3.5000000000000000"
-        },
-        "Comfort": {
-            "id": 81056,
-            "value": "5.0000000000000000"
-        },
-        "Quality": {
-            "id": 81057,
-            "value": "4.0000000000000000"
-        }
-    }
-};
+  // useEffect(() => {
+  //   setMetaData(reviewsMeta);
+  // }, [reviewsMeta])
 
-  if (Object.entries(reviewsMeta).length === 0) {
-    reviewsMeta = defaultData;
-  }
+  // console.log(metaData);
 
   var recommendedData = reviewsMeta.recommended;
 
@@ -67,10 +45,9 @@ const RatingBreakdown = ({ reviewsMeta }) => {
 
     var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
 
+
   return (
     <div className={classes.root}>
-      {Object.entries(reviewsMeta).length === 0 ? (<></>) : (
-
       <Grid container spacing={1}>
       <Grid container item xs={12} spacing={1}>
         <Grid item xs>
@@ -120,8 +97,6 @@ const RatingBreakdown = ({ reviewsMeta }) => {
         </Grid>
         </Grid>
       </Grid>
-      )
-      }
     </div>
   );
 }

@@ -13,6 +13,7 @@ const getReviewsMetaData = async(id) => {
 const Rating = (props) => {
   const [reviewsMetaData, setReviewsMetaData] = useState({});
 
+  // change product id to use live data
   useEffect(() => {
     getReviewsMetaData(props.ratingData.productId)
     .then(resultData => {
@@ -20,12 +21,16 @@ const Rating = (props) => {
     })
   }, [props.productId])
 
+  console.log("FROM R: ", props.reviewsMeta, "\n",  reviewsMetaData)
   return (
     <>
     <RatingSummaryStars averageRating={props.ratingData.averageRating}/>
-    <RatingBreakdown reviewsMeta={reviewsMetaData}/>
+    <RatingBreakdown reviewsMeta={props.reviewsMeta}/>
     </>
   )
+
 }
 
 export default Rating;
+
+//
