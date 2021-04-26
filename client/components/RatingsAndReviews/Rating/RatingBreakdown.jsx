@@ -20,11 +20,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
 }));
 
 const RatingBreakdown = ({ reviewsMeta }) => {
@@ -126,9 +121,7 @@ const RatingBreakdown = ({ reviewsMeta }) => {
         </Grid>
       </Grid>
       )
-
       }
-
     </div>
   );
 }
