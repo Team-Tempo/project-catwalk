@@ -76,7 +76,7 @@ const ImageGallery = ({ currentStyle }) => {
               <Card key={idx}>
                 <CardMedia
                   className={classes.media}
-                  image={photo.thumbnail_url}
+                  image={photo.thumbnail_url === null ? 'https://cdn.discordapp.com/attachments/831557223247249448/836269816590499840/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.png' : photo.thumbnail_url}
                   title="style"
                   onClick={() => {
                     handleClick(idx);
@@ -107,7 +107,7 @@ const ImageGallery = ({ currentStyle }) => {
                 <Card key={idx}>
                   <CardMedia
                     className={classes.media}
-                    image={photo.url}
+                    image={photo.url === null ? 'https://cdn.discordapp.com/attachments/831557223247249448/836269816590499840/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.png' : photo.url}
                     title="style"
                     onClick={() => {
                       handleClick(idx);
