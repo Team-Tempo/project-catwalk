@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 var dateFormat = require('dateformat');
+import axios from 'axios';
+import config from '../../../../config';
 
 const useStyles = makeStyles((theme) => ({
   underlined: {
@@ -25,7 +27,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Answer = ({ answer }) => {
+  const [reportClicked, setReportClicked] = useState(false);
   const classes = useStyles();
+
+  const handleReportClick = (e) => {
+    setReportClicked(true);
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/answers/${answer.id}/report`, {
+      headers: {
+        Authorization: config.GITHUB_TOKEN,
+      }
+    })
+  }
+
   return (
     <div>
       <Grid container className={classes.align}>
@@ -51,7 +64,10 @@ const Answer = ({ answer }) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Typography variant="caption" className={classes.underlined}>Report</Typography>
+            {reportClicked ?
+              <Typography variant="caption" className={classes.underlined}>Reported</Typography> :
+              <Typography variant="caption" className={classes.underlined} onClick={handleReportClick}>Report</Typography>
+            }
           </Grid>
         </Grid>
         :
