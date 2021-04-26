@@ -65,7 +65,13 @@ const RelatedProductCard = ({
 }) => {
   const classes = useStyles();
 
-  const image = relatedProductData.results[0].photos[0].url;
+  let image;
+   if (relatedProductData.results[0].photos[0].url === null) {
+     image = 'https://cdn.discordapp.com/attachments/831557223247249448/836269816590499840/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.png';
+   } else {
+     image = relatedProductData.results[0].photos[0].url;
+   }
+
 
   let salePrice = null;
   for (let style of relatedProductData.results) {
