@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { LinearProgress, Grid, Typography } from '@material-ui/core';
 
@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
 const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
-  console.log("FROM B: ", reviewsMeta)
 
   const defaultData = {
     "product_id": "24156",
