@@ -15,11 +15,11 @@ const useStyles = makeStyles({
     minWidth: 700,
   },
   content: {
-    backgroundColor: '#FEDBD0'
+    backgroundColor: '#FFFFFF'
   },
   title: {
-    backgroundColor: '#442c2e',
-    color: '#FEDBD0',
+    backgroundColor: '#FEDBD0',
+    color: '#442c2e',
     textAlign: 'center'
   },
   feature: {
