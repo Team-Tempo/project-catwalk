@@ -22,7 +22,7 @@ const getQuestions = (id) => {
     });
 };
 
-const QuestionsAndAnswers = ( { productId }) => {
+const QuestionsAndAnswers = ({ productId, product }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
@@ -67,7 +67,7 @@ const QuestionsAndAnswers = ( { productId }) => {
       <h6>QUESTIONS & ANSWERS</h6>
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
       {shownQuestions.map((question, i) => (
-       <QAndA question={question} key={i}/>
+       <QAndA question={question} product={product} key={i}/>
       ))}
       <Photos questions={QuestionsDummyData.questions}/>
       <h6>LOAD MORE</h6>

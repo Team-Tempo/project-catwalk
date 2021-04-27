@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core';
+import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Typography } from '@material-ui/core';
 import config from '../../../../config';
 import axios from 'axios';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -14,13 +13,17 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  underlined: {
+    textDecoration: 'underline'
+  }
 }));
 
-const AddQuestion = ({ product, productId }) => {
+const AddAnswer = ({ product, question }) => {
   const [open, setOpen] = useState(false);
-  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+
   const classes = useStyles();
 
   const handleOpen = () => {
@@ -28,75 +31,81 @@ const AddQuestion = ({ product, productId }) => {
   }
 
   const handleSubmit = (e) => {
-    if (question.length === 0 || nickname.length === 0 || email.length === 0) {
-      return;
-    }
-    var questionData = {
-      body: question,
-      name: nickname,
-      email: email,
-      product_id: productId
-    };
+    // if (question.length === 0 || nickname.length === 0 || email.length === 0) {
+    //   return;
+    // }
+    // var questionData = {
+    //   body: question,
+    //   name: nickname,
+    //   email: email,
+    //   product_id: productId
+    // };
 
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`, questionData)
+    // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`, questionData)
 
-    setQuestion('');
-    setNickname('');
-    setEmail('');
-    setOpen(false);
+    // setQuestion('');
+    // setNickname('');
+    // setEmail('');
+    // setOpen(false);
   }
 
   const handleClose = () => {
     setOpen(false);
   }
 
+  console.log('product', product);
+  console.log('question', question);
   return (
     <>
-      <Typography variant="caption">Add Answer</Typography>
+      <Typography variant="caption" className={classes.underlined} onClick={handleOpen}>Add Answer</Typography>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Ask Your Question</DialogTitle>
+        <DialogTitle id="form-dialog-title">Submit Your Answer</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            About the {product.name}
+            {product.name}: {question.question_body}
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            id="question"
-            label="Your Question"
+            id="answer"
+            label="* Your Answer"
             placeholder="Type your question here..."
             multiline
             rows={4}
             size="medium"
             variant="outlined"
             fullWidth
-            value={question}
-            onInput={(e) => setQuestion(e.target.value)}
+            value={answer}
+            onInput={(e) => setAnswer(e.target.value)}
           />
           <TextField
             margin="dense"
             id="nickname"
-            label="Nickname"
-            placeholder="Example: jackson11!"
+            label="* What is your nickname?"
+            placeholder="Example: jack543!"
             variant="outlined"
             fullWidth
             value={nickname}
             onInput={(e) => setNickname(e.target.value)}
           />
+          <Typography variant="caption">For privacy reasons, do not use your full name or email address.</Typography>
           <TextField
             margin="dense"
             id="email"
-            label="Email"
-            placeholder="Why did you like the product or not?"
+            label="* Your email"
+            placeholder="Example: jack@email.com"
             type="email"
             variant="outlined"
             fullWidth
             value={email}
             onInput={(e) => setEmail(e.target.value)}
           />
+          <Typography variant="caption">For authentication reasons, you will not be emailed.</Typography>
+          <br></br>
+          <Button color="primary" variant="contained">Upload Photos</Button>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={handleSubmit} color="primary" variant="contained">
             Submit
           </Button>
         </DialogActions>
@@ -105,7 +114,7 @@ const AddQuestion = ({ product, productId }) => {
   )
 }
 
-export default AddQuestion;
+export default AddAnswer;
 
 
 

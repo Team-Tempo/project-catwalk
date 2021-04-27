@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QAndA = ({ question}) => {
+const QAndA = ({ question, product }) => {
   var sortedAnswers = createSortedAnswers(question.answers, 2);
   const classes = useStyles();
   return (
@@ -55,7 +55,7 @@ const QAndA = ({ question}) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <AddAnswer question={question}/>
+            <AddAnswer question={question} product={product}/>
           </Grid>
         </Grid>
       </Grid>
