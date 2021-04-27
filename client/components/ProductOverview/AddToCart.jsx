@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Grid, Button, Typography, ButtonGroup } from '@material-ui/core';
+import {
+  Grid,
+  Button,
+  Typography,
+  ButtonGroup,
+  // Select,
+  // MenuItem,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { FavoriteBorder } from '@material-ui/icons';
@@ -35,6 +42,7 @@ const AddToCart = ({ currentStyle }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedSku, setSelectedSku] = useState('');
   const [open, setOpen] = useState(false);
+  // const [quantity, setQuantity] = useState(1);
 
   const skus = Object.values(currentStyle.skus);
 
@@ -65,6 +73,10 @@ const AddToCart = ({ currentStyle }) => {
 
     setOpen(false);
   };
+
+  // const handleQuantityChange = (event) => {
+  //   setQuantity(event.target.value);
+  // };
 
   return (
     <Grid container>
@@ -107,6 +119,20 @@ const AddToCart = ({ currentStyle }) => {
           );
         })}
       </Grid>
+      {/* <Grid item xs={12}>
+        <Select
+          variant="outlined"
+          value={quantity}
+          onChange={handleQuantityChange}
+          autoWidth={true}
+        >
+          <MenuItem value={1}>1</MenuItem>
+          <MenuItem value={2}>2</MenuItem>
+          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+        </Select>
+      </Grid> */}
       <Grid item xs={10}>
         <ButtonGroup>
           <Button

@@ -29,7 +29,7 @@ const ProductOverview = ({
     <>
       <Grid container spacing={2}>
         <Grid item xs={7}>
-          <ImageGallery currentStyle={currentStyle} />
+          <ImageGallery currentStyle={currentStyle} productId={productId} />
         </Grid>
         <Grid container direction="column" justify="space-between" item xs={4}>
           <Grid item>
