@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, makeStyles } from '@material-ui/core';
+import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
 import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
 import Photos from './QAndAComponents/Photos.jsx';
+import AddQuestion from './QAndAComponents/AddQuestion.jsx';
 import config from '../../../config';
 import axios from 'axios';
 
@@ -22,23 +23,10 @@ const getQuestions = (id) => {
     });
 };
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
-const QuestionsAndAnswers = ( { productId }) => {
+const QuestionsAndAnswers = ( { productId, product }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
-  const [open, setOpen] = useState(false);
-  const classes = useStyles();
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -61,18 +49,8 @@ const QuestionsAndAnswers = ( { productId }) => {
     setShownQuestions(moreQuestions);
   }
 
-  const modalForm = (
-    <div className={classes.paper}>
-      <h2>Whattup my dawgs.</h2>
-    </div>
-  )
-
   const handleAddQuestionClick = () => {
     setOpen(true);
-  }
-
-  const handleClose = () => {
-    setOpen(false);
   }
 
   const questionSearch = (searchInput) => {
@@ -103,15 +81,7 @@ const QuestionsAndAnswers = ( { productId }) => {
           MORE ANSWERED QUESTIONS
         </Button>
       : null}
-      <Button variant="outlined" onClick={handleAddQuestionClick}>
-        ADD A QUESTION   +
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-      >
-        {modalForm}
-      </Modal>
+        <AddQuestion product={product}/>
     </div>
   );
 };
