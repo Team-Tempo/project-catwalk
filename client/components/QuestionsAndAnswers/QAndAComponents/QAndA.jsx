@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 import Answer from './Answer.jsx';
+import AddAnswer from './AddAnswer.jsx';
 var dateFormat = require('dateformat');
 
 const useStyles = makeStyles((theme) => ({
@@ -27,29 +28,37 @@ const useStyles = makeStyles((theme) => ({
   miniSpacing: {
     marginLeft: '5px',
     marginRight: '5px'
+  },
+  cursor: {
+    cursor: 'pointer'
   }
 }));
 
-const QAndA = ({ question }) => {
-  const [answers, setAnswers] = useState([]);
-  const [shownAnswers, setShownAnswers] = useState([]);
-  const [allAnswersShown, setAllAnswersShown] = useState(false);
+const QAndA = ({ question, product }) => {
+  const allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
+  const twoSortedAnswers = createSortedAnswers(question.answers, 2);
+  // const [answers, setAnswers] = useState([]);
+  const [shownAnswers, setShownAnswers] = useState(twoSortedAnswers);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
-  useEffect(() => {
-    var allAnswers = [];
-    for (var key in question.answers) {
-      allAnswers.push(question.answers[key]);
-    }
-    setAnswers(allAnswers);
-    var sortedAnswers = createSortedAnswers(question.answers, 2);
-    setShownAnswers(sortedAnswers);
-    console.log('all answers for question in QandA module', answers);
-    console.log('all shown answers', shownAnswers);
-  });
+  // setAnswers(allSortedAnswers);
+  // setShownAnswers(sortedAnswers);
+  console.log('all answers for question in QandA module', allSortedAnswers);
+  console.log('all shown answers', shownAnswers);
+
+  const handleMoreAnswersClick = () => {
+    setShownAnswers(allSortedAnswers);
+    setIsCollapsed(false);
+  }
+
+  const handleCollapseClick = () => {
+    setShownAnswers(twoSortedAnswers);
+    setIsCollapsed(true);
+  }
 
   const classes = useStyles();
   return (
-    <Grid container>
+    <>
       <Grid className={classes.verticalSpace}></Grid>
       <Grid container direction="row" className={classes.alignVertically} item xs={12}>
         <Grid container direction ="row" item xs={7}>
@@ -68,7 +77,7 @@ const QAndA = ({ question }) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Typography variant="caption" className={classes.underlined}>Add Answer</Typography>
+            <AddAnswer question={question} product={product}/>
           </Grid>
         </Grid>
       </Grid>
@@ -78,19 +87,19 @@ const QAndA = ({ question }) => {
         })}
       </Grid>
       <Grid>
-        {answers.length > shownAnswers.length
+        {allSortedAnswers.length > shownAnswers.length && isCollapsed
         ?
-        <Typography variant="caption">SEE MORE ANSWERS</Typography>
+        <Typography variant="caption" onClick={handleMoreAnswersClick} className={classes.cursor}>SEE MORE ANSWERS</Typography>
         :
-        shownAnswers.length > 2
+        !isCollapsed
         ?
-        <Typography variant="caption">COLLAPSE ANSWERS</Typography>
+        <Typography variant="caption" onClick={handleCollapseClick} className={classes.cursor}>COLLAPSE ANSWERS</Typography>
         :
         null
         }
       </Grid>
       <Grid className={classes.verticalSpace}></Grid>
-    </Grid>
+    </>
   );
 };
 
