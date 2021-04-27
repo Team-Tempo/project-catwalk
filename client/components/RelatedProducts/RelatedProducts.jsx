@@ -16,7 +16,7 @@ const RelatedProducts = ({
 }) => {
 
   const [relatedProductsData, setRelatedProductsData] = useState([]);
-  const [outfitCardsData, setOutfitCardsData] = useState([]);
+  const [outfitCardsData, setOutfitCardsData] = useState(JSON.parse(localStorage.getItem('outfitCardsData')) || []);
 
   async function getRelatedIds(productId) {
     const relatedIdsResponse = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${productId}/related`);
@@ -82,8 +82,9 @@ const RelatedProducts = ({
         category: product.category,
         rating: averageRating
       }
-      outfitCardsDataCopy.push(outfitCardData)
-      setOutfitCardsData(outfitCardsDataCopy)
+      outfitCardsDataCopy.push(outfitCardData);
+      setOutfitCardsData(outfitCardsDataCopy);
+      localStorage.setItem('outfitCardsData', JSON.stringify(outfitCardsDataCopy));
     } else {
       alert('This style has already been added to your outfit list!')
     }
@@ -101,6 +102,7 @@ const RelatedProducts = ({
     outfitCardsData.splice(indexOfCardToRemove, 1);
     let removedOutfitCardsData = outfitCardsData.slice();
     setOutfitCardsData(removedOutfitCardsData);
+    localStorage.setItem('outfitCardsData', JSON.stringify(removedOutfitCardsData));
   }
 
   return (
