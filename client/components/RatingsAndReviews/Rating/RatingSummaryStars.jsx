@@ -8,7 +8,7 @@ const RatingSummaryStars = ({ averageRating }) => {
       <Grid container direction="row" spacing={1}>
         <Grid item xs={3}><h1>{averageRating.toFixed(1)}</h1></Grid>
         <Grid item xs={4}>
-        <Rating name="read-only" readOnly value={averageRating} />
+        <Rating name="read-only" readOnly value={averageRating} precision={0.25}/>
         </Grid>
       </Grid>
     </Container>

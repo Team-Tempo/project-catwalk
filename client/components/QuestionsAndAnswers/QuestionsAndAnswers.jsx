@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
+import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
 import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
 import Photos from './QAndAComponents/Photos.jsx';
+import AddQuestion from './QAndAComponents/AddQuestion.jsx';
 import config from '../../../config';
 import axios from 'axios';
+axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
 
 const getQuestions = (id) => {
   return axios
-    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}`, {
-      headers: {
-        Authorization: config.GITHUB_TOKEN,
-      },
-    })
+    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}&count=1000`)
     .then((response) => {
       return response.data;
     })
@@ -22,7 +20,7 @@ const getQuestions = (id) => {
     });
 };
 
-const QuestionsAndAnswers = ( { productId }) => {
+const QuestionsAndAnswers = ({ productId, product }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
@@ -48,6 +46,10 @@ const QuestionsAndAnswers = ( { productId }) => {
     setShownQuestions(moreQuestions);
   }
 
+  const handleAddQuestionClick = () => {
+    setOpen(true);
+  }
+
   const questionSearch = (searchInput) => {
     if (searchInput.length < 3) {
       setShownQuestions(questions);
@@ -67,7 +69,7 @@ const QuestionsAndAnswers = ( { productId }) => {
       <h6>QUESTIONS & ANSWERS</h6>
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
       {shownQuestions.map((question, i) => (
-       <QAndA question={question} key={i}/>
+       <QAndA question={question} product={product} key={i}/>
       ))}
       <Photos questions={QuestionsDummyData.questions}/>
       <h6>LOAD MORE</h6>
@@ -76,9 +78,7 @@ const QuestionsAndAnswers = ( { productId }) => {
           MORE ANSWERED QUESTIONS
         </Button>
       : null}
-      <Button variant="outlined">
-        ADD A QUESTION   +
-      </Button>
+        <AddQuestion product={product} productId={productId}/>
     </div>
   );
 };
