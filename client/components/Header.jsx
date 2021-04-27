@@ -8,8 +8,8 @@ const Header = () => {
   return (
     <>
       <Box
-        marginLeft="250px"
-        marginRight="250px"
+        marginLeft="14%"
+        marginRight="14%"
         display="flex"
         flexGrow={1}
         justifyContent="space-around"
