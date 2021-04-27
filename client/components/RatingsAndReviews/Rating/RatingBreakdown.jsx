@@ -20,21 +20,28 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
 }));
 
 const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
+
+  const defaultData = { "ratings": {},
+                        "recommended": {
+                            "false": "0",
+                            "true": "0"
+                       }}
+
+if ( Object.entries(reviewsMeta.ratings).length === 0 || Object.entries(reviewsMeta.recommended).length === 0) {
+  reviewsMeta = defaultData;
+  recommendedPercentage = 0;
+} else {
   var recommendedData = reviewsMeta.recommended;
 
   // calculating percentage of reviewers recommending the product
   var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
 
   var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
+}
 
   return (
     <div className={classes.root}>
