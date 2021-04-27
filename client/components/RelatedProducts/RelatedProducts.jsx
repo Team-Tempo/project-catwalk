@@ -16,8 +16,7 @@ const RelatedProducts = ({
 }) => {
 
   const [relatedProductsData, setRelatedProductsData] = useState([]);
-  const [outfitStylesList, setOutfitStylesList] = useState([]);
-  const [outfitCardsData, setOutfitCardsData] = useState([]);
+  const [outfitCardsData, setOutfitCardsData] = useState(JSON.parse(localStorage.getItem('outfitCardsData')) || []);
 
   async function getRelatedIds(productId) {
     const relatedIdsResponse = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${productId}/related`);
@@ -64,11 +63,15 @@ const RelatedProducts = ({
   }, [productId]);
 
   const addToOutfit = () => {
-    if (!outfitStylesList.includes(currentStyle.style_id)) {
-      const outfitStylesListCopy = outfitStylesList.slice();
-      outfitStylesListCopy.push(currentStyle.style_id);
-      setOutfitStylesList(outfitStylesListCopy);
+    let isPresentInOutfit = false;
+    for (let outfit of outfitCardsData) {
+      if (outfit.style_id === currentStyle.style_id) {
+        isPresentInOutfit = true;
+        break;
+      }
+    }
 
+    if (!isPresentInOutfit) {
       const outfitCardsDataCopy = outfitCardsData.slice();
       const outfitCardData = {
         name: currentStyle.name,
@@ -79,23 +82,27 @@ const RelatedProducts = ({
         category: product.category,
         rating: averageRating
       }
-      outfitCardsDataCopy.push(outfitCardData)
-      setOutfitCardsData(outfitCardsDataCopy)
+      outfitCardsDataCopy.push(outfitCardData);
+      setOutfitCardsData(outfitCardsDataCopy);
+      localStorage.setItem('outfitCardsData', JSON.stringify(outfitCardsDataCopy));
     } else {
       alert('This style has already been added to your outfit list!')
     }
   }
 
   const removeCard = (styleId) => {
-    let indexOfCardToRemove = outfitStylesList.indexOf(styleId);
-
-    outfitStylesList.splice(indexOfCardToRemove, 1);
-    let removedOutfitStylesList = outfitStylesList.slice();
-    setOutfitStylesList(removedOutfitStylesList);
+    let indexOfCardToRemove;
+    for (let i = 0; i < outfitCardsData.length; i++) {
+      if (outfitCardsData[i].style_id === styleId) {
+        indexOfCardToRemove = i;
+        break;
+      }
+    }
 
     outfitCardsData.splice(indexOfCardToRemove, 1);
     let removedOutfitCardsData = outfitCardsData.slice();
     setOutfitCardsData(removedOutfitCardsData);
+    localStorage.setItem('outfitCardsData', JSON.stringify(removedOutfitCardsData));
   }
 
   return (
