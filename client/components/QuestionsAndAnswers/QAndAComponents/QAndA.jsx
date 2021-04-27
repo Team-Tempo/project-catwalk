@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 import Answer from './Answer.jsx';
@@ -30,8 +30,23 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QAndA = ({ question}) => {
-  var sortedAnswers = createSortedAnswers(question.answers, 2);
+const QAndA = ({ question }) => {
+  const [answers, setAnswers] = useState([]);
+  const [shownAnswers, setShownAnswers] = useState([]);
+  const [allAnswersShown, setAllAnswersShown] = useState(false);
+
+  useEffect(() => {
+    var allAnswers = [];
+    for (var key in question.answers) {
+      allAnswers.push(question.answers[key]);
+    }
+    setAnswers(allAnswers);
+    var sortedAnswers = createSortedAnswers(question.answers, 2);
+    setShownAnswers(sortedAnswers);
+    console.log('all answers for question in QandA module', answers);
+    console.log('all shown answers', shownAnswers);
+  });
+
   const classes = useStyles();
   return (
     <Grid container>
@@ -58,9 +73,21 @@ const QAndA = ({ question}) => {
         </Grid>
       </Grid>
       <Grid>
-        {sortedAnswers.map((answer, i) => {
+        {shownAnswers.map((answer, i) => {
           return <Answer answer={answer} key={i}/>
         })}
+      </Grid>
+      <Grid>
+        {answers.length > shownAnswers.length
+        ?
+        <Typography variant="caption">SEE MORE ANSWERS</Typography>
+        :
+        shownAnswers.length > 2
+        ?
+        <Typography variant="caption">COLLAPSE ANSWERS</Typography>
+        :
+        null
+        }
       </Grid>
       <Grid className={classes.verticalSpace}></Grid>
     </Grid>
