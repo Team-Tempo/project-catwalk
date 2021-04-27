@@ -1,0 +1,22 @@
+//RelatedProductList and CustomOutfitList Carousel styling:
+.rec.rec-arrow:disabled {
+  visibility: hidden;
+}
+
+.rec.rec-arrow {
+  color: #442c2e !important;
+  background-color: #FEDBD0 !important;
+}
+
+.rec.rec-arrow:hover {
+  background-color: #442c2e !important;
+  color: #FEDBD0 !important;
+}
+.rec.rec-dot {
+ visibility: hidden;
+}
+
+.rec.carousel {
+  cursor: pointer
+}
+
