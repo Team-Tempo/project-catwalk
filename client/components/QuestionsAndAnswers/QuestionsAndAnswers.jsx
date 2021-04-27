@@ -69,7 +69,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
       <h6>QUESTIONS & ANSWERS</h6>
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
       {shownQuestions.map((question, i) => (
-       <QAndA question={question} key={i}/>
+       <QAndA question={question} product={product} key={i}/>
       ))}
       <Photos questions={QuestionsDummyData.questions}/>
       <h6>LOAD MORE</h6>

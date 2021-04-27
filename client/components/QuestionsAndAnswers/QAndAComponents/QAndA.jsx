@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 import Answer from './Answer.jsx';
+import AddAnswer from './AddAnswer.jsx';
 var dateFormat = require('dateformat');
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const QAndA = ({ question}) => {
+const QAndA = ({ question, product }) => {
   var sortedAnswers = createSortedAnswers(question.answers, 2);
   const classes = useStyles();
   return (
@@ -53,7 +54,7 @@ const QAndA = ({ question}) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Typography variant="caption" className={classes.underlined}>Add Answer</Typography>
+            <AddAnswer question={question} product={product}/>
           </Grid>
         </Grid>
       </Grid>
