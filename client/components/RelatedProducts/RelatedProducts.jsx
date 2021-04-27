@@ -16,7 +16,6 @@ const RelatedProducts = ({
 }) => {
 
   const [relatedProductsData, setRelatedProductsData] = useState([]);
-  const [outfitStylesList, setOutfitStylesList] = useState([]);
   const [outfitCardsData, setOutfitCardsData] = useState([]);
 
   async function getRelatedIds(productId) {
@@ -64,11 +63,15 @@ const RelatedProducts = ({
   }, [productId]);
 
   const addToOutfit = () => {
-    if (!outfitStylesList.includes(currentStyle.style_id)) {
-      const outfitStylesListCopy = outfitStylesList.slice();
-      outfitStylesListCopy.push(currentStyle.style_id);
-      setOutfitStylesList(outfitStylesListCopy);
+    let isPresentInOutfit = false;
+    for (let outfit of outfitCardsData) {
+      if (outfit.style_id === currentStyle.style_id) {
+        isPresentInOutfit = true;
+        break;
+      }
+    }
 
+    if (!isPresentInOutfit) {
       const outfitCardsDataCopy = outfitCardsData.slice();
       const outfitCardData = {
         name: currentStyle.name,
@@ -87,11 +90,13 @@ const RelatedProducts = ({
   }
 
   const removeCard = (styleId) => {
-    let indexOfCardToRemove = outfitStylesList.indexOf(styleId);
-
-    outfitStylesList.splice(indexOfCardToRemove, 1);
-    let removedOutfitStylesList = outfitStylesList.slice();
-    setOutfitStylesList(removedOutfitStylesList);
+    let indexOfCardToRemove;
+    for (let i = 0; i < outfitCardsData.length; i++) {
+      if (outfitCardsData[i].style_id === styleId) {
+        indexOfCardToRemove = i;
+        break;
+      }
+    }
 
     outfitCardsData.splice(indexOfCardToRemove, 1);
     let removedOutfitCardsData = outfitCardsData.slice();
