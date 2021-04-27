@@ -2,7 +2,7 @@ import React from 'react';
 
 import Typography from '@material-ui/core/Typography';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { Box } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 
 const Header = () => {
   return (
@@ -15,14 +15,46 @@ const Header = () => {
         justifyContent="space-around"
         alignItems="center"
       >
-        <Typography variant="h4">J. CAD</Typography>
-        <Typography variant="button">New</Typography>
-        <Typography variant="button">Women</Typography>
-        <Typography variant="button">Men</Typography>
-        <Typography variant="button">Clearance</Typography>
-        <Typography variant="button">Sustainability</Typography>
-        <Typography variant="button">My Account</Typography>
-        <ShoppingCartIcon />
+        <a>
+          <Button>
+            <Typography variant="h4">J. CAD</Typography>
+          </Button>
+        </a>
+        <a>
+          <Button>
+            <Typography variant="button">New</Typography>
+          </Button>
+        </a>
+        <a>
+          <Button>
+            <Typography variant="button">Women</Typography>
+          </Button>
+        </a>
+        <a>
+          <Button>
+            <Typography variant="button">Men</Typography>
+          </Button>
+        </a>
+        <a>
+          <Button>
+            <Typography variant="button">Clearance</Typography>
+          </Button>
+        </a>
+        <a>
+          <Button>
+            <Typography variant="button">Sustainability</Typography>
+          </Button>
+        </a>
+        <a>
+          <Button>
+            <Typography variant="button">My Account</Typography>
+          </Button>
+        </a>
+        <a>
+          <Button>
+            <ShoppingCartIcon />
+          </Button>
+        </a>
       </Box>
     </>
   );
