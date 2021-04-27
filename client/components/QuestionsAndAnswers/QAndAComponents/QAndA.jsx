@@ -5,7 +5,6 @@ import Answer from './Answer.jsx';
 import AddAnswer from './AddAnswer.jsx';
 var dateFormat = require('dateformat');
 
-
 const useStyles = makeStyles((theme) => ({
   underlined: {
     textDecoration: 'underline'
