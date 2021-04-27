@@ -8,6 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  header: {
+    marginBottom: 35
   }
 }));
 
@@ -15,7 +18,8 @@ const RatingsAndReviews = (props) => {
   const classes = useStyles();
   return (
     <>
-    <Typography variant="subtitle1">RATINGS & REVIEWS</Typography>
+    <Typography variant="subtitle1" className={classes.header}>RATINGS & REVIEWS</Typography>
+    <div></div>
     <div className={classes.root}>
       <Grid container spacing={5}>
         <Grid item xs={3}>
