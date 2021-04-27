@@ -2,7 +2,9 @@ import React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 import Answer from './Answer.jsx';
+import AddAnswer from './AddAnswer.jsx';
 var dateFormat = require('dateformat');
+
 
 const useStyles = makeStyles((theme) => ({
   underlined: {
@@ -53,7 +55,7 @@ const QAndA = ({ question}) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Typography variant="caption" className={classes.underlined}>Add Answer</Typography>
+            <AddAnswer question={question}/>
           </Grid>
         </Grid>
       </Grid>
