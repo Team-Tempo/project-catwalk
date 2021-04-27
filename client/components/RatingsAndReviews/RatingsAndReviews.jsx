@@ -18,7 +18,7 @@ const RatingsAndReviews = (props) => {
   const classes = useStyles();
   return (
     <>
-    <Typography variant="subtitle1" class={classes.header}>RATINGS & REVIEWS</Typography>
+    <Typography variant="subtitle1" className={classes.header}>RATINGS & REVIEWS</Typography>
     <div></div>
     <div className={classes.root}>
       <Grid container spacing={5}>
