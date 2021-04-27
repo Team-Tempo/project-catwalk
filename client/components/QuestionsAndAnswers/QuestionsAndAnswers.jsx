@@ -6,14 +6,11 @@ import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
 import Photos from './QAndAComponents/Photos.jsx';
 import config from '../../../config';
 import axios from 'axios';
+axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
 
 const getQuestions = (id) => {
   return axios
-    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}`, {
-      headers: {
-        Authorization: config.GITHUB_TOKEN,
-      },
-    })
+    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}&count=1000`)
     .then((response) => {
       return response.data;
     })
