@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   scroll: {
-    // flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'auto',
   },
