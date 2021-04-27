@@ -31,30 +31,29 @@ const AddAnswer = ({ product, question }) => {
   }
 
   const handleSubmit = (e) => {
-    // if (question.length === 0 || nickname.length === 0 || email.length === 0) {
-    //   return;
-    // }
-    // var questionData = {
-    //   body: question,
-    //   name: nickname,
-    //   email: email,
-    //   product_id: productId
-    // };
+    if (answer.length === 0 || nickname.length === 0 || email.length === 0) {
+      return;
+    }
 
-    // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`, questionData)
+    var answerData = {
+      body: answer,
+      name: nickname,
+      email: email,
+      photos: []
+    };
 
-    // setQuestion('');
-    // setNickname('');
-    // setEmail('');
-    // setOpen(false);
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${question.question_id}/answers`, answerData)
+
+    setAnswer('');
+    setNickname('');
+    setEmail('');
+    setOpen(false);
   }
 
   const handleClose = () => {
     setOpen(false);
   }
 
-  console.log('product', product);
-  console.log('question', question);
   return (
     <>
       <Typography variant="caption" className={classes.underlined} onClick={handleOpen}>Add Answer</Typography>
