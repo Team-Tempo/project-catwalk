@@ -37,14 +37,8 @@ const useStyles = makeStyles((theme) => ({
 const QAndA = ({ question, product }) => {
   const allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
   const twoSortedAnswers = createSortedAnswers(question.answers, 2);
-  // const [answers, setAnswers] = useState([]);
   const [shownAnswers, setShownAnswers] = useState(twoSortedAnswers);
   const [isCollapsed, setIsCollapsed] = useState(true);
-
-  // setAnswers(allSortedAnswers);
-  // setShownAnswers(sortedAnswers);
-  console.log('all answers for question in QandA module', allSortedAnswers);
-  console.log('all shown answers', shownAnswers);
 
   const handleMoreAnswersClick = () => {
     setShownAnswers(allSortedAnswers);
