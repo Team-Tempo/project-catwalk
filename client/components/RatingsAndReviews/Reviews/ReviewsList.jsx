@@ -16,15 +16,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   scroll: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'auto',
-    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    // width: 1000,
-    height: 700,
+    minHeight: 200,
+    maxHeight: 300
   },
   header: {
     fontWeight: 500,
