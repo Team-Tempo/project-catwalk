@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core';
 import config from '../../../../config';
 import axios from 'axios';
+axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddQuestion = ({ product }) => {
+const AddQuestion = ({ product, productId }) => {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
@@ -26,17 +27,23 @@ const AddQuestion = ({ product }) => {
   }
 
   const handleSubmit = (e) => {
-    if (question.length > 0 && nickname.length > 0 && email.length > 0) {
-      console.log('nickname', nickname);
+    if (question.length === 0 || nickname.length === 0 || email.length === 0) {
+      return;
     }
-    // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}`)
+    var questionData = {
+      body: question,
+      name: nickname,
+      email: email,
+      product_id: productId
+    };
+
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`, questionData)
+
     setQuestion('');
     setNickname('');
     setEmail('');
     setOpen(false);
   }
-
-  // http://example.com/page?parameter=value&also=another
 
   const handleClose = () => {
     setOpen(false);
@@ -68,7 +75,6 @@ const AddQuestion = ({ product }) => {
             onInput={(e) => setQuestion(e.target.value)}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="nickname"
             label="Nickname"
@@ -79,7 +85,6 @@ const AddQuestion = ({ product }) => {
             onInput={(e) => setNickname(e.target.value)}
           />
           <TextField
-            autoFocus
             margin="dense"
             id="email"
             label="Email"
@@ -92,9 +97,6 @@ const AddQuestion = ({ product }) => {
           />
         </DialogContent>
         <DialogActions>
-          {/* <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button> */}
           <Button onClick={handleSubmit} color="primary">
             Submit
           </Button>
