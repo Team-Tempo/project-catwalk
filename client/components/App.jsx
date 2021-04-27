@@ -164,7 +164,10 @@ const App = () => {
               <QuestionsAndAnswers productId={productId}/>
             </Grid>
             <Grid item xs={12}>
-              <RatingsAndReviews productId={productId} />
+              <RatingsAndReviews
+              productId={productId}
+              averageRating={averageRating}
+               />
             </Grid>
           </Grid>
         </Container>
