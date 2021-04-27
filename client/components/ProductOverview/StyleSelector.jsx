@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: '#FEDBD0',
+    cursor: 'pointer',
   },
 }));
 

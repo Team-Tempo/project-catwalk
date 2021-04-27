@@ -4,13 +4,18 @@ import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import { makeStyles } from '@material-ui/core/styles';
-import ZoomOutMapIcon from '@material-ui/icons/ZoomOutMap';
 import Backdrop from '@material-ui/core/Backdrop';
 
 const useStyles = makeStyles({
+  mediaMain: {
+    height: 0,
+    paddingTop: '100%',
+    cursor: 'zoom-in',
+  },
   media: {
     height: 0,
     paddingTop: '100%',
+    cursor: 'pointer',
   },
   gridTest: {
     overflow: 'auto',
@@ -76,7 +81,11 @@ const ImageGallery = ({ currentStyle }) => {
               <Card key={idx}>
                 <CardMedia
                   className={classes.media}
-                  image={photo.thumbnail_url === null ? 'https://cdn.discordapp.com/attachments/831557223247249448/836269816590499840/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.png' : photo.thumbnail_url}
+                  image={
+                    photo.thumbnail_url === null
+                      ? 'https://cdn.discordapp.com/attachments/831557223247249448/836269816590499840/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.png'
+                      : photo.thumbnail_url
+                  }
                   title="style"
                   onClick={() => {
                     handleClick(idx);
@@ -87,11 +96,6 @@ const ImageGallery = ({ currentStyle }) => {
           })}
         </Grid>
         <Grid item xs className={classes.image}>
-          <ZoomOutMapIcon
-            className={classes.zoomIcon}
-            fontSize="large"
-            onClick={handleToggle}
-          />
           <Carousel
             autoPlay={false}
             animation="fade"
@@ -106,12 +110,14 @@ const ImageGallery = ({ currentStyle }) => {
               return (
                 <Card key={idx}>
                   <CardMedia
-                    className={classes.media}
-                    image={photo.url === null ? 'https://cdn.discordapp.com/attachments/831557223247249448/836269816590499840/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.png' : photo.url}
+                    className={classes.mediaMain}
+                    image={
+                      photo.url === null
+                        ? 'https://cdn.discordapp.com/attachments/831557223247249448/836269816590499840/360_F_207877921_BtG6ZKAVvtLyc5GWpBNEIlIxsffTtWkv.png'
+                        : photo.url
+                    }
                     title="style"
-                    onClick={() => {
-                      handleClick(idx);
-                    }}
+                    onClick={handleToggle}
                   />
                 </Card>
               );
