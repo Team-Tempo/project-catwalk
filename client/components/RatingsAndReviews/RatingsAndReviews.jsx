@@ -20,7 +20,6 @@ const RatingsAndReviews = (props) => {
       <Grid container spacing={5}>
         <Grid item xs={3}>
         <Rating ratingData={props}/>
-        {/* <Rating ratingData={props} reviewsMeta={reviewsData.reviewsMeta}/> */}
         </Grid>
         <Grid item xs={9}>
         <ReviewsList productId={ props.productId }/>

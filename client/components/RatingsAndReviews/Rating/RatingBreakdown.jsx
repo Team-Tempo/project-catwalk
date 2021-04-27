@@ -26,10 +26,10 @@ const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
 
   const defaultData = { "ratings": {},
-"recommended": {
-    "false": "0",
-    "true": "0"
-}}
+                        "recommended": {
+                            "false": "0",
+                            "true": "0"
+                       }}
 
 if ( Object.entries(reviewsMeta.ratings).length === 0 || Object.entries(reviewsMeta.recommended).length === 0) {
   reviewsMeta = defaultData;

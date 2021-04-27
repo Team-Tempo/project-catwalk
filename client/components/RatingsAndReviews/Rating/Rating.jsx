@@ -14,20 +14,18 @@ const Rating = (props) => {
         setReviewsMetaData(res.data)
       })
       .catch((err) => {
-        console.log(err, 'error getting reviews metadate for the product id');
+        console.log(err, 'error getting reviews metadata for the product id');
       });
   }, [props.ratingData.productId])
 
   return (
     <>
       <RatingSummaryStars averageRating={props.ratingData.averageRating}/>
-    {Object.entries(reviewsMetaData).length === 0 || reviewsMetaData === undefined? (<></>) : (
+        {Object.entries(reviewsMetaData).length === 0 || reviewsMetaData === undefined? (<></>) : (
       <RatingBreakdown reviewsMeta={reviewsMetaData}/>
-    )}
+      )}
     </>
   )
 }
 
 export default Rating;
-
-//props.reviewsMeta
