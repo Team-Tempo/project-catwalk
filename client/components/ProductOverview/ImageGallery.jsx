@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ImageGallery = ({ currentStyle }) => {
+const ImageGallery = ({ currentStyle, productId }) => {
   if (!currentStyle.photos) {
     return null;
   }
@@ -61,6 +61,10 @@ const ImageGallery = ({ currentStyle }) => {
   const handleToggle = () => {
     setOpen(!open);
   };
+
+  useEffect(() => {
+    setCurrentPhotoIdx(0);
+  }, [productId, currentStyle]);
 
   return (
     <>
