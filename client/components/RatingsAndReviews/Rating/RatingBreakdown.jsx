@@ -30,21 +30,29 @@ const useStyles = makeStyles((theme) => ({
 const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
   console.log("FROM B: ", reviewsMeta)
-  // const [metaData, setMetaData] = useState({});
 
-  // useEffect(() => {
-  //   setMetaData(reviewsMeta);
-  // }, [reviewsMeta])
+  const defaultData = { "ratings": {
+},
+"recommended": {
+    "false": "0",
+    "true": "0"
+}}
 
-  // console.log(metaData);
+if (reviewsMeta.ratings === {} || reviewsMeta.recommended) {
+  reviewsMeta = defaultData;
+  recommendedPercentage = 0;
 
+  console.log("I'm here 1", reviewsMeta)
+} else {
   var recommendedData = reviewsMeta.recommended;
+  console.log("DATA: ", recommendedData, defaultData.ratings)
 
     // calculating percentage of reviewers recommending the product
     var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
 
     var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
 
+}
 
   return (
     <div className={classes.root}>

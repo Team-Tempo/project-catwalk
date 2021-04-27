@@ -3,7 +3,7 @@ import ReviewsList from './Reviews/ReviewsList.jsx'
 import Rating from './Rating/Rating.jsx'
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import reviewsData from '../DummyData/ReviewsDummyData.js';
+// import reviewsData from '../DummyData/ReviewsDummyData.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +19,8 @@ const RatingsAndReviews = (props) => {
     <div className={classes.root}>
       <Grid container spacing={5}>
         <Grid item xs={3}>
-        <Rating ratingData={props} reviewsMeta={reviewsData.reviewsMeta}/>
+        <Rating ratingData={props}/>
+        {/* <Rating ratingData={props} reviewsMeta={reviewsData.reviewsMeta}/> */}
         </Grid>
         <Grid item xs={9}>
         <ReviewsList productId={ props.productId }/>
