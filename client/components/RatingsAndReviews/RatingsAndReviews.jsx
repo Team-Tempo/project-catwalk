@@ -8,6 +8,9 @@ import reviewsData from '../DummyData/ReviewsDummyData.js';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  header: {
+    marginBottom: 35
   }
 }));
 
@@ -15,7 +18,8 @@ const RatingsAndReviews = ({ productId }) => {
   const classes = useStyles();
   return (
     <>
-    <Typography variant="subtitle1">RATINGS & REVIEWS</Typography>
+    <Typography variant="subtitle1" class={classes.header}>RATINGS & REVIEWS</Typography>
+    <div></div>
     <div className={classes.root}>
       <Grid container spacing={5}>
         <Grid item xs={3}>

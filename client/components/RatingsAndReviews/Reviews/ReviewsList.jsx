@@ -7,7 +7,7 @@ import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
 
 const getReviewsData = async (id) => {
-      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}`);
+      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=25`);
       return response.data;
 };
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     minHeight: 200,
-    maxHeight: 300
+    maxHeight: 500
   },
   header: {
     fontWeight: 500,
