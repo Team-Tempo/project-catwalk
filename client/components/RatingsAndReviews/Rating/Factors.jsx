@@ -57,16 +57,13 @@ export default function CustomizedSlider({ characteristics }) {
   return (
     <div className={classes.root}>
       <small>Fit</small>
-      <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Fit.value) * 10 } />
-
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Fit.value) * 10 } />
       <small>Length</small>
-      <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Length.value) * 10 } />
-
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Length.value) * 10 } />
       <small>Comfort</small>
-      <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Comfort.value) * 10 } />
-
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Comfort.value) * 10 } />
       <small>Quality</small>
-      <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Quality.value) * 10 } />
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Quality.value) * 10 } />
       <div className={classes.margin} />
     </div>
   );
