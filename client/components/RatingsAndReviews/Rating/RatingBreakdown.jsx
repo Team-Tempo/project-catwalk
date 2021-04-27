@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { LinearProgress, Grid, Typography } from '@material-ui/core';
 
@@ -20,38 +20,27 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
 }));
 
 const RatingBreakdown = ({ reviewsMeta }) => {
   const classes = useStyles();
-  console.log("FROM B: ", reviewsMeta)
 
-  const defaultData = { "ratings": {
-},
+  const defaultData = { "ratings": {},
 "recommended": {
     "false": "0",
     "true": "0"
 }}
 
-if (reviewsMeta.ratings === {} || reviewsMeta.recommended) {
+if ( Object.entries(reviewsMeta.ratings).length === 0 || Object.entries(reviewsMeta.recommended).length === 0) {
   reviewsMeta = defaultData;
   recommendedPercentage = 0;
-
-  console.log("I'm here 1", reviewsMeta)
 } else {
   var recommendedData = reviewsMeta.recommended;
-  console.log("DATA: ", recommendedData, defaultData.ratings)
 
-    // calculating percentage of reviewers recommending the product
-    var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
+  // calculating percentage of reviewers recommending the product
+  var recommendedPercentage = Math.floor(Number(recommendedData.true) * 100 / (Number(recommendedData.true) + Number(recommendedData.false)))
 
-    var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
-
+  var numberOfReviews = Object.values(reviewsMeta.ratings).reduce((a, b) => Number(a) + Number(b));
 }
 
   return (
