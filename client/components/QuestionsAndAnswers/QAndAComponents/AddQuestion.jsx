@@ -27,7 +27,7 @@ const AddQuestion = ({ product }) => {
 
   const handleSubmit = (e) => {
     if (question.length > 0 && nickname.length > 0 && email.length > 0) {
-
+      console.log('nickname', nickname);
     }
     // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}`)
     setQuestion('');
