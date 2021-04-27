@@ -48,26 +48,11 @@ const ReviewsList = ({ productId }) => {
           <Typography className={classes.header}>{ reviewsCounter } reviews, sorted by relevance</Typography>
         </Grid>
         <Grid item xs={12}  className={classes.scroll}>
-
-
-
-        {/* <div className={classes.scroll}> */}
-      <GridList cellHeight={140} className={classes.gridList} cols={1}>
-
-
+         <GridList cellHeight={140} className={classes.gridList} cols={1}>
           {reviewsData.map(review =>
-      //  <GridListTile key={review.review_id} cols={review.cols || 1}>
-
           <Review key={review.review_id} review={review}/>
-
           )}
-       {/* </GridListTile> */}
-
-
-      </GridList>
-          {/* </div> */}
-
-
+         </GridList>
         </Grid>
         <Grid item xs={12} className={classes.buttons}>
           <AddReviewDialog productId={productId}/>
