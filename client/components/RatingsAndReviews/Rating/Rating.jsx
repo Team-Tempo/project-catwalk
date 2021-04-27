@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import RatingSummaryStars from './RatingSummaryStars';
+import Factors from './Factors';
 import axios from 'axios';
 import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
@@ -21,9 +22,8 @@ const Rating = (props) => {
   return (
     <>
       <RatingSummaryStars averageRating={props.ratingData.averageRating}/>
-        {Object.entries(reviewsMetaData).length === 0 || reviewsMetaData === undefined? (<></>) : (
-      <RatingBreakdown reviewsMeta={reviewsMetaData}/>
-      )}
+        {Object.entries(reviewsMetaData).length === 0 || reviewsMetaData === undefined? (<></>) : (<RatingBreakdown reviewsMeta={reviewsMetaData}/>)}
+        {Object.entries(reviewsMetaData).length === 0 || reviewsMetaData === undefined? (<></>) : (<Factors characteristics={reviewsMetaData.characteristics}/>)}
     </>
   )
 }
