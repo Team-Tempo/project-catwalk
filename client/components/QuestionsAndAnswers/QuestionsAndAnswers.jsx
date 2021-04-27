@@ -20,7 +20,7 @@ const getQuestions = (id) => {
     });
 };
 
-const QuestionsAndAnswers = ( { productId, product }) => {
+const QuestionsAndAnswers = ({ productId, product }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
