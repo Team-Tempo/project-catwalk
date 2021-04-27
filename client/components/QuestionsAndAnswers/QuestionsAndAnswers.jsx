@@ -71,7 +71,6 @@ const QuestionsAndAnswers = ({ productId, product }) => {
       {shownQuestions.map((question, i) => (
        <QAndA question={question} product={product} key={i}/>
       ))}
-      <Photos questions={QuestionsDummyData.questions}/>
       {questions.length > 1 && !allQuestionsShown ?
         <Button variant="contained" color="primary" onClick={handleMoreQuestionsClick}>
           MORE ANSWERED QUESTIONS

@@ -100,7 +100,7 @@ const AddQuestion = ({ product, productId }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={handleSubmit} variant="contained" color="primary">
             Submit
           </Button>
         </DialogActions>
