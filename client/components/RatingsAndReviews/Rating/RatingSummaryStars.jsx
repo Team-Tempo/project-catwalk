@@ -3,6 +3,7 @@ import Rating from '@material-ui/lab/Rating';
 import { Grid, Container } from '@material-ui/core';
 
 const RatingSummaryStars = ({ averageRating }) => {
+  console.log("A: ", averageRating)
   return (
     <props>
     <Container>
