@@ -35,7 +35,7 @@ The custom outfit list is a carousel of products selected by the user.  The cust
 
 ### Related Products and Outfit Lists
 
-![](http://www.giphy.com/gifs/nKCnmYJrDrUJUtl6f2)
+![](https://media.giphy.com/media/nKCnmYJrDrUJUtl6f2/giphy.gif)
 
 
 ### Questions and Answers
