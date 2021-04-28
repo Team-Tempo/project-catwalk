@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
   feature: {
     fontWeight: 700,
-    fontSize: 16,
+    fontSize: 18,
     borderBottom: '1px solid rgba(68, 44, 46, 0.2)'
   },
   cell: {
