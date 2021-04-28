@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Review from './Review.jsx';
 import AddReviewDialog from './AddReviewDialog';
-import { Typography, Grid, GridList, GridListTile, makeStyles } from '@material-ui/core'
+import { Typography, Grid, GridList, GridListTile, makeStyles, Button } from '@material-ui/core'
 import axios from 'axios';
 import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
 
 const getReviewsData = async (id) => {
-      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=25`);
+      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=100`);
       return response.data;
 };
 
@@ -20,8 +20,9 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   gridList: {
-    minHeight: 200,
-    maxHeight: 500
+    // minHeight: 200,
+    minHeight: 550,
+    maxHeight: 550
   },
   header: {
     fontWeight: 500,
@@ -54,8 +55,13 @@ const ReviewsList = ({ productId }) => {
           )}
          </GridList>
         </Grid>
-        <Grid item xs={12} className={classes.buttons}>
-          <AddReviewDialog productId={productId}/>
+        <Grid container item xs={12} className={classes.buttons}>
+          <Grid item xs={2}>
+             <Button variant='contained' color='primary'>MORE REVIEWS</Button>
+          </Grid>
+          <Grid item xs={2}>
+             <AddReviewDialog productId={productId}/>
+          </Grid>
         </Grid>
       </Grid>
     </div>

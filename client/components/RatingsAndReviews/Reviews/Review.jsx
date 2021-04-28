@@ -63,6 +63,9 @@ const Review = ({ review }) => {
         <Grid item xs={12}>
           <Divider className={classes.dividerLine} />
         </Grid>
+        <Grid item xs={12}>
+          {/* for spacing purposes */}
+        </Grid>
       </Grid>
     </div>
   )
