@@ -51,19 +51,39 @@ const marks = [
 ];
 
 export default function CustomizedSlider({ characteristics }) {
+  console.log(characteristics);
 
   const classes = useStyles();
 
+
+  // revisit values of factors
   return (
     <div className={classes.root}>
-      <small>Fit</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Fit.value) * 10 } />
+      {
+        characteristics.Fit ? (
+          <>
+          <small>Fit</small>
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Fit.value) * 10 } />
       <small>Length</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Length.value) * 10 } />
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Length.value) * 10 } />
+          </>
+        ) : (
+          <>
+          <small>Size</small>
+          <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Size.value) * 10 } />
+        <small>Width</small>
+          <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Width.value) * 10 } />
+          </>
+        )
+      }
+      {/* <small>Fit</small>
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Fit.value) * 10 } />
+      <small>Length</small>
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Length.value) * 10 } /> */}
       <small>Comfort</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Comfort.value) * 10 } />
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Comfort.value) * 10 } />
       <small>Quality</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} defaultValue={ Number(characteristics.Quality.value) * 10 } />
+        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ Number(characteristics.Quality.value) * 10 } />
       <div className={classes.margin} />
     </div>
   );

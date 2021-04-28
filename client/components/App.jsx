@@ -132,13 +132,14 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper>
+      {/* <Paper> */}
         <AppBar position="sticky">
           <Toolbar>
             <Header />
           </Toolbar>
         </AppBar>
-        <Container maxWidth="lg">
+        <Container>
+        {/* <Container maxWidth="lg"> */}
           <Grid container direction="column" spacing={10}>
             <Grid item xs={12}></Grid>
             <Grid item xs={12}>
@@ -171,7 +172,7 @@ const App = () => {
             </Grid>
           </Grid>
         </Container>
-      </Paper>
+      {/* </Paper> */}
     </ThemeProvider>
   );
 };
