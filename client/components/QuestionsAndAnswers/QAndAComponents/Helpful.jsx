@@ -20,11 +20,24 @@ const Helpful = ({ helpfulness, questionId, answerId }) => {
     }
     if (questionId === 'NA') {
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/answers/${answerId}/helpful`)
+        .then((results) => {
+          setHelpful(helpfulness + 1);
+          setClicked(true);
+        })
+        .catch((err) => {
+          console.error(err);
+        })
     } else if (answerId === 'NA') {
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${questionId}/helpful`)
+        .then((results) => {
+          setHelpful(helpfulness + 1);
+          setClicked(true);
+        })
+        .catch((err) => {
+          console.error(err);
+        })
     }
-    setHelpful(helpfulness + 1);
-    setClicked(true);
+
   }
 
   return (

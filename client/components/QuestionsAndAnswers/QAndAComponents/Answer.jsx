@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Answer = ({ answer, questionId }) => {
+const Answer = ({ answer }) => {
   const [reportClicked, setReportClicked] = useState(false);
   const classes = useStyles();
 
