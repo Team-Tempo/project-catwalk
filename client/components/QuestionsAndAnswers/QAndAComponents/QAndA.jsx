@@ -65,7 +65,7 @@ const QAndA = ({ question, product }) => {
         </Grid>
         <Grid item xs={5} className={classes.alignHorizontally}>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={question.question_helpfulness} questionId={question.question_id}/>
+            <Helpful helpfulness={question.question_helpfulness} questionId={question.question_id} answerId='NA'/>
           </Grid>
           <Grid item className={classes.textSpacing}>
             <Typography variant="caption">|</Typography>

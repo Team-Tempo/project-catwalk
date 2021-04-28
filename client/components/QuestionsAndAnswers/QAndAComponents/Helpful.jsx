@@ -9,17 +9,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Helpful = ({ helpfulness, questionId,  }) => {
+const Helpful = ({ helpfulness, questionId, answerId }) => {
   const classes = useStyles();
   const [helpful, setHelpful] = useState(helpfulness);
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
-    if (!clicked) {
-      setHelpful(helpfulness + 1);
-      setClicked(true);
+    if (clicked) {
+      return;
     }
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`)
+    if (questionId === 'NA') {
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/answers/${answerId}/helpful`)
+    } else if (answerId === 'NA') {
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${questionId}/helpful`)
+    }
+    setHelpful(helpfulness + 1);
+    setClicked(true);
   }
 
   return (
