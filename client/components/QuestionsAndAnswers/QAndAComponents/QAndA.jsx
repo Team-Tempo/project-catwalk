@@ -65,7 +65,7 @@ const QAndA = ({ question, product }) => {
         </Grid>
         <Grid item xs={5} className={classes.alignHorizontally}>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={question.question_helpfulness}/>
+            <Helpful helpfulness={question.question_helpfulness} questionId={question.question_id}/>
           </Grid>
           <Grid item className={classes.textSpacing}>
             <Typography variant="caption">|</Typography>
@@ -77,7 +77,7 @@ const QAndA = ({ question, product }) => {
       </Grid>
       <Grid>
         {shownAnswers.map((answer, i) => {
-          return <Answer answer={answer} key={i}/>
+          return <Answer answer={answer} questionId={question.question_id} key={i}/>
         })}
       </Grid>
       <Grid>

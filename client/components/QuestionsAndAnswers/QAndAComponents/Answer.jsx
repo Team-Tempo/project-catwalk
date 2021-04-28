@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Answer = ({ answer }) => {
+const Answer = ({ answer, questionId }) => {
   const [reportClicked, setReportClicked] = useState(false);
   const classes = useStyles();
 
@@ -59,7 +59,7 @@ const Answer = ({ answer }) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={answer.helpfulness}/>
+            <Helpful helpfulness={answer.helpfulness} questionId={questionId}/>
           </Grid>
           <Grid item>
             <Typography variant="caption">|</Typography>

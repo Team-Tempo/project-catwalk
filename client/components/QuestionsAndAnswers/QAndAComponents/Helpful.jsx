@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Helpful = ({ helpfulness }) => {
+const Helpful = ({ helpfulness, questionId,  }) => {
   const classes = useStyles();
   const [helpful, setHelpful] = useState(helpfulness);
   const [clicked, setClicked] = useState(false);
@@ -19,6 +19,7 @@ const Helpful = ({ helpfulness }) => {
       setHelpful(helpfulness + 1);
       setClicked(true);
     }
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`)
   }
 
   return (
