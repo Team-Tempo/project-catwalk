@@ -51,28 +51,24 @@ const marks = [
 ];
 
 export default function CustomizedSlider({ characteristics }) {
-  console.log(characteristics);
-
   const classes = useStyles();
 
-
-  // revisit values of factors
   return (
     <div className={classes.root}>
       {
         characteristics.Fit ? (
           <>
-          <small>Fit</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Fit.value === null ? 50 : Number(characteristics.Fit.value) * 100 / 5 } />
-      <small>Length</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Length.value === null ? 50 : Number(characteristics.Length.value) * 100 / 5 } />
+            <small>Fit</small>
+              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Fit.value === null ? 50 : Number(characteristics.Fit.value) * 100 / 5 } />
+            <small>Length</small>
+              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Length.value === null ? 50 : Number(characteristics.Length.value) * 100 / 5 } />
           </>
         ) : (
           <>
-          <small>Size</small>
-          <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Size.value === null ? 50 : Number(characteristics.Size.value) * 100 / 5 } />
-        <small>Width</small>
-          <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Width.value === null ? 50 : Number(characteristics.Width.value) * 100 / 5 } />
+            <small>Size</small>
+              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Size.value === null ? 50 : Number(characteristics.Size.value) * 100 / 5 } />
+            <small>Width</small>
+              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Width.value === null ? 50 : Number(characteristics.Width.value) * 100 / 5 } />
           </>
         )
       }
