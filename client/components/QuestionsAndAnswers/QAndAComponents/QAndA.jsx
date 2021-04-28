@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 import Answer from './Answer.jsx';
@@ -28,14 +28,31 @@ const useStyles = makeStyles((theme) => ({
   miniSpacing: {
     marginLeft: '5px',
     marginRight: '5px'
+  },
+  cursor: {
+    cursor: 'pointer'
   }
 }));
 
 const QAndA = ({ question, product }) => {
-  var sortedAnswers = createSortedAnswers(question.answers, 2);
+  const allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
+  const twoSortedAnswers = createSortedAnswers(question.answers, 2);
+  const [shownAnswers, setShownAnswers] = useState(twoSortedAnswers);
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  const handleMoreAnswersClick = () => {
+    setShownAnswers(allSortedAnswers);
+    setIsCollapsed(false);
+  }
+
+  const handleCollapseClick = () => {
+    setShownAnswers(twoSortedAnswers);
+    setIsCollapsed(true);
+  }
+
   const classes = useStyles();
   return (
-    <Grid container>
+    <>
       <Grid className={classes.verticalSpace}></Grid>
       <Grid container direction="row" className={classes.alignVertically} item xs={12}>
         <Grid container direction ="row" item xs={7}>
@@ -59,12 +76,24 @@ const QAndA = ({ question, product }) => {
         </Grid>
       </Grid>
       <Grid>
-        {sortedAnswers.map((answer, i) => {
+        {shownAnswers.map((answer, i) => {
           return <Answer answer={answer} key={i}/>
         })}
       </Grid>
+      <Grid>
+        {allSortedAnswers.length > shownAnswers.length && isCollapsed
+        ?
+        <Typography variant="caption" onClick={handleMoreAnswersClick} className={classes.cursor}>SEE MORE ANSWERS</Typography>
+        :
+        !isCollapsed
+        ?
+        <Typography variant="caption" onClick={handleCollapseClick} className={classes.cursor}>COLLAPSE ANSWERS</Typography>
+        :
+        null
+        }
+      </Grid>
       <Grid className={classes.verticalSpace}></Grid>
-    </Grid>
+    </>
   );
 };
 

@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
-  underlined: {
-    textDecoration: 'underline'
+  answer: {
+    textDecoration: 'underline',
+    cursor: 'pointer'
   }
 }));
 
@@ -56,7 +57,7 @@ const AddAnswer = ({ product, question }) => {
 
   return (
     <>
-      <Typography variant="caption" className={classes.underlined} onClick={handleOpen}>Add Answer</Typography>
+      <Typography variant="caption" className={classes.answer} onClick={handleOpen}>Add Answer</Typography>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Submit Your Answer</DialogTitle>
         <DialogContent>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core';
+import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Typography } from '@material-ui/core';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
 import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
@@ -66,15 +66,13 @@ const QuestionsAndAnswers = ({ productId, product }) => {
 
   return (
     <div>
-      <h6>QUESTIONS & ANSWERS</h6>
+      <Typography variant="h6">QUESTIONS & ANSWERS</Typography>
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
       {shownQuestions.map((question, i) => (
        <QAndA question={question} product={product} key={i}/>
       ))}
-      <Photos questions={QuestionsDummyData.questions}/>
-      <h6>LOAD MORE</h6>
       {questions.length > 1 && !allQuestionsShown ?
-        <Button variant="outlined" onClick={handleMoreQuestionsClick}>
+        <Button variant="contained" color="primary" onClick={handleMoreQuestionsClick}>
           MORE ANSWERED QUESTIONS
         </Button>
       : null}
