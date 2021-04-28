@@ -106,4 +106,5 @@ const AddQuestion = ({ product, productId }) => {
   )
 }
 
+
 export default AddQuestion;
