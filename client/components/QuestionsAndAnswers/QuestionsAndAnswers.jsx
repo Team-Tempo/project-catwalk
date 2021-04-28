@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core';
+import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Grid } from '@material-ui/core';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
 import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
@@ -8,6 +8,13 @@ import AddQuestion from './QAndAComponents/AddQuestion.jsx';
 import config from '../../../config';
 import axios from 'axios';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
+
+const useStyles = makeStyles((theme) => ({
+  scroll: {
+    maxHeight: 500,
+    overflow: 'auto'
+  }
+}));
 
 const getQuestions = (id) => {
   return axios
@@ -24,6 +31,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
+  const classes = useStyles();
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -68,9 +76,11 @@ const QuestionsAndAnswers = ({ productId, product }) => {
     <div>
       <h6>QUESTIONS & ANSWERS</h6>
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
-      {shownQuestions.map((question, i) => (
-       <QAndA question={question} product={product} key={i}/>
-      ))}
+      <Grid item className={classes.scroll}>
+        {shownQuestions.map((question, i) => (
+        <QAndA question={question} product={product} key={i}/>
+        ))}
+      </Grid>
       <Photos questions={QuestionsDummyData.questions}/>
       <h6>LOAD MORE</h6>
       {questions.length > 1 && !allQuestionsShown ?
