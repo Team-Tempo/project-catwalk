@@ -59,7 +59,7 @@ const Answer = ({ answer }) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={answer.helpfulness}/>
+            <Helpful helpfulness={answer.helpfulness} questionId='NA' answerId={answer.id}/>
           </Grid>
           <Grid item>
             <Typography variant="caption">|</Typography>
