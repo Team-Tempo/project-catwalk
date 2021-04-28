@@ -78,16 +78,14 @@ const QuestionsAndAnswers = ({ productId, product }) => {
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
       <Grid item className={classes.scroll}>
         {shownQuestions.map((question, i) => (
-        <QAndA question={question} product={product} key={i}/>
+          <QAndA question={question} product={product} key={i}/>
         ))}
       </Grid>
-      <Photos questions={QuestionsDummyData.questions}/>
-      <h6>LOAD MORE</h6>
       {questions.length > 1 && !allQuestionsShown ?
         <Button variant="outlined" onClick={handleMoreQuestionsClick}>
           MORE ANSWERED QUESTIONS
         </Button>
-      : null}
+        : null}
         <AddQuestion product={product} productId={productId}/>
     </div>
   );
