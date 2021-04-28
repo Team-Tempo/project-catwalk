@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const Answer = ({ answer, questionId }) => {
   const [reportClicked, setReportClicked] = useState(false);
   const classes = useStyles();
-  console.log('answer', answer);
+
   const handleReportClick = (e) => {
     setReportClicked(true);
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/answers/${answer.id}/report`, {
