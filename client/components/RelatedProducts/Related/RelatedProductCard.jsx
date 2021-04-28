@@ -131,7 +131,7 @@ const RelatedProductCard = ({
           open={open}
           onClick={handleDialogClick}
           onClose={(e) => handleClose(e)}
-          maxWidth="md"
+          maxWidth="sm"
         >
           <ComparisonModal relatedProductData={relatedProductData} product={product} />
         </Dialog>

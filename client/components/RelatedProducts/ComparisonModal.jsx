@@ -12,7 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 const useStyles = makeStyles({
   table: {
     textAlign: 'center',
-    minWidth: 700,
+    minWidth: 500,
   },
   content: {
     backgroundColor: '#FFFFFF'
@@ -29,12 +29,11 @@ const useStyles = makeStyles({
   },
   cell: {
     padding: 0,
-    fontSize: 20,
+    fontSize: 18,
     borderBottom: '1px solid rgba(68, 44, 46, 0.2)'
   },
   productName: {
-    fontSize: 24,
-    fontWeight: 700,
+    fontSize: 20,
     borderBottom: '1px solid rgba(68, 44, 46, 0.2)'
   }
 });
