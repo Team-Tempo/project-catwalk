@@ -47,7 +47,6 @@ const QAndA = ({ question, product }) => {
     setIsCollapsed(true);
   }
 
-
   const classes = useStyles();
   return (
     <>
