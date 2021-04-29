@@ -69,7 +69,7 @@ const AddAnswer = ({ product, question }) => {
             margin="dense"
             id="answer"
             label="* Your Answer"
-            placeholder="Type your question here..."
+            placeholder="Type your answer here..."
             multiline
             rows={4}
             size="medium"

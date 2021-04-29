@@ -91,7 +91,7 @@ const AddQuestion = ({ product, productId }) => {
             margin="dense"
             id="email"
             label="Email"
-            placeholder="Why did you like the product or not?"
+            placeholder="Example: jack@email.com"
             type="email"
             variant="outlined"
             fullWidth

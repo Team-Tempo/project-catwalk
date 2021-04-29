@@ -35,6 +35,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
+  const [numQuestionsBeforeSearch, setNumQuestionsBeforeSearch] = useState(2);
   const classes = useStyles();
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
       const questionData = await getQuestions(productId);
       setQuestions(questionData.results);
       setShownQuestions(sortQuestionsByHelpfulness(questionData.results, 2));
+      setNumQuestionsBeforeSearch(2);
     }
     fetchQuestions();
   }, [productId]);
@@ -56,6 +58,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
     }
     var moreQuestions = sortQuestionsByHelpfulness(questions, numQuestionsToShow);
     setShownQuestions(moreQuestions);
+    setNumQuestionsBeforeSearch(moreQuestions.length);
   }
 
   const handleAddQuestionClick = () => {
@@ -64,7 +67,8 @@ const QuestionsAndAnswers = ({ productId, product }) => {
 
   const questionSearch = (searchInput) => {
     if (searchInput.length < 3) {
-      setShownQuestions(questions);
+      var questionsToShow = sortQuestionsByHelpfulness(questions, numQuestionsBeforeSearch);
+      setShownQuestions(questionsToShow);
       return;
     }
     var searchMatchingQuestions = [];
@@ -87,11 +91,11 @@ const QuestionsAndAnswers = ({ productId, product }) => {
       </Grid>
       <Grid item className={classes.spacer}></Grid>
       <Grid item>
-      {questions.length > 1 && !allQuestionsShown ?
-        <Button variant="contained" color="primary" onClick={handleMoreQuestionsClick}>
-          MORE ANSWERED QUESTIONS
-        </Button>
-        : null}
+        {questions.length > 2 && !allQuestionsShown ?
+          <Button variant="contained" color="primary" onClick={handleMoreQuestionsClick}>
+            MORE ANSWERED QUESTIONS
+          </Button> :
+          null}
         <AddQuestion product={product} productId={productId}/>
       </Grid>
     </div>
@@ -99,15 +103,35 @@ const QuestionsAndAnswers = ({ productId, product }) => {
 };
 
 const sortQuestionsByHelpfulness = (questionsAndAnswersData, numQuestions) => {
-  var result = questionsAndAnswersData.slice();
+  var answeredQuestions = [];
+  var unansweredQuestions = [];
+  var result = [];
   for (var i = 0; i < questionsAndAnswersData.length; i++) {
-    var currentValue = questionsAndAnswersData[i].question_helpfulness;
-    var position = i;
-    while (position > 0 && questionsAndAnswersData[position] < questionsAndAnswersData[position - 1]) {
-      questionsAndAnswersData[position] = questionsAndAnswersData[position - 1];
-      questionsAndAnswersData[position - 1] = currentValue;
+    if (Object.keys(questionsAndAnswersData[i].answers).length === 0) {
+      unansweredQuestions.push(questionsAndAnswersData[i]);
+    } else {
+      answeredQuestions.push(questionsAndAnswersData[i]);
     }
   }
+  for (var i = 0; i < unansweredQuestions.length; i++) {
+    var currentQuestion = unansweredQuestions[i];
+    var position = i;
+    while (i > 0 && unansweredQuestions[position].question_helpfulness > unansweredQuestions[position - 1].question_helpfulness) {
+      unansweredQuestions[position] = unansweredQuestions[position - 1];
+      unansweredQuestions[position - 1] = currentQuestion;
+      position--;
+    }
+  }
+  for (var i = 0; i < answeredQuestions.length; i++) {
+    var currentQuestion = answeredQuestions[i];
+    var position = i;
+    while (i > 0 && answeredQuestions[position].question_helpfulness > answeredQuestions[position - 1].question_helpfulness) {
+      answeredQuestions[position] = answeredQuestions[position - 1];
+      answeredQuestions[position - 1] = currentQuestion;
+      position--;
+    }
+  }
+  result = answeredQuestions.concat(unansweredQuestions);
   result = result.slice(0, numQuestions);
   return result;
 }
