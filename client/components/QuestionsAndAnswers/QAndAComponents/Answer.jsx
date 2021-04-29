@@ -25,9 +25,6 @@ const useStyles = makeStyles((theme) => ({
   align: {
     alignItems: 'center'
   },
-  lightFont: {
-    fontWeight: 'light'
-  },
   minorPadding: {
     paddingTop: '3px'
   }
