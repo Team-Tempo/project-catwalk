@@ -16,8 +16,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   gridList: {
-    minHeight: 550,
-    maxHeight: 550
+    height: 550
   },
   header: {
     fontWeight: 500,
@@ -25,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const getReviewsData = async (id) => {
-      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=100`);
-      return response.data;
+  const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=100`);
+  return response.data;
 };
 
 const ReviewsList = ({ productId }) => {
