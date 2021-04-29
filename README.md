@@ -3,7 +3,7 @@
 [Christian Peterson](https://github.com/ChrisRPeterson), [Amanda Davitt](https://github.com/acdavitt), [Dylan Reid](https://github.com/dylanreid7), [Julia Thea Boyadjan](https://github.com/julia-thea)
 
 # About
-The objective of Project Catwalk is to build a new retail website for a fictitious clothing company, J.CAD.  A team of four software engineers is given a time frame of three weeks to complete the request and adhere to the specifications laid out in the business requirement document.  The website is comprised of four main widgets.  Further details about each widget can be found below:
+The objective of Project Catwalk was to build a new retail website for a fictitious clothing company, J.CAD. Our team of four software engineers was given a time frame of three weeks to complete the request. We adhered to the specifications laid out in a business requirements document.  The website is comprised of four main widgets.  Further details about each widget can be found below:
 
 
 
