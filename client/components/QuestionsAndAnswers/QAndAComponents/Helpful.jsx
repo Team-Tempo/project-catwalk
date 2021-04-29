@@ -19,7 +19,7 @@ const Helpful = ({ helpfulness, questionId, answerId }) => {
       return;
     }
     if (questionId === 'NA') {
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/answers/${answerId}/helpful`)
+      axios.put(`http://localhost:1337/qa/answers/${answerId}/helpful`)
         .then((results) => {
           setHelpful(helpfulness + 1);
           setClicked(true);
@@ -28,7 +28,7 @@ const Helpful = ({ helpfulness, questionId, answerId }) => {
           console.error(err);
         })
     } else if (answerId === 'NA') {
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${questionId}/helpful`)
+      axios.put(`http://localhost:1337/qa/questions/${questionId}/helpful`)
         .then((results) => {
           setHelpful(helpfulness + 1);
           setClicked(true);

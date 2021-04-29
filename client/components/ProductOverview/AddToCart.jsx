@@ -14,9 +14,6 @@ import { FavoriteBorder } from '@material-ui/icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import config from '../../../config';
-
-axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -59,7 +56,7 @@ const AddToCart = ({ currentStyle }) => {
     if (!selectedSku) {
       console.error('No size selected!');
     }
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hratx/cart/', {
+    axios.post('http://localhost:1337/cart/', {
       sku_id: selectedSku,
     });
 

@@ -3,11 +3,9 @@ import Review from './Review.jsx';
 import AddReviewDialog from './AddReviewDialog';
 import { Typography, Grid, GridList, GridListTile, makeStyles } from '@material-ui/core'
 import axios from 'axios';
-import config from '../../../../config.js';
-axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
 
 const getReviewsData = async (id) => {
-      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=25`);
+      const response = await axios.get(`http://localhost:1337/reviews?product_id=${id}&count=25`);
       return response.data;
 };
 

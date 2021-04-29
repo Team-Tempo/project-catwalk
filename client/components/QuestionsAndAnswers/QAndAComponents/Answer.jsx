@@ -3,7 +3,6 @@ import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 var dateFormat = require('dateformat');
 import axios from 'axios';
-import config from '../../../../config';
 
 const useStyles = makeStyles((theme) => ({
   report: {
@@ -33,11 +32,7 @@ const Answer = ({ answer }) => {
 
   const handleReportClick = (e) => {
     setReportClicked(true);
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/answers/${answer.id}/report`, {
-      headers: {
-        Authorization: config.GITHUB_TOKEN,
-      }
-    })
+    axios.put(`http://localhost:1337/qa/answers/${answer.id}/report`)
   }
 
   return (

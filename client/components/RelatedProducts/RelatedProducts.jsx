@@ -3,12 +3,9 @@ import RelatedProductsList from './Related/RelatedProductsList.jsx';
 import CustomOutfitList from './Outfit/CustomOutfitList.jsx';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import config from '../../../config.js'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
 
 const RelatedProducts = ({
   productId,
@@ -23,7 +20,7 @@ const RelatedProducts = ({
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   async function getRelatedIds(productId) {
-    const relatedIdsResponse = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${productId}/related`);
+    const relatedIdsResponse = await axios.get(`http://localhost:1337/products/${productId}/related`);
     return relatedIdsResponse.data;
   }
 
@@ -34,15 +31,15 @@ const RelatedProducts = ({
         const uniqueRelatedIds = [...uniqueRelatedIdsSet]
 
         const productsIdGetReq = uniqueRelatedIds.map(id => {
-          return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`);
+          return axios.get(`http://localhost:1337/products/${id}`);
         })
 
         const stylesGetReq = uniqueRelatedIds.map(id => {
-          return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`);
+          return axios.get(`http://localhost:1337/products/${id}/styles`);
         })
 
         const ratingsGetReq = uniqueRelatedIds.map(id => {
-          return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`);
+          return axios.get(`http://localhost:1337/reviews/meta?product_id=${id}`);
         })
 
         return Promise.all([...productsIdGetReq, ...stylesGetReq, ...ratingsGetReq]);
