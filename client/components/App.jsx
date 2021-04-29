@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { AppBar, Toolbar } from '@material-ui/core';
@@ -132,7 +131,6 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper>
         <AppBar position="sticky">
           <Toolbar>
             <Header />
@@ -174,7 +172,6 @@ const App = () => {
             </Grid>
           </Grid>
         </Container>
-      </Paper>
     </ThemeProvider>
   );
 };

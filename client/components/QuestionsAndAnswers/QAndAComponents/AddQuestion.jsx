@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  spacing: {
+    marginLeft: '10px'
+  }
 }));
 
 const AddQuestion = ({ product, productId }) => {
@@ -51,7 +54,7 @@ const AddQuestion = ({ product, productId }) => {
 
   return (
     <>
-      <Button variant="outlined" onClick={handleOpen}>
+      <Button className={classes.spacing} variant="contained" color="primary" onClick={handleOpen}>
         ADD A QUESTION   +
       </Button>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -97,7 +100,7 @@ const AddQuestion = ({ product, productId }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit} color="primary">
+          <Button onClick={handleSubmit} variant="contained" color="primary">
             Submit
           </Button>
         </DialogActions>
@@ -105,5 +108,6 @@ const AddQuestion = ({ product, productId }) => {
     </>
   )
 }
+
 
 export default AddQuestion;

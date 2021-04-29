@@ -6,8 +6,9 @@ import axios from 'axios';
 import config from '../../../../config';
 
 const useStyles = makeStyles((theme) => ({
-  underlined: {
-    textDecoration: 'underline'
+  report: {
+    textDecoration: 'underline',
+    cursor: 'pointer'
   },
   textSpacing: {
     marginLeft: '10px',
@@ -58,15 +59,15 @@ const Answer = ({ answer }) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={answer.helpfulness}/>
+            <Helpful helpfulness={answer.helpfulness} questionId='NA' answerId={answer.id}/>
           </Grid>
           <Grid item>
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
             {reportClicked ?
-              <Typography variant="caption" className={classes.underlined}>Reported</Typography> :
-              <Typography variant="caption" className={classes.underlined} onClick={handleReportClick}>Report</Typography>
+              <Typography variant="caption" className={classes.report}>Reported</Typography> :
+              <Typography variant="caption" className={classes.report} onClick={handleReportClick}>Report</Typography>
             }
           </Grid>
         </Grid>
