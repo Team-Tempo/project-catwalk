@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Typography } from '@material-ui/core';
+import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Typography, Grid } from '@material-ui/core';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
 import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
@@ -8,6 +8,17 @@ import AddQuestion from './QAndAComponents/AddQuestion.jsx';
 import config from '../../../config';
 import axios from 'axios';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
+
+const useStyles = makeStyles((theme) => ({
+  scroll: {
+    maxHeight: 500,
+    overflow: 'auto'
+  },
+  spacer: {
+    marginTop: '10px',
+    marginBottom: '10px'
+  }
+}));
 
 const getQuestions = (id) => {
   return axios
@@ -24,6 +35,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
   const [questions, setQuestions] = useState([]);
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
+  const classes = useStyles();
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -68,15 +80,20 @@ const QuestionsAndAnswers = ({ productId, product }) => {
     <div>
       <Typography variant="h6">QUESTIONS & ANSWERS</Typography>
       <QuestionSearch questions={shownQuestions} questionSearch={questionSearch}/>
-      {shownQuestions.map((question, i) => (
-       <QAndA question={question} product={product} key={i}/>
-      ))}
+      <Grid item className={classes.scroll}>
+        {shownQuestions.map((question, i) => (
+          <QAndA question={question} product={product} key={i}/>
+        ))}
+      </Grid>
+      <Grid item className={classes.spacer}></Grid>
+      <Grid item>
       {questions.length > 1 && !allQuestionsShown ?
         <Button variant="contained" color="primary" onClick={handleMoreQuestionsClick}>
           MORE ANSWERED QUESTIONS
         </Button>
-      : null}
+        : null}
         <AddQuestion product={product} productId={productId}/>
+      </Grid>
     </div>
   );
 };
