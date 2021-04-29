@@ -1,9 +1,9 @@
 # project-catwalk
-# Contributers
+# Contributors
 [Christian Peterson](https://github.com/ChrisRPeterson), [Amanda Davitt](https://github.com/acdavitt), [Dylan Reid](https://github.com/dylanreid7), [Julia Thea Boyadjan](https://github.com/julia-thea)
 
 # About
-The objective of Project Catwalk is to build a new retail website for a fictitous clothing company, J.CAD.  A team of four software engineers is given a time frame of three weeks to complete the request and adhere to the specifications laid out in the business requirement document.  The website is comprised of four main widgets.  Further details about each widget can be found below:
+The objective of Project Catwalk is to build a new retail website for a fictitious clothing company, J.CAD.  A team of four software engineers is given a time frame of three weeks to complete the request and adhere to the specifications laid out in the business requirement document.  The website is comprised of four main widgets.  Further details about each widget can be found below:
 
 
 
@@ -15,7 +15,7 @@ The objective of Project Catwalk is to build a new retail website for a fictitou
 The related products list is a carousel of products predetermined by the company as being related to the current product.  The related products list features are as follows:
   * Clicking a related product card will change the current product to that product
   * Each card will have a star icon.  Upon clicking the icon, a comparison modal will pop-up listing the differing characteristics between the related product and current product.
-  * Four cards should display on intial page render.  Additional cards can be viewed with arrows on the right and left sides of the carousel.
+  * Four cards should display on initial page render.  Additional cards can be viewed with arrows on the right and left sides of the carousel.
 
 **Custom Outfit List**
 
