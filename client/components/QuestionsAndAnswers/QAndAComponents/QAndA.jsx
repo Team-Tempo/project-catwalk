@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 import Answer from './Answer.jsx';
@@ -63,7 +63,7 @@ const QAndA = ({ question, product }) => {
         </Grid>
         <Grid item xs={5} className={classes.alignHorizontally}>
           <Grid item className={classes.textSpacing}>
-            <Helpful helpfulness={question.question_helpfulness}/>
+            <Helpful helpfulness={question.question_helpfulness} questionId={question.question_id} answerId='NA'/>
           </Grid>
           <Grid item className={classes.textSpacing}>
             <Typography variant="caption">|</Typography>

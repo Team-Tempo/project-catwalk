@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import ComparisonModal from '../ComparisonModal.jsx'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -118,25 +117,24 @@ const RelatedProductCard = ({
     <Card onClick={handleRelatedCardClick} className={classes.root}>
       <CardActionArea >
         <CardMedia
-        className={classes.media}
-        component="img"
-        image={image}
-        alt="Image not available"
+          className={classes.media}
+          component="img"
+          image={image}
+          alt="Image not available"
         />
-        <CardActions >
-          <SvgIcon onClick={(e) => handleOpen(e)} className={classes.overlay}>
-            <path
+        <SvgIcon onClick={(e) => handleOpen(e)} className={classes.overlay}>
+          <path
             d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-            </path>
-          </SvgIcon>
-        </CardActions>
-            <Dialog
-              open={open}
-              onClick={handleDialogClick}
-              onClose={(e) => handleClose(e)}
-            >
-              <ComparisonModal  relatedProductData={relatedProductData} product={product} />
-            </Dialog>
+          </path>
+        </SvgIcon>
+        <Dialog
+          open={open}
+          onClick={handleDialogClick}
+          onClose={(e) => handleClose(e)}
+          maxWidth="sm"
+        >
+          <ComparisonModal relatedProductData={relatedProductData} product={product} />
+        </Dialog>
 
         <CardContent>
           <Typography className={classes.category} variant="caption">
@@ -156,10 +154,10 @@ const RelatedProductCard = ({
             </>
           ) : (
             <Typography variant="caption">
-            ${Math.round(relatedProductData.default_price)}
+              ${Math.round(relatedProductData.default_price)}
             </Typography>
           )}
-        <Typography>
+          <Typography>
             <StyledRating
               emptyIcon={<StarBorder fontSize="inherit" />}
               icon={<Star fontSize="inherit" />}
