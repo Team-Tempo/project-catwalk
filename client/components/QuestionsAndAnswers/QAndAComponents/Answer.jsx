@@ -47,7 +47,7 @@ const Answer = ({ answer }) => {
           <Typography variant="h6"><b>A:</b></Typography>
         </Grid>
         <Grid item className={classes.miniSpacing}>
-          <Typography variant="caption">{answer.body ? answer.body : 'No answer for this question yet'}</Typography>
+          <Typography variant="h6">{answer.body ? answer.body : 'No answer for this question yet'}</Typography>
         </Grid>
       </Grid>
       {answer.date ?
