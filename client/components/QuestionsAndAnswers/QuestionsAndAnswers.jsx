@@ -87,7 +87,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
       </Grid>
       <Grid item className={classes.spacer}></Grid>
       <Grid item>
-      {questions.length > 1 && !allQuestionsShown ?
+      {questions.length > 2 && !allQuestionsShown ?
         <Button variant="contained" color="primary" onClick={handleMoreQuestionsClick}>
           MORE ANSWERED QUESTIONS
         </Button>
