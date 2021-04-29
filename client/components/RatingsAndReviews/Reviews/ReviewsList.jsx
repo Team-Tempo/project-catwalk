@@ -5,7 +5,7 @@ import { Typography, Grid, GridList, GridListTile, makeStyles } from '@material-
 import axios from 'axios';
 
 const getReviewsData = async (id) => {
-      const response = await axios.get(`http://localhost:1337/reviews?product_id=${id}&count=25`);
+      const response = await axios.get(`http://3.22.172.178:1337/reviews?product_id=${id}&count=25`);
       return response.data;
 };
 

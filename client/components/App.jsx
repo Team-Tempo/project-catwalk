@@ -40,7 +40,7 @@ const theme = createMuiTheme({
 
 const getAverageRatingFromId = async (id) => {
   const result = await axios.get(
-    `http://localhost:1337/reviews/meta?product_id=${id}`
+    `http://3.22.172.178:1337/reviews/meta?product_id=${id}`
   );
 
   const ratings = result.data.ratings;
@@ -60,7 +60,7 @@ const getAverageRatingFromId = async (id) => {
 
 const getProduct = (id) => {
   return axios
-    .get(`http://localhost:1337/products/${id}`)
+    .get(`http://3.22.172.178:1337/products/${id}`)
     .then((response) => {
       return response.data;
     });
@@ -69,7 +69,7 @@ const getProduct = (id) => {
 const getProductStyles = (id) => {
   return axios
     .get(
-      `http://localhost:1337/products/${id}/styles`)
+      `http://3.22.172.178:1337/products/${id}/styles`)
     .then((response) => {
       return response.data.results;
     });

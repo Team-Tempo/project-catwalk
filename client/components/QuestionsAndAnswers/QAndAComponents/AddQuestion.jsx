@@ -38,7 +38,7 @@ const AddQuestion = ({ product, productId }) => {
       product_id: productId
     };
 
-    axios.post(`http://localhost:1337/qa/questions`, questionData)
+    axios.post(`http://3.22.172.178:1337/qa/questions`, questionData)
 
     setQuestion('');
     setNickname('');

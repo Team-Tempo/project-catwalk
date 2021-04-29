@@ -34,7 +34,7 @@ const AddReviewDialog = ({ productId }) => {
     formDataStorage.data["product_id"] = productId;
 
     axios
-      .post(`http://localhost:1337/reviews`, formDataStorage.data)
+      .post(`http://3.22.172.178:1337/reviews`, formDataStorage.data)
       .then(res => {
       console.log(res)
       })

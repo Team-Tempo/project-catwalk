@@ -41,7 +41,7 @@ const AddAnswer = ({ product, question }) => {
       photos: []
     };
 
-    axios.post(`http://localhost:1337/qa/questions/${question.question_id}/answers`, answerData)
+    axios.post(`http://3.22.172.178:1337/qa/questions/${question.question_id}/answers`, answerData)
 
     setAnswer('');
     setNickname('');

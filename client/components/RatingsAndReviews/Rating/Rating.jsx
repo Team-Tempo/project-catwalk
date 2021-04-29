@@ -18,7 +18,7 @@ const Rating = (props) => {
   const [reviewsMetaData, setReviewsMetaData] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:1337/reviews/meta?product_id=${props.ratingData.productId}`)
+    axios.get(`http://3.22.172.178:1337/reviews/meta?product_id=${props.ratingData.productId}`)
       .then(res => {
         setReviewsMetaData(res.data)
       })

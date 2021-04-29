@@ -32,7 +32,7 @@ const Answer = ({ answer }) => {
 
   const handleReportClick = (e) => {
     setReportClicked(true);
-    axios.put(`http://localhost:1337/qa/answers/${answer.id}/report`)
+    axios.put(`http://3.22.172.178:1337/qa/answers/${answer.id}/report`)
   }
 
   return (

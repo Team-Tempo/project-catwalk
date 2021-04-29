@@ -56,7 +56,7 @@ const AddToCart = ({ currentStyle }) => {
     if (!selectedSku) {
       console.error('No size selected!');
     }
-    axios.post('http://localhost:1337/cart/', {
+    axios.post('http://3.22.172.178:1337/cart/', {
       sku_id: selectedSku,
     });
 

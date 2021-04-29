@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const getQuestions = (id) => {
   return axios
-    .get(`http://localhost:1337/qa/questions?product_id=${id}&count=1000`)
+    .get(`http://3.22.172.178:1337/qa/questions?product_id=${id}&count=1000`)
     .then((response) => {
       return response.data;
     })
