@@ -104,7 +104,6 @@ const QuestionsAndAnswers = ({ productId, product }) => {
 
 const sortQuestionsByHelpfulness = (questionsAndAnswersData, numQuestions) => {
   var answeredQuestions = [];
-  console.log('qanda data', questionsAndAnswersData);
   var unansweredQuestions = [];
   var result = [];
   for (var i = 0; i < questionsAndAnswersData.length; i++) {
@@ -133,9 +132,7 @@ const sortQuestionsByHelpfulness = (questionsAndAnswersData, numQuestions) => {
     }
   }
   result = answeredQuestions.concat(unansweredQuestions);
-  console.log('result pre cut', result);
   result = result.slice(0, numQuestions);
-  console.log('result', result);
   return result;
 }
 
