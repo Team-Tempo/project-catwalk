@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const AddReviewDialog = ({ productName, productId }) => {
+const AddReviewDialog = ({ handleSubmitReview, productName, productId }) => {
   const [open, setOpen] = useState(false);
   const formDataStorage = {};
 
@@ -38,7 +38,7 @@ const AddReviewDialog = ({ productName, productId }) => {
     axios
       .post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`, formDataStorage.data)
       .then(res => {
-      console.log(res)
+        handleSubmitReview(true);
       })
       .catch(err => console.log(err));
   }
@@ -53,7 +53,6 @@ const AddReviewDialog = ({ productName, productId }) => {
           <DialogTitle id="form-dialog-title">Write your review</DialogTitle>
           <DialogContent>
           <DialogContentText>
-            {/*  Pass actual product name later */}
             About the {productName}
           </DialogContentText>
           <AddReviewForm formData={formDataStorage}/>

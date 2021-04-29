@@ -30,16 +30,21 @@ const useStyles = makeStyles((theme) => ({
 
 const ReviewsList = ({ product, productId }) => {
   const [reviewsData, setReviewsData] = useState([]);
+  const [reviewsDataHasChanged, setReviewsDataHasChanged] = useState(false);
 
   useEffect(() => {
     getReviewsData(productId)
     .then(resultData => {
       setReviewsData(resultData.results);
     })
-  }, [productId])
+  }, [productId, reviewsDataHasChanged])
 
   const classes = useStyles();
   const reviewsCounter = reviewsData.length;
+
+  function handleSubmitReview() {
+    setReviewsDataHasChanged(true);
+  }
 
   return (
     <div className={classes.root}>
@@ -55,7 +60,7 @@ const ReviewsList = ({ product, productId }) => {
          </GridList>
         </Grid>
         <Grid item xs={12} className={classes.buttons}>
-          <AddReviewDialog productName={product.name} productId={productId}/>
+          <AddReviewDialog handleSubmitReview={handleSubmitReview} productName={product.name} productId={productId}/>
         </Grid>
       </Grid>
     </div>
