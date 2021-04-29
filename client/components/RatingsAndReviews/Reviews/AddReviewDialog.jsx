@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const AddReviewDialog = ({ productId }) => {
+const AddReviewDialog = ({ productName, productId }) => {
   const [open, setOpen] = useState(false);
   const formDataStorage = {};
 
@@ -54,7 +54,7 @@ const AddReviewDialog = ({ productId }) => {
           <DialogContent>
           <DialogContentText>
             {/*  Pass actual product name later */}
-            About the Camo Onesie
+            About the {productName}
           </DialogContentText>
           <AddReviewForm formData={formDataStorage}/>
           </DialogContent>

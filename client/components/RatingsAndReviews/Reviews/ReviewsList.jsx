@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const ReviewsList = ({ productId }) => {
+const ReviewsList = ({ product, productId }) => {
   const [reviewsData, setReviewsData] = useState([]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const ReviewsList = ({ productId }) => {
          </GridList>
         </Grid>
         <Grid item xs={12} className={classes.buttons}>
-          <AddReviewDialog productId={productId}/>
+          <AddReviewDialog productName={product.name} productId={productId}/>
         </Grid>
       </Grid>
     </div>
