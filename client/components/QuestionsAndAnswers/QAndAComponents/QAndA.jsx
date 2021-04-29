@@ -35,18 +35,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const QAndA = ({ question, product }) => {
-  const allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
-  const twoSortedAnswers = createSortedAnswers(question.answers, 2);
-  const [shownAnswers, setShownAnswers] = useState(twoSortedAnswers);
+  var allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
+  var twoSortedAnswers = createSortedAnswers(question.answers, 2);
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleMoreAnswersClick = () => {
-    setShownAnswers(allSortedAnswers);
     setIsCollapsed(false);
   }
 
   const handleCollapseClick = () => {
-    setShownAnswers(twoSortedAnswers);
     setIsCollapsed(true);
   }
 
@@ -76,12 +73,16 @@ const QAndA = ({ question, product }) => {
         </Grid>
       </Grid>
       <Grid>
-        {shownAnswers.map((answer, i) => {
-          return <Answer answer={answer} questionId={question.question_id} key={i}/>
-        })}
+        {isCollapsed ?
+          twoSortedAnswers.map((answer, i) => {
+            return <Answer answer={answer} key={i}/>
+          }) :
+          allSortedAnswers.map((answer, i) => {
+            return <Answer answer={answer} key={i}/>
+          })}
       </Grid>
       <Grid>
-        {allSortedAnswers.length > shownAnswers.length && isCollapsed
+        {allSortedAnswers.length > 2 && isCollapsed
         ?
         <Typography variant="caption" onClick={handleMoreAnswersClick} className={classes.cursor}>SEE MORE ANSWERS</Typography>
         :
