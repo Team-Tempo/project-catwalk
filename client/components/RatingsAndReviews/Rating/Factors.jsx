@@ -52,6 +52,11 @@ const marks = [
 
 export default function CustomizedSlider({ characteristics }) {
   const classes = useStyles();
+  console.log("CH: ", characteristics);
+
+  if (characteristics.Quality) {
+    return null;
+  }
 
   return (
     <div className={classes.root}>
