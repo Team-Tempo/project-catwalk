@@ -6,10 +6,6 @@ import axios from 'axios';
 import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
 
-const getReviewsData = async (id) => {
-      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=100`);
-      return response.data;
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   gridList: {
-    // minHeight: 200,
     minHeight: 550,
     maxHeight: 550
   },
@@ -29,18 +24,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const getReviewsData = async (id) => {
+      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=100`);
+      return response.data;
+};
+
 const ReviewsList = ({ productId }) => {
   const [reviewsData, setReviewsData] = useState([]);
+  const [limit, setLimit] = useState(2);
 
   useEffect(() => {
     getReviewsData(productId)
     .then(resultData => {
-      setReviewsData(resultData.results);
+      setReviewsData(resultData.results.slice(0, limit));
     })
-  }, [productId])
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [productId, limit])
 
   const classes = useStyles();
   const reviewsCounter = reviewsData.length;
+
+  const handleMoreReviews = () => {
+    setLimit(limit + 2);
+  }
 
   return (
     <div className={classes.root}>
@@ -57,7 +65,7 @@ const ReviewsList = ({ productId }) => {
         </Grid>
         <Grid container item xs={12} className={classes.buttons}>
           <Grid item xs={2}>
-             <Button variant='contained' color='primary'>MORE REVIEWS</Button>
+             <Button variant='contained' color='primary' onClick={handleMoreReviews}>MORE REVIEWS</Button>
           </Grid>
           <Grid item xs={2}>
              <AddReviewDialog productId={productId}/>
