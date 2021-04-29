@@ -41,12 +41,7 @@ const theme = createMuiTheme({
 
 const getAverageRatingFromId = async (id) => {
   const result = await axios.get(
-    `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`,
-    {
-      headers: {
-        Authorization: config.GITHUB_TOKEN,
-      },
-    }
+    `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`
   );
 
   const ratings = result.data.ratings;
