@@ -4,7 +4,6 @@ const axios = require('axios');
 const cors = require('cors');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-console.log({GITHUB_TOKEN})
 
 const PORT = 1337;
 const app = express();
@@ -14,9 +13,6 @@ app.use(cors());
 app.use(express.json());
 
 app.all('/*', (req, res) =>  {
-  //req.method will tell us if we need to do a post, get
-  //req.url
-
   axios({
     method: req.method,
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hratx${req.url}`,
