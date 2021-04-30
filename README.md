@@ -5,7 +5,7 @@
 # About
 The objective of Project Catwalk was to build a new retail website for a fictitious clothing company, J.CAD. Our team of four software engineers was given a time frame of three weeks to complete the request. We adhered to the specifications laid out in a business requirements document.  The website is comprised of four main widgets.  Further details about each widget can be found below:
 
-
+![](https://media.giphy.com/media/ybgGMjoo5WwTPMZSlk/giphy.gif)
 
 ## Overview --[Christian Peterson](https://github.com/ChrisRPeterson)
 
