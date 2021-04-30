@@ -42,7 +42,6 @@ const ReviewsList = ({ productId }) => {
     })
   }, [productId, limit])
 
-  // when product id changes, set limit to 2
   useEffect(() => {
     setLimit(2);
   }, [productId]);
