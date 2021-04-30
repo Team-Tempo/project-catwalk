@@ -1,6 +1,60 @@
-# project-catwalk
-# Contributors
-[Christian Peterson](https://github.com/ChrisRPeterson), [Amanda Davitt](https://github.com/acdavitt), [Dylan Reid](https://github.com/dylanreid7), [Julia Thea Boyadjan](https://github.com/julia-thea)
+<br />
+<p align="center">
+ <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+  <h3 align="center">Project Catwalk</h3>
+
+  <p align="center">
+    A new retail website for a fictitious clothing company, J.CAD.
+    <br />
+    <h3 align="center"><strong>Contributers »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/ChrisRPeterson">Christian Peterson</a>
+    ·
+    <a href="https://github.com/acdavitt">Amanda Davitt</a>
+    ·
+    <a href="https://github.com/dylanreid7">Dylan Reid</a>
+    ·
+    <a href="https://github.com/julia-thea">Julia Thea Boyadjan</a>
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about">About The Project</a>
+      <ul>
+        <li><a href="#stack">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#overview---christian-peterson">Overview</a></li>
+    <li><a href="#related-products-and-outfit-lists---amanda-davitt">Related Products and Outfit Lists</a></li>
+    <li><a href="#questions-and-answers---dylan-reid">Questions and Answers</a></li>
+    <li><a href="#ratings-and-reviews---julia-thea-boyadjan">Ratings and Reviews</a></li>
+    <li>
+     <a href="#workflow">Workflow</a>
+     <ul>
+      <li><a href="#trello">Trello</a></li>
+      <li><a href="#version-control">Version Control</a></li>
+     </ul>
+    </li>
+    <li>
+     <a href="#development">Development</a>
+     <ul>
+      <li><a href="#repo">Repo</a></li>
+      <li><a href="#install">Install</a></li>
+      <li><a href="#start-scripts">Start Scripts</a></li>
+      <li><a href="#github-api-token">Github API token</a></li>
+     </ul>
+    </li>
+  </ol>
+</details>
 
 # About
 The objective of Project Catwalk was to build a new retail website for a fictitious clothing company, J.CAD. Our team of four software engineers was given a time frame of three weeks to complete the request. We adhered to the specifications laid out in a business requirements document.  The website is comprised of four main widgets.  Further details about each widget can be found below.
