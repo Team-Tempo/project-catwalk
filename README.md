@@ -9,6 +9,8 @@ The objective of Project Catwalk was to build a new retail website for a fictiti
 
 ## Overview --[Christian Peterson](https://github.com/ChrisRPeterson)
 
+![](https://media.giphy.com/media/tg85cRTz6IdTyoHp4f/giphy.gif)
+
 ## Related Products and Outfit Lists --[Amanda Davitt](https://github.com/acdavitt)
 **Related Products List Features:**
 
@@ -25,6 +27,8 @@ The objective of Project Catwalk was to build a new retail website for a fictiti
 
 
 ## Questions and Answers --[Dylan Reid](https://github.com/dylanreid7)
+
+ ![](https://media.giphy.com/media/k9T9wChKTqWYTXlyXm/giphy.gif)
 
 ## Ratings and Reviews --[Julia Thea Boyadjan](https://github.com/julia-thea)
 
