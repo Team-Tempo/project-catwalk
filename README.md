@@ -14,14 +14,14 @@ The objective of Project Catwalk was to build a new retail website for a fictiti
 ## Related Products and Outfit Lists --[Amanda Davitt](https://github.com/acdavitt)
 **Related Products List Features:**
 
-  * Clicking a card will change the current product to that product.
-  * A comparison modal will pop up upon clicking the star icon.
+  * *Product Card*: clicking on the card itself changes the current product
+  * *Comparison Modal*: pops up upon clicking the star icon
 
 **Custom Outfit List Features:**
 
-  * Clicking the first 'Add to Outfit' card will add the current product to the user's outfit list.
-  * Clicking the 'X' icon will remove the product from the list.
-  * The user's outfit list will persist upon leaving the website or refreshing the page.
+  * *Add to Outfit Card*: adds the current product to the user's outfit list
+  * *'X' icon*: removes the product from the list
+  * *Outfit List*: persists upon page refresh
 
   ![](https://media.giphy.com/media/nKCnmYJrDrUJUtl6f2/giphy.gif)
 
