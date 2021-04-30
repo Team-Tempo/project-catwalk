@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   gridList: {
-    height: 550
+    height: 550,
   },
   header: {
     fontWeight: 500,

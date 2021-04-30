@@ -5,6 +5,7 @@ import { makeStyles, Typography, Grid, Divider } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    maxWidth: '95%'
   },
   reviewTitle: {
     fontWeight: 500,
