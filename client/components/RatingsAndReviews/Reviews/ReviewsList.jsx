@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Review from './Review.jsx';
 import AddReviewDialog from './AddReviewDialog';
-import { Typography, Grid, GridList, GridListTile, makeStyles, Button } from '@material-ui/core'
+import { Typography, Grid, GridList, makeStyles, Button } from '@material-ui/core'
 import axios from 'axios';
 import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
