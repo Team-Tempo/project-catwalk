@@ -31,7 +31,7 @@ The objective of Project Catwalk was to build a new retail website for a fictiti
   * *Search Bar*: allows a user to search for questions
   * *Questions and Answers List*: displays the questions and answers, sorted by helpfulness
   * *Helpfulness*: clicking 'Yes' adds one to the helpfulness of a question or answer
-  * *More Answered Questions*: clicking this button displays more questions and answers
+  * *More Answered Questions Button*: displays more questions and answers
   * *Add Question/Add Answer*: pops up a dialog box that allows the user to add a question or answer
 
  ![](https://media.giphy.com/media/k9T9wChKTqWYTXlyXm/giphy.gif)
