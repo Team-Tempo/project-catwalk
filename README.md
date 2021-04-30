@@ -3,12 +3,13 @@
  <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
-  <h3 align="center">Project Catwalk</h3>
+  <h1 align="center">Project Catwalk</h1>
 
   <p align="center">
     A new retail website for a fictitious clothing company, J.CAD.
     <br />
-    <h3 align="center"><strong>Contributers »</strong></a>
+    <h3 align="center">
+     <strong>Contributers »</strong>
     <br />
     <br />
     <a href="https://github.com/ChrisRPeterson">Christian Peterson</a>
@@ -18,6 +19,7 @@
     <a href="https://github.com/dylanreid7">Dylan Reid</a>
     ·
     <a href="https://github.com/julia-thea">Julia Thea Boyadjan</a>
+     </h3>
   </p>
 </p>
 
