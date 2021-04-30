@@ -53,35 +53,16 @@ const marks = [
 export default function CustomizedSlider({ characteristics }) {
   const classes = useStyles();
 
-  if (characteristics.Quality) {
-    console.log("Q: ", characteristics.Quality)
-    return null;
-  }
-
   return (
     <div className={classes.root}>
       {
-        characteristics.Fit ? (
-          <>
-            <small>Fit</small>
-              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Fit.value === null ? 50 : Number(characteristics.Fit.value) * 100 / 5 } />
-            <small>Length</small>
-              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Length.value === null ? 50 : Number(characteristics.Length.value) * 100 / 5 } />
-          </>
-        ) : (
-          <>
-            <small>Size</small>
-              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Size.value === null ? 50 : Number(characteristics.Size.value) * 100 / 5 } />
-            <small>Width</small>
-              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Width.value === null ? 50 : Number(characteristics.Width.value) * 100 / 5 } />
-          </>
-        )
+        Object.entries(characteristics).map((characteristic) => (
+          <div key={characteristic[1].id}>
+            <small>{characteristic[0]}</small>
+              <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristic[1].value === null ? 50 : Number(characteristic[1].value) * 100 / 5 } />
+          </div>
+        ))
       }
-      <small>Comfort</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Comfort.value === null ? 50 : Number(characteristics.Comfort.value) * 20 } />
-      <small>Quality</small>
-        <PrettoSlider aria-label="pretto slider" disabled marks={marks} value={ characteristics.Quality.value === null ? 50 : Number(characteristics.Quality.value) * 100 / 5 } />
-      <div className={classes.margin} />
     </div>
   );
 }
