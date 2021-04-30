@@ -6,6 +6,7 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import config from '../../../config.js';
 
 const RelatedProducts = ({
   productId,
@@ -20,7 +21,7 @@ const RelatedProducts = ({
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   async function getRelatedIds(productId) {
-    const relatedIdsResponse = await axios.get(`http://3.22.172.178:1337/products/${productId}/related`);
+    const relatedIdsResponse = await axios.get(`http://${config.IP_ADDRESS}:${config.PORT}/products/${productId}/related`);
     return relatedIdsResponse.data;
   }
 
@@ -31,15 +32,15 @@ const RelatedProducts = ({
         const uniqueRelatedIds = [...uniqueRelatedIdsSet]
 
         const productsIdGetReq = uniqueRelatedIds.map(id => {
-          return axios.get(`http://3.22.172.178:1337/products/${id}`);
+          return axios.get(`http://${config.IP_ADDRESS}:${config.PORT}/products/${id}`);
         })
 
         const stylesGetReq = uniqueRelatedIds.map(id => {
-          return axios.get(`http://3.22.172.178:1337/products/${id}/styles`);
+          return axios.get(`http://${config.IP_ADDRESS}:${config.PORT}/products/${id}/styles`);
         })
 
         const ratingsGetReq = uniqueRelatedIds.map(id => {
-          return axios.get(`http://3.22.172.178:1337/reviews/meta?product_id=${id}`);
+          return axios.get(`http://${config.IP_ADDRESS}:${config.PORT}/reviews/meta?product_id=${id}`);
         })
 
         return Promise.all([...productsIdGetReq, ...stylesGetReq, ...ratingsGetReq]);

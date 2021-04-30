@@ -14,6 +14,7 @@ import { FavoriteBorder } from '@material-ui/icons';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import config from '../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -56,7 +57,7 @@ const AddToCart = ({ currentStyle }) => {
     if (!selectedSku) {
       console.error('No size selected!');
     }
-    axios.post('http://3.22.172.178:1337/cart/', {
+    axios.post(`http://${config.IP_ADDRESS}:${config.PORT}/cart/`, {
       sku_id: selectedSku,
     });
 

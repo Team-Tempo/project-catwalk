@@ -1,5 +1,7 @@
 const config = {
-  GITHUB_TOKEN: 'YOUR TOKEN HERE',
+  PORT: 1337,
+  IP_ADDRESS: 'your_IP_address'
 };
+
 
 export default config;

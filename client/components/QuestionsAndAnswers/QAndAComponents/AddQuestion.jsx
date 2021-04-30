@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles } from '@material-ui/core';
 import axios from 'axios';
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,7 +39,7 @@ const AddQuestion = ({ product, productId }) => {
       product_id: productId
     };
 
-    axios.post(`http://3.22.172.178:1337/qa/questions`, questionData)
+    axios.post(`http://${config.IP_ADDRESS}:${config.PORT}/qa/questions`, questionData)
 
     setQuestion('');
     setNickname('');

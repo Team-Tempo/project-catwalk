@@ -5,6 +5,7 @@ import RatingBreakdown from './RatingBreakdown.jsx';
 import RatingSummaryStars from './RatingSummaryStars';
 import Factors from './Factors';
 import axios from 'axios';
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ const Rating = (props) => {
   const [reviewsMetaData, setReviewsMetaData] = useState({});
 
   useEffect(() => {
-    axios.get(`http://3.22.172.178:1337/reviews/meta?product_id=${props.ratingData.productId}`)
+    axios.get(`http://${config.IP_ADDRESS}:${config.PORT}/reviews/meta?product_id=${props.ratingData.productId}`)
       .then(res => {
         setReviewsMetaData(res.data)
       })

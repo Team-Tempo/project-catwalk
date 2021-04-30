@@ -8,6 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -34,7 +35,7 @@ const AddReviewDialog = ({ productId }) => {
     formDataStorage.data["product_id"] = productId;
 
     axios
-      .post(`http://3.22.172.178:1337/reviews`, formDataStorage.data)
+      .post(`http://${config.IP_ADDRESS}:${config.PORT}/reviews`, formDataStorage.data)
       .then(res => {
       console.log(res)
       })

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -41,7 +42,7 @@ const AddAnswer = ({ product, question }) => {
       photos: []
     };
 
-    axios.post(`http://3.22.172.178:1337/qa/questions/${question.question_id}/answers`, answerData)
+    axios.post(`http://${config.IP_ADDRESS}:${config.PORT}/qa/questions/${question.question_id}/answers`, answerData)
 
     setAnswer('');
     setNickname('');

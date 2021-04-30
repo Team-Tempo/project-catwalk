@@ -6,10 +6,11 @@ import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
 import Photos from './QAndAComponents/Photos.jsx';
 import AddQuestion from './QAndAComponents/AddQuestion.jsx';
 import axios from 'axios';
+import config from '../../../config.js';
 
 const getQuestions = (id) => {
   return axios
-    .get(`http://3.22.172.178:1337/qa/questions?product_id=${id}&count=1000`)
+    .get(`http://${config.IP_ADDRESS}:${config.PORT}/qa/questions?product_id=${id}&count=1000`)
     .then((response) => {
       return response.data;
     })

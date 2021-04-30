@@ -3,6 +3,7 @@ import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 var dateFormat = require('dateformat');
 import axios from 'axios';
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   report: {
@@ -32,7 +33,7 @@ const Answer = ({ answer }) => {
 
   const handleReportClick = (e) => {
     setReportClicked(true);
-    axios.put(`http://3.22.172.178:1337/qa/answers/${answer.id}/report`)
+    axios.put(`http://${config.IP_ADDRESS}:${config.PORT}/qa/answers/${answer.id}/report`)
   }
 
   return (
