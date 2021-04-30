@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core'
 import axios from 'axios';
-import config from '../../../../config.js';
 import Button from '@material-ui/core/Button';
 import AddReviewForm from './AddReviewForm';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,7 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -36,7 +35,7 @@ const AddReviewDialog = ({ productId }) => {
     formDataStorage.data["product_id"] = productId;
 
     axios
-      .post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`, formDataStorage.data)
+      .post(`http://${config.IP_ADDRESS}:${config.PORT}/reviews`, formDataStorage.data)
       .then(res => {
       console.log(res)
       })

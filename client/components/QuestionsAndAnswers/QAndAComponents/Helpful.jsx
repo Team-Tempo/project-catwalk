@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles, Grid, Typography } from '@material-ui/core';
 import axios from 'axios';
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   yes: {
@@ -18,7 +19,7 @@ const Helpful = ({ helpfulness, questionId, answerId }) => {
       return;
     }
     if (questionId === 'NA') {
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/answers/${answerId}/helpful`)
+      axios.put(`http://${config.IP_ADDRESS}:${config.PORT}/qa/answers/${answerId}/helpful`)
         .then((results) => {
           setClicked(true);
         })
@@ -26,7 +27,7 @@ const Helpful = ({ helpfulness, questionId, answerId }) => {
           console.error(err);
         })
     } else if (answerId === 'NA') {
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${questionId}/helpful`)
+      axios.put(`http://${config.IP_ADDRESS}:${config.PORT}/qa/questions/${questionId}/helpful`)
         .then((results) => {
           setClicked(true);
         })

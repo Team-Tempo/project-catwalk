@@ -10,7 +10,7 @@ import QuestionsAndAnswers from './QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Header from './Header.jsx';
-import config from '../../config';
+import config from '../../config.js';
 
 const theme = createMuiTheme({
   palette: {
@@ -41,12 +41,7 @@ const theme = createMuiTheme({
 
 const getAverageRatingFromId = async (id) => {
   const result = await axios.get(
-    `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews/meta?product_id=${id}`,
-    {
-      headers: {
-        Authorization: config.GITHUB_TOKEN,
-      },
-    }
+    `http://${config.IP_ADDRESS}:${config.PORT}/reviews/meta?product_id=${id}`
   );
 
   const ratings = result.data.ratings;
@@ -66,11 +61,7 @@ const getAverageRatingFromId = async (id) => {
 
 const getProduct = (id) => {
   return axios
-    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}`, {
-      headers: {
-        Authorization: config.GITHUB_TOKEN,
-      },
-    })
+    .get(`http://${config.IP_ADDRESS}:${config.PORT}/products/${id}`)
     .then((response) => {
       return response.data;
     });
@@ -79,13 +70,7 @@ const getProduct = (id) => {
 const getProductStyles = (id) => {
   return axios
     .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hratx/products/${id}/styles`,
-      {
-        headers: {
-          Authorization: config.GITHUB_TOKEN,
-        },
-      }
-    )
+      `http://${config.IP_ADDRESS}:${config.PORT}/products/${id}/styles`)
     .then((response) => {
       return response.data.results;
     });

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Typography } from '@material-ui/core';
-import config from '../../../../config';
 import axios from 'axios';
-axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
+import config from '../../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -43,7 +42,7 @@ const AddAnswer = ({ product, question }) => {
       photos: []
     };
 
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${question.question_id}/answers`, answerData)
+    axios.post(`http://${config.IP_ADDRESS}:${config.PORT}/qa/questions/${question.question_id}/answers`, answerData)
 
     setAnswer('');
     setNickname('');

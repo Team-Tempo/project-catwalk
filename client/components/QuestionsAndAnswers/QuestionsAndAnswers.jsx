@@ -5,9 +5,8 @@ import QAndA from './QAndAComponents/QAndA.jsx';
 import QuestionSearch from './QAndAComponents/QuestionSearch.jsx';
 import Photos from './QAndAComponents/Photos.jsx';
 import AddQuestion from './QAndAComponents/AddQuestion.jsx';
-import config from '../../../config';
 import axios from 'axios';
-axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN;
+import config from '../../../config.js';
 
 const useStyles = makeStyles((theme) => ({
   scroll: {
@@ -22,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const getQuestions = (id) => {
   return axios
-    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions?product_id=${id}&count=1000`)
+    .get(`http://${config.IP_ADDRESS}:${config.PORT}/qa/questions?product_id=${id}&count=1000`)
     .then((response) => {
       return response.data;
     })
