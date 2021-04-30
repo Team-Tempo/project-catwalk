@@ -54,6 +54,7 @@ export default function CustomizedSlider({ characteristics }) {
   const classes = useStyles();
 
   if (characteristics.Quality) {
+    console.log("Q: ", characteristics.Quality)
     return null;
   }
 
