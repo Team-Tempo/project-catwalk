@@ -1,46 +1,101 @@
-# project-catwalk
-# Contributors
-[Christian Peterson](https://github.com/ChrisRPeterson), [Amanda Davitt](https://github.com/acdavitt), [Dylan Reid](https://github.com/dylanreid7), [Julia Thea Boyadjan](https://github.com/julia-thea)
+<br />
+<p align="center">
+ <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+  <h1 align="center">Project Catwalk</h1>
+
+  <p align="center">
+    A new retail website for a fictitious clothing company, J.CAD.
+    <br />
+    <h3 align="center">
+     <strong>Contributers »</strong>
+    <br />
+    <br />
+    <a href="https://github.com/ChrisRPeterson">Christian Peterson</a>
+    ·
+    <a href="https://github.com/acdavitt">Amanda Davitt</a>
+    ·
+    <a href="https://github.com/dylanreid7">Dylan Reid</a>
+    ·
+    <a href="https://github.com/julia-thea">Julia Thea Boyadjan</a>
+     </h3>
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about">About The Project</a>
+      <ul>
+        <li><a href="#stack">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#overview---christian-peterson">Overview</a></li>
+    <li><a href="#related-products-and-outfit-lists---amanda-davitt">Related Products and Outfit Lists</a></li>
+    <li><a href="#questions-and-answers---dylan-reid">Questions and Answers</a></li>
+    <li><a href="#ratings-and-reviews---julia-thea-boyadjan">Ratings and Reviews</a></li>
+    <li>
+     <a href="#workflow">Workflow</a>
+     <ul>
+      <li><a href="#trello">Trello</a></li>
+      <li><a href="#version-control">Version Control</a></li>
+     </ul>
+    </li>
+    <li>
+     <a href="#development">Development</a>
+     <ul>
+      <li><a href="#repo">Repo</a></li>
+      <li><a href="#install">Install</a></li>
+      <li><a href="#start-scripts">Start Scripts</a></li>
+      <li><a href="#github-api-token">Github API token</a></li>
+     </ul>
+    </li>
+  </ol>
+</details>
 
 # About
-The objective of Project Catwalk was to build a new retail website for a fictitious clothing company, J.CAD. Our team of four software engineers was given a time frame of three weeks to complete the request. We adhered to the specifications laid out in a business requirements document.  The website is comprised of four main widgets.  Further details about each widget can be found below:
+The objective of Project Catwalk was to build a new retail website for a fictitious clothing company, J.CAD. Our team of four software engineers was given a time frame of three weeks to complete the request. We adhered to the specifications laid out in a business requirements document.  The website is comprised of four main widgets.  Further details about each widget can be found below.
 
-
+![](https://media.giphy.com/media/ybgGMjoo5WwTPMZSlk/giphy.gif)
 
 ## Overview --[Christian Peterson](https://github.com/ChrisRPeterson)
 
+![](https://media.giphy.com/media/tg85cRTz6IdTyoHp4f/giphy.gif)
+
 ## Related Products and Outfit Lists --[Amanda Davitt](https://github.com/acdavitt)
-**Related Products List**
+**Related Products List Features:**
 
-The related products list is a carousel of products predetermined by the company as being related to the current product.  The related products list features are as follows:
-  * Clicking a related product card will change the current product to that product
-  * Each card will have a star icon.  Upon clicking the icon, a comparison modal will pop-up listing the differing characteristics between the related product and current product.
-  * Four cards should display on initial page render.  Additional cards can be viewed with arrows on the right and left sides of the carousel.
+  * *Product Card*: clicking on the card itself changes the current product
+  * *Comparison Modal*: pops up upon clicking the star icon
 
-**Custom Outfit List**
+**Custom Outfit List Features:**
 
-The custom outfit list is a carousel of products selected by the user.  The custom outfit list features are as follows:
-  * The first card in the custom outfit list should read "Add to List". Clicking the first card will add the current product to the user's outfit list.
-  * Each card will have an 'X' icon.  Upon clicking the icon, that product will be removed from the user's custom outfit list.
-  * The user's outfit list should persist upon the user leaving the website or refreshing the page.
+  * *Add to Outfit Card*: adds the current product to the user's outfit list
+  * *'X' icon*: removes the product from the list
+  * *Outfit List*: persists upon page refresh
+
+  ![](https://media.giphy.com/media/nKCnmYJrDrUJUtl6f2/giphy.gif)
 
 
 ## Questions and Answers --[Dylan Reid](https://github.com/dylanreid7)
 
+  * *Search Bar*: allows a user to search for questions
+  * *Questions and Answers List*: displays the questions and answers, sorted by helpfulness
+  * *Helpfulness*: clicking 'Yes' adds one to the helpfulness of a question or answer
+  * *More Answered Questions Button*: displays more questions and answers
+  * *Add Question/Add Answer*: pops up a dialog box that allows the user to add a question or answer
+
+ ![](https://media.giphy.com/media/k9T9wChKTqWYTXlyXm/giphy.gif)
+
 ## Ratings and Reviews --[Julia Thea Boyadjan](https://github.com/julia-thea)
 
-# In Action
+ ![](https://media.giphy.com/media/L7s85SAx6IrjB1ZgTj/giphy.gif)
 
-## Overview
-
-## Related Products and Outfit Lists
-
-![](https://media.giphy.com/media/nKCnmYJrDrUJUtl6f2/giphy.gif)
-
-
-## Questions and Answers
-
-## Ratings and Reviews
 
 # Stack
 
@@ -60,6 +115,7 @@ The custom outfit list is a carousel of products selected by the user.  The cust
         <img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB" />
         <img alt="Material-UI" src="https://img.shields.io/badge/-Material--UI-%230081CB?&style=for-the-badge&logo=material-ui&logoColor=white" />
         <img alt="Bootstrap" src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" />
+        <img alt="Express.js" src="https://img.shields.io/badge/express.js-%23404d59.svg?&style=for-the-badge"/>
       </td>
     </tr>
     <tr>
@@ -109,8 +165,10 @@ We implemented Git Feature Branch Workflow.  All pull requests in Github were re
 `npm install`
 
 ## Start Scripts
-`npm run react-dev`
-`npm start`
+```
+npm run build:watch
+npm start
+```
 
 ## Github API Token
 

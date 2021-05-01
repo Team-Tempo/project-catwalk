@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core'
+// import { makeStyles } from '@material-ui/core'
 import axios from 'axios';
 import config from '../../../../config.js';
 import Button from '@material-ui/core/Button';
@@ -10,14 +10,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
-
-const useStyles = makeStyles((theme) => ({
-  buttons: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  }
-}))
 
 const AddReviewDialog = ({ handleSubmitReview, productName, productId }) => {
   const [open, setOpen] = useState(false);
@@ -38,24 +30,22 @@ const AddReviewDialog = ({ handleSubmitReview, productName, productId }) => {
     axios
       .post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`, formDataStorage.data)
       .then(res => {
-        handleSubmitReview(true);
+        handleSubmitReview();
+      console.log(res)
       })
       .catch(err => console.log(err));
   }
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.buttons}>
-      <Button variant='contained' color='primary'>MORE REVIEWS</Button>
-      <Button variant='contained' color='primary' onClick={handleClickOpen}>ADD A REVIEW +</Button>
+      <div>
+        <Button variant='contained' color='primary' onClick=     {handleClickOpen}>ADD A REVIEW +</Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Write your review</DialogTitle>
           <DialogContent>
           <DialogContentText>
             About the {productName}
           </DialogContentText>
-          <AddReviewForm formData={formDataStorage}/>
+            <AddReviewForm formData={formDataStorage}/>
           </DialogContent>
           <DialogActions>
           <Button variant="contained" onClick={handleClose} color="primary" className="btn btn-primary">
@@ -64,8 +54,8 @@ const AddReviewDialog = ({ handleSubmitReview, productName, productId }) => {
           <Button variant="contained" color="primary" onClick={handleFormData} className="form-control btn btn-primary" type="submit">
             Submit Review
           </Button>
-        </DialogActions>
-      </Dialog>
+          </DialogActions>
+        </Dialog>
     </div>
   )
 }

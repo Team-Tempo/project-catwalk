@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Review from './Review.jsx';
 import AddReviewDialog from './AddReviewDialog';
-import { Typography, Grid, GridList, GridListTile, makeStyles } from '@material-ui/core'
+import { Typography, Grid, GridList, makeStyles, Button } from '@material-ui/core'
 import axios from 'axios';
 import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
-
-const getReviewsData = async (id) => {
-      const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=25`);
-      return response.data;
-};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,27 +15,44 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
   },
   gridList: {
-    minHeight: 200,
-    maxHeight: 500
+    height: 550,
   },
   header: {
     fontWeight: 500,
   },
 }))
 
+const getReviewsData = async (id) => {
+  const response = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews?product_id=${id}&count=100`);
+  return response.data;
+};
+
 const ReviewsList = ({ product, productId }) => {
   const [reviewsData, setReviewsData] = useState([]);
   const [reviewsDataHasChanged, setReviewsDataHasChanged] = useState(false);
+  const [limit, setLimit] = useState(2);
+  const [reviewsCounter, setReviewsCounter] = useState(0);
 
   useEffect(() => {
     getReviewsData(productId)
     .then(resultData => {
-      setReviewsData(resultData.results);
+      setReviewsCounter(resultData.results.length);
+      setReviewsData(resultData.results.slice(0, limit));
     })
-  }, [productId, reviewsDataHasChanged])
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [productId, limit, reviewsDataHasChanged])
+
+  useEffect(() => {
+    setLimit(2);
+  }, [productId]);
 
   const classes = useStyles();
-  const reviewsCounter = reviewsData.length;
+
+  const handleMoreReviews = () => {
+    setLimit(limit + 2);
+  }
 
   function handleSubmitReview() {
     setReviewsDataHasChanged(true);
@@ -59,8 +71,13 @@ const ReviewsList = ({ product, productId }) => {
           )}
          </GridList>
         </Grid>
-        <Grid item xs={12} className={classes.buttons}>
-          <AddReviewDialog handleSubmitReview={handleSubmitReview} productName={product.name} productId={productId}/>
+        <Grid container item xs={12} className={classes.buttons}>
+          <Grid item xs={2}>
+             <Button variant='contained' color='primary' onClick={handleMoreReviews}>MORE REVIEWS</Button>
+          </Grid>
+          <Grid item xs={2}>
+             <AddReviewDialog handleSubmitReview={handleSubmitReview} productName={product.name} productId={productId}/>
+          </Grid>
         </Grid>
       </Grid>
     </div>

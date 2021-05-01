@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   },
   align: {
     alignItems: 'center'
+  },
+  minorPadding: {
+    paddingTop: '3px'
   }
 }));
 
@@ -47,7 +50,7 @@ const Answer = ({ answer }) => {
           <Typography variant="h6"><b>A:</b></Typography>
         </Grid>
         <Grid item className={classes.miniSpacing}>
-          <Typography variant="caption">{answer.body ? answer.body : 'No answer for this question yet'}</Typography>
+          <Typography variant="body1" className={classes.minorPadding}>{answer.body ? answer.body : 'No answer for this question yet'}</Typography>
         </Grid>
       </Grid>
       {answer.date ?

@@ -21,7 +21,7 @@ const RatingsAndReviews = (props) => {
     <Typography variant="subtitle1" className={classes.header}>RATINGS & REVIEWS</Typography>
     <div></div>
     <div className={classes.root}>
-      <Grid container spacing={5}>
+      <Grid container spacing={7}>
         <Grid item xs={3}>
         <Rating ratingData={props}/>
         </Grid>

@@ -5,6 +5,7 @@ import { makeStyles, Typography, Grid, Divider } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    maxWidth: '95%'
   },
   reviewTitle: {
     fontWeight: 500,
@@ -62,6 +63,9 @@ const Review = ({ review }) => {
         </Grid>
         <Grid item xs={12}>
           <Divider className={classes.dividerLine} />
+        </Grid>
+        <Grid item xs={12}>
+          {/* for spacing purposes */}
         </Grid>
       </Grid>
     </div>
