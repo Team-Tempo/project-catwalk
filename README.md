@@ -86,6 +86,7 @@ The objective of Project Catwalk was to build a new retail website for a fictiti
 
 
 ## Questions and Answers --[Dylan Reid](https://github.com/dylanreid7)
+**Features:**
 
   * *Search Bar*: allows a user to search for questions
   * *Questions and Answers List*: displays the questions and answers, sorted by helpfulness
@@ -96,6 +97,15 @@ The objective of Project Catwalk was to build a new retail website for a fictiti
  ![](https://media.giphy.com/media/k9T9wChKTqWYTXlyXm/giphy.gif)
 
 ## Ratings and Reviews --[Julia Thea Boyadjan](https://github.com/julia-thea)
+**Ratings Features:**
+
+  * *Ratings Summary*: displays current average rating, as well as the rating breakdown by number of stars
+  * *Product Breakdown*: displays user-provided feedback on product characteristics
+
+**Reviews Features:**
+
+  * *Reviews List*: clicking 'More Reviews' button displays two additional reviews
+  * *Add a Review*: upon clicking, a form pops up to submit a new review
 
  ![](https://media.giphy.com/media/L7s85SAx6IrjB1ZgTj/giphy.gif)
 
