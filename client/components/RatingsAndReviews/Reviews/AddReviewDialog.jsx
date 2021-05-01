@@ -11,7 +11,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
 
-const AddReviewDialog = ({ productId }) => {
+const AddReviewDialog = ({ handleSubmitReview, productName, productId }) => {
   const [open, setOpen] = useState(false);
   const formDataStorage = {};
 
@@ -30,6 +30,7 @@ const AddReviewDialog = ({ productId }) => {
     axios
       .post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/reviews`, formDataStorage.data)
       .then(res => {
+        handleSubmitReview();
       console.log(res)
       })
       .catch(err => console.log(err));
@@ -42,7 +43,7 @@ const AddReviewDialog = ({ productId }) => {
           <DialogTitle id="form-dialog-title">Write your review</DialogTitle>
           <DialogContent>
           <DialogContentText>
-            About the Camo Onesie
+            About the {productName}
           </DialogContentText>
             <AddReviewForm formData={formDataStorage}/>
           </DialogContent>

@@ -6,7 +6,6 @@ import axios from 'axios';
 import config from '../../../../config.js';
 axios.defaults.headers.common['Authorization'] = config.GITHUB_TOKEN
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -28,29 +27,35 @@ const getReviewsData = async (id) => {
   return response.data;
 };
 
-const ReviewsList = ({ productId }) => {
+const ReviewsList = ({ product, productId }) => {
   const [reviewsData, setReviewsData] = useState([]);
+  const [reviewsDataHasChanged, setReviewsDataHasChanged] = useState(false);
   const [limit, setLimit] = useState(2);
+  const [reviewsCounter, setReviewsCounter] = useState(0);
 
   useEffect(() => {
     getReviewsData(productId)
     .then(resultData => {
+      setReviewsCounter(resultData.results.length);
       setReviewsData(resultData.results.slice(0, limit));
     })
     .catch((err) => {
       console.log(err);
     })
-  }, [productId, limit])
+  }, [productId, limit, reviewsDataHasChanged])
 
   useEffect(() => {
     setLimit(2);
   }, [productId]);
 
   const classes = useStyles();
-  const reviewsCounter = reviewsData.length;
 
   const handleMoreReviews = () => {
     setLimit(limit + 2);
+  }
+
+  function handleSubmitReview() {
+    setReviewsDataHasChanged(true);
   }
 
   return (
@@ -71,7 +76,7 @@ const ReviewsList = ({ productId }) => {
              <Button variant='contained' color='primary' onClick={handleMoreReviews}>MORE REVIEWS</Button>
           </Grid>
           <Grid item xs={2}>
-             <AddReviewDialog productId={productId}/>
+             <AddReviewDialog handleSubmitReview={handleSubmitReview} productName={product.name} productId={productId}/>
           </Grid>
         </Grid>
       </Grid>

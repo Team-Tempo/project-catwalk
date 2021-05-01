@@ -26,7 +26,7 @@ const RatingsAndReviews = (props) => {
         <Rating ratingData={props}/>
         </Grid>
         <Grid item xs={9}>
-        <ReviewsList productId={ props.productId }/>
+        <ReviewsList product={props.product} productId={ props.productId }/>
         </Grid>
       </Grid>
     </div>
