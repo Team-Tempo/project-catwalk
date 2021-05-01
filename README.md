@@ -1,8 +1,5 @@
 <br />
 <p align="center">
- <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
   <h1 align="center">Project Catwalk</h1>
 
   <p align="center">
@@ -35,7 +32,7 @@
         <li><a href="#stack">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#overview---christian-peterson">Overview</a></li>
+    <li><a href="#product-overview---christian-peterson">Overview</a></li>
     <li><a href="#related-products-and-outfit-lists---amanda-davitt">Related Products and Outfit Lists</a></li>
     <li><a href="#questions-and-answers---dylan-reid">Questions and Answers</a></li>
     <li><a href="#ratings-and-reviews---julia-thea-boyadjan">Ratings and Reviews</a></li>
@@ -63,7 +60,13 @@ The objective of Project Catwalk was to build a new retail website for a fictiti
 
 ![](https://media.giphy.com/media/ybgGMjoo5WwTPMZSlk/giphy.gif)
 
-## Overview --[Christian Peterson](https://github.com/ChrisRPeterson)
+## Product Overview --[Christian Peterson](https://github.com/ChrisRPeterson)
+**Features:**
+
+  * *Product Information*: renders information such as product rating, category, title and price dynamically
+  * *Style Selector*: presents the user with all styles and has the ability to toggle between them
+  * *Add to Cart*: includes a size selector, capable of handling an out of stock size, button will add the currently selected item to the cart
+  * *Image Gallery*: displays photos specific to the currently selected style, user can toggle main image, and zoom
 
 ![](https://media.giphy.com/media/tg85cRTz6IdTyoHp4f/giphy.gif)
 
