@@ -40,7 +40,7 @@ const AddQuestion = ({ product, productId, addAQuestion }) => {
       product_id: productId
     };
 
-    addAQuesion(question, nickname);
+    addAQuestion(question);
 
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`, questionData)
     .then(() => {
