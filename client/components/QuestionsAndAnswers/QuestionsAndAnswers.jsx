@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { Button, Dialog, TextField, DialogActions, DialogContent, DialogContentText, DialogTitle, makeStyles, Typography, Grid } from '@material-ui/core';
 import QuestionsDummyData from '../DummyData/QuestionsDummyData';
 import QAndA from './QAndAComponents/QAndA.jsx';
@@ -36,6 +36,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
   const [shownQuestions, setShownQuestions] = useState([]);
   const [allQuestionsShown, setAllQuestionsShown] = useState(false);
   const [numQuestionsBeforeSearch, setNumQuestionsBeforeSearch] = useState(2);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   const classes = useStyles();
 
   useEffect(() => {
@@ -59,6 +60,19 @@ const QuestionsAndAnswers = ({ productId, product }) => {
     var moreQuestions = sortQuestionsByHelpfulness(questions, numQuestionsToShow);
     setShownQuestions(moreQuestions);
     setNumQuestionsBeforeSearch(moreQuestions.length);
+  }
+
+  const addAQuestion = (question) => {
+    var questionData = {
+      question_body: question,
+      question_helpfulness: 0,
+      answers: []
+    }
+    questions.push(questionData);
+    if (shownQuestions.length < 2 || allQuestionsShown) {
+      shownQuestions.push(questionData);
+    }
+    forceUpdate();
   }
 
   const handleAddQuestionClick = () => {
@@ -96,7 +110,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
             MORE ANSWERED QUESTIONS
           </Button> :
           null}
-        <AddQuestion product={product} productId={productId}/>
+        <AddQuestion product={product} productId={productId} addAQuestion={addAQuestion}/>
       </Grid>
     </div>
   );
