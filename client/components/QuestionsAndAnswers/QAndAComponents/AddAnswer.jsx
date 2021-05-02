@@ -48,11 +48,12 @@ const AddAnswer = ({ product, question, addAnswer }) => {
     addAnswer(answer, nickname, date);
 
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${question.question_id}/answers`, answerData)
-
-    setAnswer('');
-    setNickname('');
-    setEmail('');
-    setOpen(false);
+    .then(() => {
+      setAnswer('');
+      setNickname('');
+      setEmail('');
+      setOpen(false);
+    })
   }
 
   const handleClose = () => {

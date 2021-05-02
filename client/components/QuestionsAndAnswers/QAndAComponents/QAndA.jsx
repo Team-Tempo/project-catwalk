@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core';
 import Helpful from './Helpful.jsx';
 import Answer from './Answer.jsx';
@@ -38,6 +38,7 @@ const QAndA = ({ question, product }) => {
   var allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
   var twoSortedAnswers = createSortedAnswers(question.answers, 2);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   const handleMoreAnswersClick = () => {
     setIsCollapsed(false);
   }
@@ -54,7 +55,11 @@ const QAndA = ({ question, product }) => {
       helpfulness: 0,
       photos: []
     };
-    question.answers[1234567] = answerData;
+    var randomSevenDigitNum = Math.floor(10000000*Math.random());
+    question.answers[randomSevenDigitNum] = answerData;
+    allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
+    twoSortedAnswers = createSortedAnswers(question.answers, 2);
+    forceUpdate();
   }
 
   const classes = useStyles();
