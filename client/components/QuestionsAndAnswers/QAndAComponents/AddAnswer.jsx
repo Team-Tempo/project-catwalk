@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AddAnswer = ({ product, question }) => {
+const AddAnswer = ({ product, question, addAnswer }) => {
   const [open, setOpen] = useState(false);
   const [answer, setAnswer] = useState('');
   const [nickname, setNickname] = useState('');
@@ -42,6 +42,10 @@ const AddAnswer = ({ product, question }) => {
       email: email,
       photos: []
     };
+
+    var date = Date.now();
+
+    addAnswer(answer, nickname, date);
 
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions/${question.question_id}/answers`, answerData)
 

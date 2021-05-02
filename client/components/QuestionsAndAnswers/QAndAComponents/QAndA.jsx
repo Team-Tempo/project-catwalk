@@ -38,13 +38,23 @@ const QAndA = ({ question, product }) => {
   var allSortedAnswers = createSortedAnswers(question.answers, question.answers.length)
   var twoSortedAnswers = createSortedAnswers(question.answers, 2);
   const [isCollapsed, setIsCollapsed] = useState(true);
-
   const handleMoreAnswersClick = () => {
     setIsCollapsed(false);
   }
 
   const handleCollapseClick = () => {
     setIsCollapsed(true);
+  }
+
+  const addAnswer = (answer, nickname, date) => {
+    var answerData = {
+      body: answer,
+      date: date,
+      answerer_name: nickname,
+      helpfulness: 0,
+      photos: []
+    };
+    question.answers[1234567] = answerData;
   }
 
   const classes = useStyles();
@@ -68,7 +78,7 @@ const QAndA = ({ question, product }) => {
             <Typography variant="caption">|</Typography>
           </Grid>
           <Grid item className={classes.textSpacing}>
-            <AddAnswer question={question} product={product}/>
+            <AddAnswer question={question} product={product} addAnswer={addAnswer}/>
           </Grid>
         </Grid>
       </Grid>
