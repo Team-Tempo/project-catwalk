@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AddQuestion = ({ product, productId }) => {
+const AddQuestion = ({ product, productId, addAQuestion }) => {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
@@ -40,12 +40,17 @@ const AddQuestion = ({ product, productId }) => {
       product_id: productId
     };
 
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`, questionData)
+    addAQuesion(question, nickname);
 
-    setQuestion('');
-    setNickname('');
-    setEmail('');
-    setOpen(false);
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hratx/qa/questions`, questionData)
+    .then(() => {
+      setQuestion('');
+      setNickname('');
+      setEmail('');
+      setOpen(false);
+    })
+
+
   }
 
   const handleClose = () => {

@@ -47,7 +47,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
     }
     fetchQuestions();
   }, [productId]);
-
+  console.log(questions);
   const handleMoreQuestionsClick = () => {
     var numQuestionsToShow;
     if (questions.length > shownQuestions.length + 2) {
@@ -59,6 +59,10 @@ const QuestionsAndAnswers = ({ productId, product }) => {
     var moreQuestions = sortQuestionsByHelpfulness(questions, numQuestionsToShow);
     setShownQuestions(moreQuestions);
     setNumQuestionsBeforeSearch(moreQuestions.length);
+  }
+
+  const addAQuestion = () => {
+
   }
 
   const handleAddQuestionClick = () => {
@@ -96,7 +100,7 @@ const QuestionsAndAnswers = ({ productId, product }) => {
             MORE ANSWERED QUESTIONS
           </Button> :
           null}
-        <AddQuestion product={product} productId={productId}/>
+        <AddQuestion product={product} productId={productId} addAQuesion={addAQuestion}/>
       </Grid>
     </div>
   );
